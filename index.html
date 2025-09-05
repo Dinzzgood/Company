@@ -456,6 +456,34 @@ to { background-size:120%;}
 #cart-product-picker { font-family: inherit; color: inherit; }
 </style>
 
+
+<style>
+.cart-item button.cart-inc,
+.cart-item button.cart-dec {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: #0d6efd;
+  color: #fff;
+  font-weight: bold;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+}
+.cart-item button.cart-inc:hover,
+.cart-item button.cart-dec:hover {
+  background: #0b5ed7;
+}
+.cart-item button.cart-del {
+  border-radius: 6px;
+  padding: 4px 8px;
+}
+</style>
+
 </head>
 <!-- Open Graph & Twitter (added by assistant) -->
 <meta content="Dirac Parfum — Reseller Parfum Premium &amp; Resmi" property="og:title"/>
@@ -1478,112 +1506,9 @@ const productDescriptions = {
   window.addEventListener('load',function(){ setTimeout(function(){ buildMap(); update(); },800); });
 
 
-<script id="dirac-cart-injected">
-(function(){
-  if(window.__DIRAC_CART_INJECTED__) return; window.__DIRAC_CART_INJECTED__ = true;
-  var CART_KEY = 'dirac_cart_final_v2';
-  function fmt(n){ return 'Rp ' + (Number(n)||0).toLocaleString('id-ID'); }
-  function loadCart(){ try{ return JSON.parse(localStorage.getItem(CART_KEY)||'[]'); }catch(e){ return []; } }
-  function saveCart(c){ localStorage.setItem(CART_KEY, JSON.stringify(c)); renderCart(); }
-  function parseIntSafe(v){ var n = Number(v); return isNaN(n)?0:Math.round(n); }
 
-  function buildProductMap(){
-    var map = {};
-    document.querySelectorAll('[data-product-id]').forEach(function(card){
-      try{
-        var pid = card.getAttribute('data-product-id');
-        if(!pid) return;
-        var sel = card.querySelector('select.variant-select[data-product="'+pid+'"]');
-        var price = sel ? parseIntSafe(sel.value) : 0;
-        if(!price){
-          var txt = card.textContent || '';
-          var m = txt.replace(/\s/g,'').match(/Rp[^\d]*([\d\.\,]+)/i);
-          if(m) price = parseIntSafe(m[1].replace(/\./g,'').replace(/,/g,''));
-        }
-        if(price>0){
-          var titleEl = card.querySelector('h1,h2,h3,h4,h5,strong,b') || card.querySelector('.product-title');
-          var title = titleEl ? titleEl.textContent.trim() : pid;
-          var img = card.querySelector('img');
-          var imgsrc = img ? (img.getAttribute('data-src')||img.getAttribute('src')||'') : '';
-          map[pid] = {id:pid, title:title, price:price, img:imgsrc};
-        }
-      }catch(e){}
-    });
-    return map;
-  }
 
-  var productMap = buildProductMap();
 
-  function ensureUI(){
-    if(!document.getElementById('cartToggleInjected')){
-      var toggle = document.createElement('button'); toggle.id='cartToggleInjected'; toggle.setAttribute('aria-label','Buka Keranjang');
-      toggle.innerHTML = 'Keranjang <span id="cartBadgeInjected">0</span>'; document.body.appendChild(toggle);
-      toggle.addEventListener('click', function(){ var d=document.getElementById('cartDrawerInjected'); if(d){ d.classList.toggle('open'); d.style.transform = d.classList.contains('open') ? 'translateX(0)' : 'translateX(110%)'; renderCart(); } });
-    }
-    if(!document.getElementById('cartDrawerInjected')){
-      var d = document.createElement('aside'); d.id='cartDrawerInjected'; d.setAttribute('aria-hidden','true');
-      d.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;"><h3 style="margin:0">Keranjang Anda</h3><button id="closeCartInjected" style="background:transparent;border:none;font-weight:700;cursor:pointer">✕</button></div><div id="cartItemsInjected"></div><div id="cartSummaryInjected" style="margin-top:12px;padding-top:12px;border-top:1px solid #eee;"><div style="display:flex;justify-content:space-between;margin-bottom:8px"><strong>Total</strong><strong id="cartTotalInjected">Rp 0</strong></div><button id="checkoutInjected" style="width:100%;padding:10px;border-radius:8px;background:#198754;color:#fff;border:none;font-weight:700;cursor:pointer">Checkout via WA</button><p style="font-size:13px;color:#666;margin-top:8px">Isi info di checkout untuk mengirim order ke WhatsApp.</p></div>';
-      document.body.appendChild(d);
-      document.getElementById('closeCartInjected').addEventListener('click', function(){ d.classList.remove('open'); d.style.transform='translateX(110%)'; });
-      document.getElementById('checkoutInjected').addEventListener('click', function(){
-        var cart = loadCart(); if(!cart.length){ alert('Keranjang kosong'); return; }
-        var msg = 'Halo, saya ingin memesan:%0A'; cart.forEach(function(it,idx){ msg += (idx+1)+'. '+(it.title||it.id)+' x'+it.qty+' (Rp '+(Number(it.price)||0).toLocaleString('id-ID')+')%0A'; }); var total=cart.reduce(function(s,i){ return s + (Number(i.price)||0)*(i.qty||1); },0); msg += '%0ATotal: Rp '+total.toLocaleString('id-ID')+'%0A%0ADetail Pengiriman:%0ANama:%0ANo HP:%0AAlamat:%0A'; var wa='https://wa.me/6281937036039?text='+encodeURIComponent(msg); window.open(wa,'_blank');
-      });
-    }
-  }
-
-  function renderCart(){
-    productMap = buildProductMap();
-    var itemsEl = document.getElementById('cartItemsInjected'); var totalEl = document.getElementById('cartTotalInjected'); var badge = document.getElementById('cartBadgeInjected');
-    if(!itemsEl || !totalEl || !badge) return; var cart = loadCart(); itemsEl.innerHTML=''; var total=0; cart.forEach(function(it){ var prod = productMap[it.id]||{title:it.title||it.id, price:it.price||0, img:it.img||''}; var row=document.createElement('div'); row.style.display='flex'; row.style.gap='10px'; row.style.alignItems='center'; row.style.borderBottom='1px solid #eee'; row.style.padding='10px 0'; var img=document.createElement('img'); img.src=prod.img||''; img.style.width='56px'; img.style.height='56px'; img.style.objectFit='cover'; img.style.borderRadius='8px'; var right=document.createElement('div'); right.style.flex='1'; var title=document.createElement('strong'); title.textContent=prod.title||it.id; var variant=document.createElement('div'); variant.style.fontSize='13px'; variant.style.color='#666'; variant.textContent='Variant: '+(it.variant||''); var qtyRow=document.createElement('div'); qtyRow.style.display='flex'; qtyRow.style.alignItems='center'; qtyRow.style.gap='8px'; qtyRow.style.marginTop='8px'; var dec=document.createElement('button'); dec.textContent='-'; dec.style.border='none'; dec.style.background='#f0f0f0'; dec.style.borderRadius='18px'; dec.style.width='34px'; dec.style.height='34px'; var qspan=document.createElement('span'); qspan.textContent=it.qty||1; qspan.style.padding='0 8px'; var inc=document.createElement('button'); inc.textContent='+'; inc.style.border='none'; inc.style.background='#f0f0f0'; inc.style.borderRadius='18px'; inc.style.width='34px'; inc.style.height='34px'; dec.addEventListener('click', function(){ if(it.qty>1){ it.qty--; saveCart(cart); } else { cart = cart.filter(function(x){ return !(x.id===it.id); }); saveCart(cart); } renderCart(); }); inc.addEventListener('click', function(){ it.qty=(it.qty||1)+1; saveCart(cart); renderCart(); }); qtyRow.appendChild(dec); qtyRow.appendChild(qspan); qtyRow.appendChild(inc); right.appendChild(title); right.appendChild(variant); right.appendChild(qtyRow); var priceDiv=document.createElement('div'); priceDiv.style.fontWeight='700'; priceDiv.textContent=fmt(prod.price*(it.qty||1)); row.appendChild(img); row.appendChild(right); row.appendChild(priceDiv); itemsEl.appendChild(row); total += (Number(prod.price)||0)*(it.qty||1); }); totalEl.textContent=fmt(total); badge.textContent = loadCart().reduce(function(s,i){ return s + (i.qty||1); },0) || '0'; }
-
-  function addToCartUI(id, qty){ qty = Number(qty)||1; productMap = buildProductMap(); var prod = productMap[id]; if(!prod){ alert('Produk tidak valid'); return; } var cart = loadCart(); var it = cart.find(function(x){ return x.id===id; }); if(it) it.qty = (it.qty||1)+qty; else cart.push({id:id,title:prod.title,price:prod.price,qty:qty,img:prod.img,variant:'Default'}); saveCart(cart); }
-
-  document.addEventListener('click', function(e){ var btn = e.target.closest && e.target.closest('.add-to-cart.injected'); if(!btn) return; e.preventDefault(); var pid = btn.getAttribute('data-product') || (btn.closest && btn.closest('[data-product-id]') && btn.closest('[data-product-id]').getAttribute('data-product-id')); if(!pid){ alert('Produk tidak ditemukan'); return; } addToCartUI(pid,1); var orig = btn.innerHTML; btn.innerHTML='✓ Ditambahkan'; btn.disabled=true; setTimeout(function(){ btn.innerHTML=orig; btn.disabled=false; },900); }, false);
-
-  function cleanCartStart(){ try{ var cart = loadCart(); var m = buildProductMap(); var newCart = cart.filter(function(it){ return it && it.id && m[it.id] && Number(m[it.id].price)>0; }); if(JSON.stringify(newCart)!==JSON.stringify(cart)){ localStorage.setItem(CART_KEY, JSON.stringify(newCart)); } }catch(e){} }
-  document.addEventListener('DOMContentLoaded', function(){ ensureUI(); cleanCartStart(); renderCart(); setTimeout(function(){ buildProductMap(); renderCart(); },800); });
-  window.addEventListener('load', function(){ setTimeout(function(){ buildProductMap(); renderCart(); },900); });
-
-})(); 
-</script>
-
-<script id="dirac-inserted-handler">
-document.addEventListener('click', function(e){
-  var btn = e.target.closest && e.target.closest('.add-to-cart-inserted');
-  if(!btn) return;
-  e.preventDefault();
-  var article = btn.closest('article[data-product-id]') || btn.closest('article');
-  var pid = btn.getAttribute('data-product') || (article && article.getAttribute('data-product-id')) || ('p-'+Math.random().toString(36).slice(2,8));
-  var titleEl = article && article.querySelector('.product-title, h1,h2,h3,h4,h5,strong,b');
-  var title = titleEl ? titleEl.textContent.trim() : pid;
-  var sel = article && article.querySelector('select.variant-select[data-product="'+pid+'"]');
-  var price = 0;
-  if(sel) price = Number(sel.value) || 0;
-  if(!price){
-    var txt = article ? article.textContent : '';
-    var m = txt.match(/Rp[^\d]*([\d\.,]+)/i);
-    if(m) price = Number(m[1].replace(/\./g,'').replace(/,/g,'')) || 0;
-  }
-  var img = article && article.querySelector('img');
-  var imgsrc = img ? (img.getAttribute('data-src')||img.getAttribute('src')||'') : '';
-  // load cart
-  var key = 'dirac_cart_final_v2';
-  var cart = [];
-  try{ cart = JSON.parse(localStorage.getItem(key)||'[]'); }catch(e){ cart = []; }
-  var it = cart.find(function(x){ return x.id===pid; });
-  if(it) it.qty = (it.qty||1) + 1; else cart.push({id:pid, title:title, price:price, qty:1, img:imgsrc});
-  localStorage.setItem(key, JSON.stringify(cart));
-  // feedback
-  var old = btn.innerHTML;
-  btn.innerHTML = '✓';
-  btn.disabled = true;
-  setTimeout(function(){ btn.innerHTML = old; btn.disabled = false; }, 800);
-  // update badge if exists
-  var badge = document.querySelector('#cartBadgeInjected, #cartBadgeFinal, #cartBadge') || document.querySelector('.cart-badge');
-  if(badge) badge.textContent = cart.reduce(function(s,i){ return s + (i.qty||1); },0);
-});
-</script>
 <!-- ========== CART WIDGET (injected) ========== -->
 <style>
   #cartToggleInjected{position:fixed;top:14px;right:14px;z-index:2147483647;background:#0d6efd;color:#fff;border:none;padding:8px 12px;border-radius:10px;font-weight:700;box-shadow:0 8px 20px rgba(13,110,253,0.18);cursor:pointer;}
@@ -1634,253 +1559,156 @@ document.addEventListener('click', function(e){
 <!-- ========== END CART WIDGET ========== -->
 
 
+
+
+
+
+
+
 <script>
 (function(){
   const KEY = 'dirac_cart_final_v2';
+
   function parsePrice(text){ return parseInt((text||'0').replace(/[^0-9]/g,''))||0; }
-  function formatRp(n){ return new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',minimumFractionDigits:0}).format(n); }
+  function formatRp(n){ try { return new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',minimumFractionDigits:0}).format(n); } catch(e){ return 'Rp '+(n||0); } }
 
   function loadCart(){ try{ return JSON.parse(localStorage.getItem(KEY)||'[]'); }catch(e){ return []; } }
-  function saveCart(cart){ localStorage.setItem(KEY, JSON.stringify(cart)); updateBadge(cart); }
+  function saveCart(cart){ try{ localStorage.setItem(KEY, JSON.stringify(cart)); updateBadge(cart); }catch(e){} }
 
-  const cartWrap = document.getElementById('cartItemsWrap') || document.getElementById('cartItemsInjected') || document.createElement('div');
-  const subtotalEl = document.getElementById('cartSubtotal') || document.getElementById('cartTotalInjected');
+  // Render area detection (multiple fallbacks)
+  function getCartWrap(){
+    return document.getElementById('cartItemsWrap') || document.getElementById('cartItemsInjected') || document.querySelector('.cart-body') || document.querySelector('.offcanvas-body') || document.querySelector('.cart-content') || document.querySelector('#cartDrawerInjected') || document.createElement('div');
+  }
+  function getSubtotalEl(){
+    return document.getElementById('cartSubtotal') || document.getElementById('cartTotalInjected') || document.querySelector('.cart-subtotal') || null;
+  }
 
-  function updateBadge(cart){ cart = cart || loadCart(); const badge = document.getElementById('cartBadgeInjected'); if(badge) badge.textContent = (cart.reduce((s,i)=>s+(i.qty||0),0)||0); }
+  function updateBadge(cart){
+    cart = cart || loadCart();
+    var badge = document.getElementById('cartBadgeInjected') || document.querySelector('.cart-badge') || document.querySelector('.cart-toggle .badge');
+    if(badge){
+      var total = cart.reduce(function(s,i){ return s + (i.qty||0); },0);
+      try{ badge.textContent = total; }catch(e){}
+    }
+  }
 
   function renderCart(){
-    const cart = loadCart();
-    if(!cartWrap) return;
-    cartWrap.innerHTML = '';
-    let total = 0;
-    cart.forEach(item=>{
-      total += item.price*item.qty;
-      const row = document.createElement('div');
+    var cart = loadCart();
+    var wrap = getCartWrap();
+    var subtotalEl = getSubtotalEl();
+    if(!wrap) return;
+    // If wrap is an injected container element created by our code, ensure we target inner wrapper
+    if(wrap && wrap.querySelector && wrap.querySelector('.cart-render-area')){
+      wrap = wrap.querySelector('.cart-render-area');
+    } else {
+      // create an inner render area if necessary
+      if(!wrap.querySelector || !wrap.querySelector('.cart-render-area')){
+        var inner = document.createElement('div');
+        inner.className = 'cart-render-area';
+        // move existing children into inner if wrap was placeholder
+        while(wrap.firstChild) inner.appendChild(wrap.firstChild);
+        wrap.appendChild(inner);
+        wrap = inner;
+      } else {
+        wrap = wrap.querySelector('.cart-render-area');
+      }
+    }
+
+    wrap.innerHTML = '';
+    var total = 0;
+    cart.forEach(function(item){
+      total += (item.price||0) * (item.qty||0);
+      var row = document.createElement('div');
       row.className = 'cart-item d-flex align-items-center mb-2';
-      row.innerHTML = `
-        <img src="${item.img}" alt="" style="width:40px;height:40px;object-fit:cover;" class="me-2"/>
-        <div class="flex-grow-1 small">
-          <div>${item.title}</div>
-          <div class="text-muted">${formatRp(item.price)}</div>
-          <div class="d-flex align-items-center gap-1">
-            <button class="btn btn-sm btn-light dec">-</button>
-            <span>${item.qty}</span>
-            <button class="btn btn-sm btn-light inc">+</button>
-            <button class="btn btn-sm btn-outline-danger ms-2 del">x</button>
-          </div>
-        </div>`;
-      row.querySelector('.inc').onclick=()=>changeQty(item.id,1);
-      row.querySelector('.dec').onclick=()=>changeQty(item.id,-1);
-      row.querySelector('.del').onclick=()=>removeItem(item.id);
-      cartWrap.appendChild(row);
+      row.style.display = 'flex';
+      row.style.gap = '8px';
+      row.style.alignItems = 'center';
+      row.style.justifyContent = 'space-between';
+      row.innerHTML = '<div style="display:flex;gap:10px;align-items:center;flex:1"><img src="'+(item.img||'')+'" style="width:56px;height:40px;object-fit:cover;border-radius:6px" alt=""><div style="flex:1"><div style="font-weight:600">'+(item.title||'Produk')+'</div><div style="color:rgba(0,0,0,0.6)">'+(formatRp(item.price||0))+'</div></div></div><div style="display:flex;gap:6px;align-items:center"><button class="btn btn-sm btn-light cart-dec">-</button><span class="cart-qty">'+(item.qty||0)+'</span><button class="btn btn-sm btn-light cart-inc">+</button><button class="btn btn-sm btn-outline-danger ms-2 cart-del">x</button></div>';
+      (function(it){
+        row.querySelector('.cart-inc').addEventListener('click', function(){ changeQty(it.id,1); });
+        row.querySelector('.cart-dec').addEventListener('click', function(){ changeQty(it.id,-1); });
+        row.querySelector('.cart-del').addEventListener('click', function(){ removeItem(it.id); });
+      })(item);
+      wrap.appendChild(row);
     });
-    if(subtotalEl) subtotalEl.textContent = formatRp(total);
+
+    if(subtotalEl){
+      try{ subtotalEl.textContent = formatRp(total); }catch(e){}
+    } else {
+      // try find any element that looks like subtotal/total
+      var maybe = document.querySelectorAll('.subtotal, .cart-subtotal, .cart-total, #cartSubtotal, #cartTotalInjected');
+      if(maybe && maybe.length) maybe[0].textContent = formatRp(total);
+    }
+
     updateBadge(cart);
   }
 
-  function addItemFromElement(el){
-    const card = el.closest('.product-card');
-    if(!card) return;
-    const id = card.getAttribute('data-id') || card.querySelector('article')?.id || Date.now();
-    const title = card.querySelector('h3,h2,.product-title')?.textContent.trim() || 'Produk';
-    const price = parsePrice(card.querySelector('.price,.product-price')?.textContent||'');
-    const img = card.querySelector('img')?.src || '';
-    addItem({id,title,price,img,qty:1});
-  }
   function addItem(item){
-    const cart = loadCart();
-    const found = cart.find(i=>i.id==item.id);
-    if(found) found.qty += item.qty;
-    else cart.push(item);
-    saveCart(cart); renderCart();
+    var cart = loadCart();
+    var found = cart.find(function(i){ return i.id == item.id; });
+    if(found) found.qty = (found.qty||0) + (item.qty||1);
+    else cart.push({ id: item.id, title: item.title||'Produk', price: item.price||0, img: item.img||'', qty: item.qty||1 });
+    saveCart(cart);
+    renderCart();
   }
+
   function changeQty(id, delta){
-    const cart = loadCart();
-    const found = cart.find(i=>i.id==id);
+    var cart = loadCart();
+    var found = cart.find(function(i){ return i.id == id; });
     if(!found) return;
-    found.qty += delta;
-    if(found.qty<=0) cart.splice(cart.indexOf(found),1);
-    saveCart(cart); renderCart();
+    found.qty = (found.qty||0) + delta;
+    if(found.qty <= 0){
+      cart = cart.filter(function(i){ return i.id != id; });
+    }
+    saveCart(cart);
+    renderCart();
   }
+
   function removeItem(id){
-    let cart = loadCart().filter(i=>i.id!=id);
-    saveCart(cart); renderCart();
+    var cart = loadCart().filter(function(i){ return i.id != id; });
+    saveCart(cart);
+    renderCart();
   }
-  function clearCart(){ localStorage.removeItem(KEY); renderCart(); }
+
+  function clearCart(){
+    try{ localStorage.removeItem(KEY); }catch(e){}
+    renderCart();
+    updateBadge();
+  }
 
   function checkoutViaWA(){
-    const cart = loadCart();
-    if(!cart.length){ alert('Keranjang kosong'); return; }
-    let text = '*Pesanan Saya:*
-';
-    cart.forEach(i=> text += `- ${i.title} x${i.qty} = ${formatRp(i.price*i.qty)}
-`);
-    const total = cart.reduce((s,i)=>s+i.price*i.qty,0);
-    text += `
-Total: ${formatRp(total)}`;
-    const url = 'https://wa.me/6281234567890?text=' + encodeURIComponent(text);
-    window.open(url,'_blank');
+    var cart = loadCart();
+    if(!cart || !cart.length){ alert('Keranjang kosong'); return; }
+    var text = '*Pesanan Saya:*\\n';
+    cart.forEach(function(i){ text += '- ' + (i.title||'Produk') + ' x' + (i.qty||1) + ' = ' + (formatRp((i.price||0)*(i.qty||1))) + '\\n'; });
+    var total = cart.reduce(function(s,i){ return s + ((i.price||0)*(i.qty||0)); },0);
+    text += '\\nTotal: ' + formatRp(total);
+    var wa = '6281234567890'; // <-- ganti nomor kalau perlu
+    var url = 'https://wa.me/' + wa + '?text=' + encodeURIComponent(text);
+    window.open(url, '_blank');
   }
 
-  // safe wiring of add-to-cart
-  document.addEventListener('click', function(e){
-    const btn = e.target.closest && (e.target.closest('.add-to-cart-inserted') || e.target.closest('.add-to-cart-forced') || e.target.closest('.add-to-cart'));
-    if(!btn) return;
-    e.preventDefault();
-    addItemFromElement(btn);
-    renderCart();
-    const old = btn.innerHTML; btn.innerHTML='✓'; btn.disabled=true;
-    setTimeout(()=>{ btn.innerHTML=old; btn.disabled=false; },800);
-    const drawer = document.getElementById('cartDrawerInjected');
-    if(drawer){ drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false'); }
-  });
-
-  // safe attach for buttons
+  // safe attach checkout button if present
   document.addEventListener('DOMContentLoaded', function(){
-    const checkoutBtn = document.getElementById('checkoutWA') || document.getElementById('checkoutInjected');
+    var checkoutBtn = document.getElementById('checkoutWA') || document.querySelector('.checkout-wa');
     if(checkoutBtn) checkoutBtn.addEventListener('click', checkoutViaWA);
-    const closeBtn = document.getElementById('closeCartBtn') || document.getElementById('closeCartInjected');
-    if(closeBtn) closeBtn.addEventListener('click', function(){ const d=document.getElementById('cartDrawerInjected'); if(d){ d.classList.remove('open'); d.setAttribute('aria-hidden','true'); } });
-    const clearBtn = document.getElementById('clearCartBtn');
-    if(clearBtn) clearBtn.addEventListener('click', function(){ if(confirm('Kosongkan keranjang?')) clearCart(); });
-
-    renderCart(); updateBadge();
+    renderCart();
+    updateBadge();
   });
 
-  window.__dirac_cart = { loadCart, saveCart, addItem, renderCart, clearCart };
+  // expose API
+  window.__dirac_cart = {
+    loadCart: loadCart,
+    saveCart: saveCart,
+    addItem: addItem,
+    renderCart: renderCart,
+    clearCart: clearCart,
+    updateBadge: updateBadge,
+    checkoutViaWA: checkoutViaWA
+  };
+
 })();
-</script>
-
-
-<script>
-document.addEventListener('DOMContentLoaded', function(){
-  // Hide product-card add buttons (catalog) so user picks from cart drawer only
-  document.querySelectorAll('.add-to-cart, .add-to-cart-inserted, .dg-add-btn, .add-to-cart-forced, .btn-add-cart').forEach(el=>{
-    el.style.display = 'none';
-  });
-
-  // Find or create cart drawer container where we will insert product picker
-  var drawerSelectors = ['#cartDrawerInjected', '#cartDrawer', '.cart-drawer', '.drawer-cart', '#dirac-cart'];
-  var drawer = null;
-  for(var s of drawerSelectors){ var el = document.querySelector(s); if(el){ drawer = el; break; } }
-  if(!drawer){
-    // try to find by header text "Keranjang" or create a floating drawer
-    drawer = document.querySelector('body');
-  }
-
-  // create picker container
-  var picker = document.createElement('div');
-  picker.id = 'cart-product-picker';
-  picker.style.padding = '12px';
-  picker.style.borderTop = '1px solid rgba(0,0,0,0.06)';
-  picker.style.marginTop = '6px';
-  picker.innerHTML = '<h6 style="margin:0 0 8px 0;font-weight:700">Pilih Produk</h6><div id="cart-picker-list" style="display:flex;flex-direction:column;gap:8px;max-height:320px;overflow:auto"></div>';
-
-  // collect products from page
-  var cards = document.querySelectorAll('.product-card, article[role="listitem"], .card-product');
-  var list = picker.querySelector('#cart-picker-list');
-  if(cards.length===0){
-    list.innerHTML = '<div class="muted small">Tidak ada produk yang terdeteksi di halaman.</div>';
-  } else {
-    cards.forEach(function(card, idx){
-      try{
-        var id = card.getAttribute('data-id') || card.id || 'p_'+idx;
-        var title = (card.querySelector('h2,h3,.product-title,.title') && card.querySelector('h2,h3,.product-title,.title').textContent.trim()) || (card.querySelector('h4') && card.querySelector('h4').textContent.trim()) || ('Produk '+(idx+1));
-        var priceText = (card.querySelector('.price,.product-price,.price-tag') && card.querySelector('.price,.product-price,.price-tag').textContent) || '';
-        var price = parseInt((priceText||'').replace(/[^0-9]/g,'')) || 0;
-        var img = (card.querySelector('img') && card.querySelector('img').src) || '';
-        // build item row
-        var row = document.createElement('div');
-        row.className = 'picker-row d-flex align-items-center';
-        row.style.display = 'flex';
-        row.style.gap = '10px';
-        row.style.alignItems = 'center';
-        row.style.justifyContent = 'space-between';
-        row.style.padding = '8px';
-        row.style.borderRadius = '8px';
-        row.style.background = 'linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02))';
-        row.innerHTML = `
-          <div style="display:flex;gap:10px;align-items:center;flex:1">
-            <img src="${img}" style="width:56px;height:40px;object-fit:cover;border-radius:6px;flex-shrink:0" alt="">
-            <div style="flex:1">
-              <div style="font-weight:600;font-size:14px">${title}</div>
-              <div style="font-size:13px;color:rgba(0,0,0,0.6)">${price? new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',minimumFractionDigits:0}).format(price) : ''}</div>
-            </div>
-          </div>
-          <div style="display:flex;gap:8px;align-items:center">
-            <input type="number" min="1" value="1" style="width:56px;padding:6px;border-radius:6px;border:1px solid rgba(0,0,0,0.08);text-align:center" class="picker-qty">
-            <button class="btn btn-sm btn-primary picker-add">Tambah</button>
-          </div>
-        `;
-        // attach dataset for easy reference
-        row.dataset.item = JSON.stringify({id:id,title:title,price:price,img:img});
-        list.appendChild(row);
-      }catch(e){ console.error(e) }
-    });
-  }
-
-  // insert picker at top of drawer (if drawer is body, append to top)
-  if(drawer && drawer!==document.body){
-    // try to find a content area inside drawer
-    var target = drawer.querySelector('.drawer-body, .cart-body, .cart-content, .offcanvas-body') || drawer;
-    target.insertBefore(picker, target.firstChild);
-  } else {
-    // fallback: insert as a fixed sheet near cart badge
-    picker.style.position = 'fixed';
-    picker.style.right = '16px';
-    picker.style.bottom = '110px';
-    picker.style.width = '320px';
-    picker.style.maxWidth = 'calc(100% - 40px)';
-    picker.style.boxShadow = '0 10px 30px rgba(0,0,0,0.28)';
-    picker.style.background = '#fff';
-    picker.style.zIndex = 99999;
-    document.body.appendChild(picker);
-  }
-
-  // event delegation for add buttons inside picker
-  picker.addEventListener('click', function(e){
-    var btn = e.target.closest('.picker-add');
-    if(!btn) return;
-    var row = btn.closest('.picker-row');
-    var qtyInput = row.querySelector('.picker-qty');
-    var qty = parseInt(qtyInput.value) || 1;
-    var item = JSON.parse(row.dataset.item || '{}');
-    item.qty = qty;
-    // call existing cart add function if available
-    if(window.__dirac_cart && typeof window.__dirac_cart.addItem === 'function'){
-      window.__dirac_cart.addItem(item);
-      if(typeof window.__dirac_cart.renderCart === 'function') window.__dirac_cart.renderCart();
-    } else {
-      // fallback: use localStorage same KEY used in patched cart
-      try{
-        var KEY = 'dirac_cart_final_v2';
-        var cart = JSON.parse(localStorage.getItem(KEY)||'[]');
-        var found = cart.find(i=>i.id==item.id);
-        if(found) found.qty += item.qty;
-        else cart.push(item);
-        localStorage.setItem(KEY, JSON.stringify(cart));
-        // try to call render functions if present
-        if(window.__dirac_cart && typeof window.__dirac_cart.renderCart === 'function') window.__dirac_cart.renderCart();
-      }
-  // selalu update UI setelah tambah
-  if(window.__dirac_cart){
-    if(typeof window.__dirac_cart.renderCart === 'function') window.__dirac_cart.renderCart();
-    if(typeof window.__dirac_cart.updateBadge === 'function') window.__dirac_cart.updateBadge();
-  }catch(err){ console.error(err) }
-    }
-    // visual feedback
-    btn.textContent = '✓';
-    btn.disabled = true;
-    setTimeout(function(){ btn.textContent = 'Tambah'; btn.disabled = false; },700);
-  });
-
-  // optional: when cart opens, scroll picker into view
-  var cartToggle = document.querySelector('.cart-toggle, #cartToggle, .cart-badge, .cart-button, .cart-icon');
-  if(cartToggle){
-    cartToggle.addEventListener('click', function(){ setTimeout(function(){ picker.scrollIntoView({behavior:'smooth', block:'start'}); },200); });
-  }
-
-});
 </script>
 
 </body>
