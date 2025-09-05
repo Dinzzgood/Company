@@ -423,6 +423,70 @@ to { background-size:120%;}
 #cartDrawerInjected{position:fixed;right:0;top:0;height:100%;width:360px;max-width:92vw;background:#fff;box-shadow:-12px 0 30px rgba(0,0,0,0.12);transform:translateX(110%);transition:transform .32s ease;z-index:2147483646;padding:18px;overflow:auto;}
 #cartDrawerInjected.open{transform:translateX(0);}
 @media (max-width:420px){ #cartDrawerInjected{width:92vw;} .add-to-cart.injected{padding:7px 10px;font-size:13px;min-height:34px;} }
+</style><style>/* Forced add-to-cart button styling */
+
+/* Forced add-to-cart button styling */
+.add-to-cart-forced{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:#0b0b0b !important;
+  color:#fff !important;
+  border:none !important;
+  padding:8px 12px !important;
+  border-radius:28px !important;
+  font-weight:700 !important;
+  font-size:14px !important;
+  line-height:1 !important;
+  min-height:36px !important;
+  cursor:pointer !important;
+  box-shadow:0 6px 18px rgba(0,0,0,0.14) !important;
+  z-index:99999 !important;
+}
+.add-to-cart-forced svg{width:14px;height:14px;color:#fff}
+.add-controls-forced{display:inline-flex;align-items:center;gap:8px}
+@media (max-width:420px){
+  .add-to-cart-forced{padding:7px 10px;font-size:13px;min-height:34px}
+}
+</style><style id="dirac-mobile-style">
+/* Mobile-first styles for add-to-cart */
+.add-controls.injected, .add-controls.rebuilt, .add-controls-forced {
+  display: block !important;
+  width: 100% !important;
+  margin-top: 8px;
+  box-sizing: border-box;
+}
+.add-to-cart.injected, .add-to-cart.rebuilt, .add-to-cart-forced {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100% !important;
+  padding: 12px 14px !important;
+  font-size: 16px !important;
+  min-height: 48px !important;
+  border-radius: 10px !important;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12) !important;
+  -webkit-tap-highlight-color: rgba(0,0,0,0.06);
+  cursor: pointer;
+}
+.add-to-cart.injected svg, .add-to-cart.rebuilt svg, .add-to-cart-forced svg { width:18px; height:18px; margin-right:8px; }
+/* Desktop / tablet: */
+@media (min-width: 768px) {
+  .add-controls.injected, .add-controls.rebuilt, .add-controls-forced {
+    display: inline-flex !important;
+    width: auto !important;
+    margin-top: 0 !important;
+  }
+  .add-to-cart.injected, .add-to-cart.rebuilt, .add-to-cart-forced {
+    width: auto !important;
+    padding: 8px 12px !important;
+    font-size: 14px !important;
+    min-height: 36px !important;
+    border-radius: 28px !important;
+  }
+}
+.card-action-group, .product-action, .d-flex, .actions { display: flex; gap:8px; align-items:center; flex-wrap:wrap; }
 </style></head>
 <!-- Open Graph & Twitter (added by assistant) -->
 <meta content="Dirac Parfum — Reseller Parfum Premium &amp; Resmi" property="og:title"/>
@@ -1513,6 +1577,150 @@ const productDescriptions = {
   window.addEventListener('load', function(){ setTimeout(function(){ buildProductMap(); renderCart(); },900); });
 
 })(); 
+</script>
+<script id="dirac-final-forced-v1">
+(function(){
+  if(window.__DIRAC_FINAL_FORCED_V1__) return;
+  window.__DIRAC_FINAL_FORCED_V1__ = true;
+
+  function parsePrice(text){
+    if(!text) return 0;
+    var m = text.replace(/\s/g,'').match(/Rp[^\d]*([\d\.\,]+)/i);
+    if(!m) return 0;
+    return parseInt(m[1].replace(/\./g,'').replace(/,/g,''))||0;
+  }
+
+  // Find candidate containers: elements that contain 'Rp' and are reasonable size
+  function findCandidates(){
+    var candidates = [];
+    var all = Array.from(document.querySelectorAll('div,article,section'));
+    all.forEach(function(el){
+      try{
+        if(!el.textContent) return;
+        if(!/Rp[^\d]*\d/.test(el.textContent)) return;
+        // ignore header/footer main site wrappers by skipping if element is very large (contains >5 sibling product cards)
+        var imgs = el.querySelectorAll('img');
+        if(imgs.length===0) return;
+        // prefer elements that have a title-like element or action buttons
+        var hasTitle = el.querySelector('h1,h2,h3,h4,h5,strong,b') || /All Parfum|Rp\d+/i.test(el.textContent);
+        if(!hasTitle) return;
+        candidates.push(el);
+      }catch(e){}
+    });
+    // reduce to outermost (remove those contained in other candidates)
+    var outer = candidates.filter(function(c){
+      return !candidates.some(function(other){ return other!==c && other.contains(c); });
+    });
+    return outer;
+  }
+
+  function ensureButtonInContainer(card){
+    if(!card || card.querySelector('.add-to-cart-forced')) return false;
+    // find action area: element with text 'Lihat' or 'Pesan' nearby
+    var action = Array.from(card.querySelectorAll('div,span,p')).find(function(el){
+      return /\b(lihat|pesan|detail)\b/i.test(el.textContent || '');
+    });
+    var wrapper = document.createElement('div');
+    wrapper.className = 'add-controls-forced';
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'add-to-cart-forced';
+    btn.setAttribute('aria-label','Tambah ke Keranjang');
+    // inner html: svg + label
+    btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6h15l-1.5 9h-11z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="20" r="1" fill="currentColor"/><circle cx="18" cy="20" r="1" fill="currentColor"/></svg><span style="vertical-align:middle">Tambah</span>';
+    wrapper.appendChild(btn);
+    // insert near action if exists, else at end
+    if(action){
+      action.appendChild(wrapper);
+    } else {
+      card.appendChild(wrapper);
+    }
+    // attach click handler - store minimal cart in localStorage 'dirac_cart_final_v2'
+    btn.addEventListener('click', function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      var cardEl = card;
+      var pid = cardEl.getAttribute('data-product-id') || cardEl.id || (cardEl.querySelector('h1,h2,h3,h4,h5,strong,b') && cardEl.querySelector('h1,h2,h3,h4,h5,strong,b').textContent.trim().toLowerCase().replace(/[^a-z0-9]+/g,'-'));
+      var titleEl = cardEl.querySelector('h1,h2,h3,h4,h5,strong,b') || cardEl.querySelector('.product-title') || cardEl;
+      var title = titleEl ? titleEl.textContent.trim() : pid;
+      var price = parsePrice(cardEl.textContent || '');
+      var img = (cardEl.querySelector('img') && (cardEl.querySelector('img').getAttribute('data-src')||cardEl.querySelector('img').getAttribute('src'))) || '';
+      if(!pid) pid = 'p-'+Math.random().toString(36).slice(2,9);
+      var cart = [];
+      try{ cart = JSON.parse(localStorage.getItem('dirac_cart_final_v2')||'[]'); }catch(e){ cart = []; }
+      var item = cart.find(function(x){ return x.id===pid; });
+      if(item) item.qty = (item.qty||1) + 1; else cart.push({id:pid, title:title, price:price, qty:1, img:img});
+      localStorage.setItem('dirac_cart_final_v2', JSON.stringify(cart));
+      // update badge if exists
+      var badge = document.getElementById('cartBadgeInjected') || document.getElementById('cartBadgeFinal') || document.getElementById('cartBadge');
+      if(badge) badge.textContent = cart.reduce(function(s,i){ return s + (i.qty||1); },0);
+      // visual feedback
+      var old = btn.innerHTML;
+      btn.innerHTML = '✓';
+      btn.disabled = true;
+      setTimeout(function(){ btn.innerHTML = old; btn.disabled = false; }, 800);
+    });
+    return true;
+  }
+
+  function injectAll(){
+    var cards = findCandidates();
+    if(!cards || cards.length===0){
+      // fallback: try find by searching for containers that have an <img> sibling and Rp in parent
+      var all = Array.from(document.querySelectorAll('img'));
+      all.forEach(function(img){
+        try{
+          var parent = img.closest('div,article,section') || img.parentElement;
+          if(parent && /Rp[^\d]*\d/.test(parent.textContent || '') ){
+            if(!parent.querySelector('.add-to-cart-forced')) ensureButtonInContainer(parent);
+          }
+        }catch(e){}
+      });
+      return;
+    }
+    cards.forEach(function(card){
+      ensureButtonInContainer(card);
+    });
+  }
+
+  // Run on load and after short delays to catch lazy content
+  document.addEventListener('DOMContentLoaded', function(){ injectAll(); setTimeout(injectAll, 700); setTimeout(injectAll, 1500); });
+  window.addEventListener('load', function(){ injectAll(); setTimeout(injectAll, 700); setTimeout(injectAll, 1500); });
+
+  // also expose a quick manual call
+  window.__dirac_force_inject = injectAll;
+
+})(); 
+</script>
+<script id="dirac-mobile-behavior">
+(function(){
+  function adjust(){
+    if(window.innerWidth < 420){
+      document.querySelectorAll('[data-product-id]').forEach(function(card){
+        try{
+          var controls = card.querySelector('.add-controls.injected, .add-controls.rebuilt, .add-controls-forced');
+          if(!controls){
+            var btn = card.querySelector('.add-to-cart.injected, .add-to-cart.rebuilt, .add-to-cart-forced');
+            if(btn){
+              var wrapper = document.createElement('div'); wrapper.className = 'add-controls injected';
+              btn.parentElement && btn.parentElement.removeChild(btn);
+              wrapper.appendChild(btn);
+              var priceEl = card.querySelector('[class*=price], .product-price, .harga');
+              if(priceEl && priceEl.parentElement){
+                priceEl.parentElement.appendChild(wrapper);
+              } else {
+                card.appendChild(wrapper);
+              }
+            }
+          }
+        }catch(e){}
+      });
+    }
+  }
+  window.addEventListener('resize', adjust);
+  document.addEventListener('DOMContentLoaded', function(){ adjust(); setTimeout(adjust,700); });
+  window.__dirac_mobile_adjust = adjust;
+})();
 </script>
 </body>
 </html>
