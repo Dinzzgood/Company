@@ -1861,7 +1861,12 @@ document.addEventListener('DOMContentLoaded', function(){
         localStorage.setItem(KEY, JSON.stringify(cart));
         // try to call render functions if present
         if(window.__dirac_cart && typeof window.__dirac_cart.renderCart === 'function') window.__dirac_cart.renderCart();
-      }catch(err){ console.error(err) }
+      }
+  // selalu update UI setelah tambah
+  if(window.__dirac_cart){
+    if(typeof window.__dirac_cart.renderCart === 'function') window.__dirac_cart.renderCart();
+    if(typeof window.__dirac_cart.updateBadge === 'function') window.__dirac_cart.updateBadge();
+  }catch(err){ console.error(err) }
     }
     // visual feedback
     btn.textContent = '✓';
@@ -1876,94 +1881,6 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 
 });
-</script>
-
-
-<!-- Fallback visible product picker: always-accessible floating button + panel -->
-<style>
-#floating-picker-btn{position:fixed; right:20px; bottom:120px; width:52px; height:52px; border-radius:50%; background:linear-gradient(135deg,#b88649,#d4af37); display:flex; align-items:center; justify-content:center; box-shadow:0 10px 30px rgba(0,0,0,0.35); z-index:999999; cursor:pointer; color:#fff; font-weight:700;}
-#floating-picker-panel{position:fixed; right:16px; bottom:190px; width:340px; max-width:calc(100% - 32px); max-height:60vh; overflow:auto; background:#fff; border-radius:12px; box-shadow:0 20px 60px rgba(0,0,0,0.45); padding:12px; z-index:999999; display:none;}
-#floating-picker-panel h4{margin:0 0 8px 0; font-size:16px}
-.picker-row{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:8px;border-radius:8px}
-.picker-row + .picker-row{margin-top:6px}
-#floating-picker-panel .btn{padding:6px 10px;border-radius:8px;border:none;background:#0d6efd;color:#fff;cursor:pointer}
-#floating-picker-panel .btn:disabled{opacity:0.6}
-</style>
-<div id="floating-picker-btn" title="Pilih Produk">+</div>
-<div id="floating-picker-panel" aria-hidden="true">
-  <h4>Pilih Produk</h4>
-  <div id="floating-picker-list"></div>
-</div>
-<script>
-(function(){
-  function formatRp(n){ return new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',minimumFractionDigits:0}).format(n); }
-  var btn = document.getElementById('floating-picker-btn');
-  var panel = document.getElementById('floating-picker-panel');
-  var list = document.getElementById('floating-picker-list');
-
-  btn.addEventListener('click', function(){
-    panel.style.display = (panel.style.display==='block') ? 'none' : 'block';
-    panel.setAttribute('aria-hidden', panel.style.display==='none' ? 'true' : 'false');
-    if(panel.style.display==='block') buildList();
-  });
-
-  function buildList(){
-    if(list.dataset.built==='1') return;
-    list.innerHTML = '';
-    var cards = document.querySelectorAll('.product-card, article[role=\"listitem\"], .card-product, .card');
-    if(cards.length===0){
-      list.innerHTML = '<div class="muted small">Tidak ada produk terdeteksi.</div>';
-      return;
-    }
-    cards.forEach(function(card, idx){
-      try{
-        var id = card.getAttribute('data-id') || card.id || 'p_'+idx;
-        var titleEl = card.querySelector('h2,h3,h4,.product-title,.title') || card.querySelector('.card-title');
-        var title = titleEl ? titleEl.textContent.trim() : ('Produk '+(idx+1));
-        var priceText = (card.querySelector('.price,.product-price,.price-tag') && card.querySelector('.price,.product-price,.price-tag').textContent) || card.querySelector('.small')?.textContent || '';
-        var price = parseInt((priceText||'').replace(/[^0-9]/g,''))||0;
-        var img = (card.querySelector('img') && card.querySelector('img').src) || '';
-        var row = document.createElement('div');
-        row.className = 'picker-row';
-        row.style.background = 'linear-gradient(180deg, rgba(0,0,0,0.02), rgba(255,255,255,0.02))';
-        row.innerHTML = '<div style="display:flex;gap:8px;align-items:center;flex:1;"><img src="'+img+'" style="width:56px;height:40px;object-fit:cover;border-radius:6px;flex-shrink:0"><div style="flex:1"><div style="font-weight:600">'+title+'</div><div style="font-size:13px;color:#666">'+(price?formatRp(price):'')+'</div></div></div><div style="display:flex;gap:8px;align-items:center"><input class="fp-qty" type="number" min="1" value="1" style="width:56px;padding:6px;border-radius:6px;border:1px solid #eee;text-align:center"><button class="fp-add btn">Tambah</button></div>';
-        row.dataset.item = JSON.stringify({id:id,title:title,price:price,img:img});
-        list.appendChild(row);
-      }catch(e){ console.error(e) }
-    });
-    list.dataset.built='1';
-  }
-
-  list.addEventListener('click', function(e){
-    var add = e.target.closest('.fp-add');
-    if(!add) return;
-    var row = add.closest('.picker-row');
-    var qty = parseInt(row.querySelector('.fp-qty').value) || 1;
-    var item = JSON.parse(row.dataset.item || '{}'); item.qty = qty;
-    if(window.__dirac_cart && typeof window.__dirac_cart.addItem === 'function'){
-      window.__dirac_cart.addItem(item);
-      if(typeof window.__dirac_cart.renderCart === 'function') window.__dirac_cart.renderCart();
-    } else {
-      try{
-        var KEY = 'dirac_cart_final_v2';
-        var cart = JSON.parse(localStorage.getItem(KEY)||'[]');
-        var found = cart.find(i=>i.id==item.id);
-        if(found) found.qty += item.qty; else cart.push(item);
-        localStorage.setItem(KEY, JSON.stringify(cart));
-      }catch(err){ console.error(err) }
-    }
-    add.textContent='✓'; add.disabled=true;
-    setTimeout(function(){ add.textContent='Tambah'; add.disabled=false; },700);
-    // also open cart drawer if exists
-    var drawer = document.querySelector('#cartDrawerInjected, #cartDrawer, .cart-drawer, .drawer-cart, #dirac-cart, .offcanvas');
-    if(drawer){ drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false'); if(typeof window.__dirac_cart?.renderCart === 'function') window.__dirac_cart.renderCart(); }
-  });
-
-  // close panel when clicking outside
-  document.addEventListener('click', function(e){
-    if(!panel.contains(e.target) && !btn.contains(e.target)) panel.style.display='none';
-  });
-})();
 </script>
 
 </body>
