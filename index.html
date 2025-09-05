@@ -7,6 +7,7 @@
 <title>Dirac Parfum — Katalog Parfum Niche, Designer, Lokal &amp; Timur Tengah</title>
 <meta content="Dirac Parfum" name="author"/>
 <!-- Structured Data (Organization) -->
+
 <!-- Fonts & CSS -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&amp;family=Poppins:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
@@ -396,24 +397,17 @@ header{ animation: headerSlide 0.8s cubic-bezier(.2,.9,.2,1) both; will-change: 
 to { background-size:120%;}
 }</style>
 <meta content="Promo Diskon 15% - Produk Kesehatan" property="og:title"/><meta content="Gunakan kode DIRAC15 untuk dapatkan diskon. Berlaku sampai akhir bulan!" property="og:description"/><meta content="https://example.com/share.jpg" property="og:image"/><meta content="Belanja parfum niche, designer, lokal, dan Timur Tengah. Jaminan ori, ready stock, dan konsultasi wangi gratis. Promo &amp; rekomendasi terbaru ada di sini." name="description"/><link href="https://dirac-parfum.example/" rel="canonical"/><style>
-.add-to-cart.featured-add{
-  display:inline-block;
-  background:transparent;
-  color:#2b2b2b;
-  border:2px solid rgba(210,180,104,0.95);
-  padding:8px 14px;
-  border-radius:28px;
-  font-weight:700;
-  font-size:15px;
-  min-height:40px;
-  line-height:1;
-  margin-left:10px;
-  cursor:pointer;
-  box-shadow: 0 6px 12px rgba(0,0,0,0.12);
-}
-.add-to-cart.featured-add:hover{ background:rgba(210,180,104,0.08); }
+/* Rebuilt cart UI styles */
+#cartToggleRebuilt{position:fixed;top:16px;right:16px;z-index:2147483647;background:#0d6efd;color:#fff;border:none;padding:8px 12px;border-radius:10px;font-weight:700;box-shadow:0 8px 20px rgba(13,110,253,0.18);cursor:pointer;}
+#cartToggleRebuilt #cartBadge{background:#fff;color:#0d6efd;border-radius:999px;padding:2px 8px;margin-left:8px;font-weight:800;min-width:24px;text-align:center;display:inline-block;}
+#cartDrawerRebuilt{position:fixed;right:0;top:0;height:100%;width:360px;max-width:92vw;background:#fff;box-shadow:-12px 0 30px rgba(0,0,0,0.12);transform:translateX(110%);transition:transform .32s ease;z-index:2147483646;padding:18px;overflow:auto;}
+#cartDrawerRebuilt.open{transform:translateX(0);}
+.add-to-cart.rebuilt{display:inline-flex;align-items:center;gap:8px;background:#0b0b0b;color:#fff;border:none;padding:8px 12px;border-radius:28px;font-weight:700;font-size:14px;min-height:40px;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,0.16);}
+.add-controls.rebuilt{display:inline-flex;align-items:center;gap:8px;}
+/* small screens */
 @media (max-width:420px){
-  .add-to-cart.featured-add{ padding:7px 12px; font-size:14px; min-height:36px; }
+  .add-to-cart.rebuilt{padding:7px 10px;font-size:13px;min-height:36px;}
+  #cartDrawerRebuilt{width:92vw;}
 }
 </style></head>
 <!-- Open Graph & Twitter (added by assistant) -->
@@ -588,7 +582,7 @@ It's recommended to generate optimized WebP files and serve them with proper cac
 </div>
 </div>
 <div class="catalog-grid" id="catalog" role="list">
-<article aria-label="All Parfum Timteng" class="product-card p-0" data-product-id="all-parfum-timteng" role="listitem">
+<article aria-label="All Parfum Timteng" class="product-card p-0" role="listitem">
 <div style="position:relative;">
 <img alt="All Parfum Timteng" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.no-img').style.display='flex'" src="all_parfum_timteng.png" style="width:100%;height:260px;object-fit:cover;display:block;"/>
 <div class="no-img" style="display:none;align-items:center;justify-content:center;height:260px;background:#f3f3f3;color:#2b2b2b;font-weight:700;border-radius:6px;">All Parfum Timteng</div>
@@ -597,9 +591,9 @@ It's recommended to generate optimized WebP files and serve them with proper cac
 <h5 class="product-title" style="margin:10px 0 6px;font-size:1rem;">All Parfum Timteng</h5>
 <div class="product-price" style="margin-bottom:8px;font-weight:700;">Rp 1.000.000</div>
 <a class="btn btn-sm btn-primary-grad btn-ghost" href="https://wa.me/6281937036039?text=Halo%2C+saya+tertarik+Produk+Parfum.+Apakah+masih+tersedia%3F" rel="noopener" target="_blank"><svg aria-hidden="true" height="16" style="vertical-align:middle;margin-right:6px" viewbox="0 0 24 24" width="16"><path d="M12 5c-7 0-11 7-11 7s4 7 11 7 11-7 11-7-4-7-11-7zm0 12a5 5 0 110-10 5 5 0 010 10z" fill="currentColor"></path></svg>Detail</a>
-<button aria-label="Tambah ke Keranjang" class="add-to-cart" data-product="all-parfum-timteng" style="background:#0d6efd;color:#fff;border:none;padding:8px 12px;border-radius:8px;font-weight:700;cursor:pointer;margin-left:8px;" type="button">Tambah ke Keranjang</button></div>
-<select class="variant-select" data-product="all-parfum-timteng" style="display:none;"><option value="1000000">Default</option></select></article>
-<article aria-label="All Parfum Designer" class="product-card p-0" data-product-id="all-parfum-designer" role="listitem">
+</div>
+</article>
+<article aria-label="All Parfum Designer" class="product-card p-0" role="listitem">
 <div style="position:relative;">
 <img alt="All Parfum Designer" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.no-img').style.display='flex'" src="all_parfum_desaigner.png" style="width:100%;height:260px;object-fit:cover;display:block;"/>
 <div class="no-img" style="display:none;align-items:center;justify-content:center;height:260px;background:#f3f3f3;color:#2b2b2b;font-weight:700;border-radius:6px;">All Parfum Designer</div>
@@ -608,9 +602,9 @@ It's recommended to generate optimized WebP files and serve them with proper cac
 <h5 class="product-title" style="margin:10px 0 6px;font-size:1rem;">All Parfum Designer</h5>
 <div class="product-price" style="margin-bottom:8px;font-weight:700;">Rp 1.000.000</div>
 <a class="btn btn-sm btn-primary-grad btn-ghost" href="https://wa.me/6281937036039?text=Halo%2C+saya+tertarik+Produk+Parfum.+Apakah+masih+tersedia%3F" rel="noopener" target="_blank"><svg aria-hidden="true" height="16" style="vertical-align:middle;margin-right:6px" viewbox="0 0 24 24" width="16"><path d="M12 5c-7 0-11 7-11 7s4 7 11 7 11-7 11-7-4-7-11-7zm0 12a5 5 0 110-10 5 5 0 010 10z" fill="currentColor"></path></svg>Detail</a>
-<button aria-label="Tambah ke Keranjang" class="add-to-cart" data-product="all-parfum-designer" style="background:#0d6efd;color:#fff;border:none;padding:8px 12px;border-radius:8px;font-weight:700;cursor:pointer;margin-left:8px;" type="button">Tambah ke Keranjang</button></div>
-<select class="variant-select" data-product="all-parfum-designer" style="display:none;"><option value="1000000">Default</option></select></article>
-<article aria-label="All Parfum Lokal" class="product-card p-0" data-product-id="all-parfum-lokal" role="listitem">
+</div>
+</article>
+<article aria-label="All Parfum Lokal" class="product-card p-0" role="listitem">
 <div style="position:relative;">
 <img alt="All Parfum Lokal" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.no-img').style.display='flex'" src="all_parfum_lokal.png" style="width:100%;height:260px;object-fit:cover;display:block;"/>
 <div class="no-img" style="display:none;align-items:center;justify-content:center;height:260px;background:#f3f3f3;color:#2b2b2b;font-weight:700;border-radius:6px;">All Parfum Lokal</div>
@@ -619,9 +613,9 @@ It's recommended to generate optimized WebP files and serve them with proper cac
 <h5 class="product-title" style="margin:10px 0 6px;font-size:1rem;">All Parfum Lokal</h5>
 <div class="product-price" style="margin-bottom:8px;font-weight:700;">Rp 250.000</div>
 <a class="btn btn-sm btn-primary-grad btn-ghost" href="https://wa.me/6281937036039?text=Halo%2C+saya+tertarik+Produk+Parfum.+Apakah+masih+tersedia%3F" rel="noopener" target="_blank"><svg aria-hidden="true" height="16" style="vertical-align:middle;margin-right:6px" viewbox="0 0 24 24" width="16"><path d="M12 5c-7 0-11 7-11 7s4 7 11 7 11-7 11-7-4-7-11-7zm0 12a5 5 0 110-10 5 5 0 010 10z" fill="currentColor"></path></svg>Detail</a>
-<button aria-label="Tambah ke Keranjang" class="add-to-cart" data-product="all-parfum-lokal" style="background:#0d6efd;color:#fff;border:none;padding:8px 12px;border-radius:8px;font-weight:700;cursor:pointer;margin-left:8px;" type="button">Tambah ke Keranjang</button></div>
-<select class="variant-select" data-product="all-parfum-lokal" style="display:none;"><option value="250000">Default</option></select></article>
-<article aria-label="All Parfum Niche" class="product-card p-0" data-product-id="all-parfum-niche" role="listitem">
+</div>
+</article>
+<article aria-label="All Parfum Niche" class="product-card p-0" role="listitem">
 <div style="position:relative;">
 <img alt="All Parfum Niche" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.no-img').style.display='flex'" src="all_parfum_niche.PNG" style="width:100%;height:260px;object-fit:cover;display:block;"/>
 <div class="no-img" style="display:none;align-items:center;justify-content:center;height:260px;background:#f3f3f3;color:#2b2b2b;font-weight:700;border-radius:6px;">All Parfum Niche</div>
@@ -630,9 +624,9 @@ It's recommended to generate optimized WebP files and serve them with proper cac
 <h5 class="product-title" style="margin:10px 0 6px;font-size:1rem;">All Parfum Niche</h5>
 <div class="product-price" style="margin-bottom:8px;font-weight:700;">Rp 1.000.000</div>
 <a class="btn btn-sm btn-primary-grad btn-ghost" href="https://wa.me/6281937036039?text=Halo%2C+saya+tertarik+Produk+Parfum.+Apakah+masih+tersedia%3F" rel="noopener" target="_blank"><svg aria-hidden="true" height="16" style="vertical-align:middle;margin-right:6px" viewbox="0 0 24 24" width="16"><path d="M12 5c-7 0-11 7-11 7s4 7 11 7 11-7 11-7-4-7-11-7zm0 12a5 5 0 110-10 5 5 0 010 10z" fill="currentColor"></path></svg>Detail</a>
-<button aria-label="Tambah ke Keranjang" class="add-to-cart" data-product="all-parfum-niche" style="background:#0d6efd;color:#fff;border:none;padding:8px 12px;border-radius:8px;font-weight:700;cursor:pointer;margin-left:8px;" type="button">Tambah ke Keranjang</button></div>
-<select class="variant-select" data-product="all-parfum-niche" style="display:none;"><option value="1000000">Default</option></select></article>
-<article aria-label="Botol Kosong Niche" class="product-card p-0" data-product-id="botol-kosong-niche" role="listitem">
+</div>
+</article>
+<article aria-label="Botol Kosong Niche" class="product-card p-0" role="listitem">
 <div style="position:relative;">
 <img alt="Botol Kosong Niche" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.no-img').style.display='flex'" src="botol_kosong_niche.png" style="width:100%;height:260px;object-fit:cover;display:block;"/>
 <div class="no-img" style="display:none;align-items:center;justify-content:center;height:260px;background:#f3f3f3;color:#2b2b2b;font-weight:700;border-radius:6px;">Botol Kosong Niche</div>
@@ -641,9 +635,9 @@ It's recommended to generate optimized WebP files and serve them with proper cac
 <h5 class="product-title" style="margin:10px 0 6px;font-size:1rem;">Botol Kosong Niche</h5>
 <div class="product-price" style="margin-bottom:8px;font-weight:700;">Rp 700.000</div>
 <a class="btn btn-sm btn-primary-grad btn-ghost" href="https://wa.me/6281937036039?text=Halo%2C+saya+tertarik+Produk+Parfum.+Apakah+masih+tersedia%3F" rel="noopener" target="_blank"><svg aria-hidden="true" height="16" style="vertical-align:middle;margin-right:6px" viewbox="0 0 24 24" width="16"><path d="M12 5c-7 0-11 7-11 7s4 7 11 7 11-7 11-7-4-7-11-7zm0 12a5 5 0 110-10 5 5 0 010 10z" fill="currentColor"></path></svg>Detail</a>
-<button aria-label="Tambah ke Keranjang" class="add-to-cart" data-product="botol-kosong-niche" style="background:#0d6efd;color:#fff;border:none;padding:8px 12px;border-radius:8px;font-weight:700;cursor:pointer;margin-left:8px;" type="button">Tambah ke Keranjang</button></div>
-<select class="variant-select" data-product="botol-kosong-niche" style="display:none;"><option value="700000">Default</option></select></article>
-<article aria-label="Rasasi – Hawas for Him EDT 100 ml" class="product-card p-0" data-product-id="rasasi-hawas-for-him-edt-100-ml" role="listitem">
+</div>
+</article>
+<article aria-label="Rasasi – Hawas for Him EDT 100 ml" class="product-card p-0" role="listitem">
 <div style="position:relative;">
 <img alt="Produk 6" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.no-img').style.display='flex'" src="produk6.jpg" style="width:100%;height:260px;object-fit:cover;display:block;"/>
 <div class="no-img" style="display:none;align-items:center;justify-content:center;height:260px;background:#f3f3f3;color:#2b2b2b;font-weight:700;border-radius:6px;">Produk 6</div>
@@ -652,9 +646,9 @@ It's recommended to generate optimized WebP files and serve them with proper cac
 <h5 class="product-title" style="margin:10px 0 6px;font-size:1rem;">Rasasi – Hawas for Him EDT 100 ml</h5>
 <div class="product-price" style="margin-bottom:8px;font-weight:700;">Rp 753.500</div>
 <a class="btn btn-sm btn-primary-grad btn-ghost" href="https://wa.me/6281937036039?text=Halo%2C+saya+tertarik+Produk+Parfum.+Apakah+masih+tersedia%3F" rel="noopener" target="_blank"><svg aria-hidden="true" height="16" style="vertical-align:middle;margin-right:6px" viewbox="0 0 24 24" width="16"><path d="M12 5c-7 0-11 7-11 7s4 7 11 7 11-7 11-7-4-7-11-7zm0 12a5 5 0 110-10 5 5 0 010 10z" fill="currentColor"></path></svg>Detail</a>
-<button aria-label="Tambah ke Keranjang" class="add-to-cart" data-product="rasasi-hawas-for-him-edt-100-ml" style="background:#0d6efd;color:#fff;border:none;padding:8px 12px;border-radius:8px;font-weight:700;cursor:pointer;margin-left:8px;" type="button">Tambah ke Keranjang</button></div>
-<select class="variant-select" data-product="rasasi-hawas-for-him-edt-100-ml" style="display:none;"><option value="753500">Default</option></select></article>
-<article aria-label="Lattafa – Bade’e Al Oud Amethyst EDP 100 ml" class="product-card p-0" data-product-id="lattafa-bade-e-al-oud-amethyst-edp-100-m" role="listitem">
+</div>
+</article>
+<article aria-label="Lattafa – Bade’e Al Oud Amethyst EDP 100 ml" class="product-card p-0" role="listitem">
 <div style="position:relative;">
 <img alt="Produk 7" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.no-img').style.display='flex'" src="produk7.jpg" style="width:100%;height:260px;object-fit:cover;display:block;"/>
 <div class="no-img" style="display:none;align-items:center;justify-content:center;height:260px;background:#f3f3f3;color:#2b2b2b;font-weight:700;border-radius:6px;">Produk 7</div>
@@ -663,9 +657,9 @@ It's recommended to generate optimized WebP files and serve them with proper cac
 <h5 class="product-title" style="margin:10px 0 6px;font-size:1rem;">Lattafa – Bade’e Al Oud Amethyst EDP 100 ml</h5>
 <div class="product-price" style="margin-bottom:8px;font-weight:700;">Rp 650.000</div>
 <a class="btn btn-sm btn-primary-grad btn-ghost" href="https://wa.me/6281937036039?text=Halo%2C+saya+tertarik+Produk+Parfum.+Apakah+masih+tersedia%3F" rel="noopener" target="_blank"><svg aria-hidden="true" height="16" style="vertical-align:middle;margin-right:6px" viewbox="0 0 24 24" width="16"><path d="M12 5c-7 0-11 7-11 7s4 7 11 7 11-7 11-7-4-7-11-7zm0 12a5 5 0 110-10 5 5 0 010 10z" fill="currentColor"></path></svg>Detail</a>
-<button aria-label="Tambah ke Keranjang" class="add-to-cart" data-product="lattafa-bade-e-al-oud-amethyst-edp-100-m" style="background:#0d6efd;color:#fff;border:none;padding:8px 12px;border-radius:8px;font-weight:700;cursor:pointer;margin-left:8px;" type="button">Tambah ke Keranjang</button></div>
-<select class="variant-select" data-product="lattafa-bade-e-al-oud-amethyst-edp-100-m" style="display:none;"><option value="650000">Default</option></select></article>
-<article aria-label="Afnan – 9PM EDP 100 ml" class="product-card p-0" data-product-id="afnan-9pm-edp-100-ml" role="listitem">
+</div>
+</article>
+<article aria-label="Afnan – 9PM EDP 100 ml" class="product-card p-0" role="listitem">
 <div style="position:relative;">
 <img alt="Produk 8" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.no-img').style.display='flex'" src="produk8.jpg" style="width:100%;height:260px;object-fit:cover;display:block;"/>
 <div class="no-img" style="display:none;align-items:center;justify-content:center;height:260px;background:#f3f3f3;color:#2b2b2b;font-weight:700;border-radius:6px;">Produk 8</div>
@@ -674,9 +668,9 @@ It's recommended to generate optimized WebP files and serve them with proper cac
 <h5 class="product-title" style="margin:10px 0 6px;font-size:1rem;">Afnan – 9PM EDP 100 ml</h5>
 <div class="product-price" style="margin-bottom:8px;font-weight:700;">Rp 441.000</div>
 <a class="btn btn-sm btn-primary-grad btn-ghost" href="https://wa.me/6281937036039?text=Halo%2C+saya+tertarik+Produk+Parfum.+Apakah+masih+tersedia%3F" rel="noopener" target="_blank"><svg aria-hidden="true" height="16" style="vertical-align:middle;margin-right:6px" viewbox="0 0 24 24" width="16"><path d="M12 5c-7 0-11 7-11 7s4 7 11 7 11-7 11-7-4-7-11-7zm0 12a5 5 0 110-10 5 5 0 010 10z" fill="currentColor"></path></svg>Detail</a>
-<button aria-label="Tambah ke Keranjang" class="add-to-cart" data-product="afnan-9pm-edp-100-ml" style="background:#0d6efd;color:#fff;border:none;padding:8px 12px;border-radius:8px;font-weight:700;cursor:pointer;margin-left:8px;" type="button">Tambah ke Keranjang</button></div>
-<select class="variant-select" data-product="afnan-9pm-edp-100-ml" style="display:none;"><option value="441000">Default</option></select></article>
-<article aria-label="Dior – Sauvage EDP 100 ml" class="product-card p-0" data-product-id="dior-sauvage-edp-100-ml" role="listitem">
+</div>
+</article>
+<article aria-label="Dior – Sauvage EDP 100 ml" class="product-card p-0" role="listitem">
 <div style="position:relative;">
 <img alt="Produk 9" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.no-img').style.display='flex'" src="produk9.jpg" style="width:100%;height:260px;object-fit:cover;display:block;"/>
 <div class="no-img" style="display:none;align-items:center;justify-content:center;height:260px;background:#f3f3f3;color:#2b2b2b;font-weight:700;border-radius:6px;">Produk 9</div>
@@ -685,9 +679,9 @@ It's recommended to generate optimized WebP files and serve them with proper cac
 <h5 class="product-title" style="margin:10px 0 6px;font-size:1rem;">Dior – Sauvage EDP 100 ml</h5>
 <div class="product-price" style="margin-bottom:8px;font-weight:700;">Rp 2.600.000</div>
 <a class="btn btn-sm btn-primary-grad btn-ghost" href="https://wa.me/6281937036039?text=Halo%2C+saya+tertarik+Produk+Parfum.+Apakah+masih+tersedia%3F" rel="noopener" target="_blank"><svg aria-hidden="true" height="16" style="vertical-align:middle;margin-right:6px" viewbox="0 0 24 24" width="16"><path d="M12 5c-7 0-11 7-11 7s4 7 11 7 11-7 11-7-4-7-11-7zm0 12a5 5 0 110-10 5 5 0 010 10z" fill="currentColor"></path></svg>Detail</a>
-<button aria-label="Tambah ke Keranjang" class="add-to-cart" data-product="dior-sauvage-edp-100-ml" style="background:#0d6efd;color:#fff;border:none;padding:8px 12px;border-radius:8px;font-weight:700;cursor:pointer;margin-left:8px;" type="button">Tambah ke Keranjang</button></div>
-<select class="variant-select" data-product="dior-sauvage-edp-100-ml" style="display:none;"><option value="2600000">Default</option></select></article>
-<article aria-label="Yves Saint Laurent – Y EDP 100 ml" class="product-card p-0" data-product-id="yves-saint-laurent-y-edp-100-ml" role="listitem">
+</div>
+</article>
+<article aria-label="Yves Saint Laurent – Y EDP 100 ml" class="product-card p-0" role="listitem">
 <div style="position:relative;">
 <img alt="Produk 10" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.no-img').style.display='flex'" src="produk10.jpg" style="width:100%;height:260px;object-fit:cover;display:block;"/>
 <div class="no-img" style="display:none;align-items:center;justify-content:center;height:260px;background:#f3f3f3;color:#2b2b2b;font-weight:700;border-radius:6px;">Produk 10</div>
@@ -696,9 +690,9 @@ It's recommended to generate optimized WebP files and serve them with proper cac
 <h5 class="product-title" style="margin:10px 0 6px;font-size:1rem;">Yves Saint Laurent – Y EDP 100 ml</h5>
 <div class="product-price" style="margin-bottom:8px;font-weight:700;">Rp 2.750.000</div>
 <a class="btn btn-sm btn-primary-grad btn-ghost" href="https://wa.me/6281937036039?text=Halo%2C+saya+tertarik+Produk+Parfum.+Apakah+masih+tersedia%3F" rel="noopener" target="_blank"><svg aria-hidden="true" height="16" style="vertical-align:middle;margin-right:6px" viewbox="0 0 24 24" width="16"><path d="M12 5c-7 0-11 7-11 7s4 7 11 7 11-7 11-7-4-7-11-7zm0 12a5 5 0 110-10 5 5 0 010 10z" fill="currentColor"></path></svg>Detail</a>
-<button aria-label="Tambah ke Keranjang" class="add-to-cart" data-product="yves-saint-laurent-y-edp-100-ml" style="background:#0d6efd;color:#fff;border:none;padding:8px 12px;border-radius:8px;font-weight:700;cursor:pointer;margin-left:8px;" type="button">Tambah ke Keranjang</button></div>
-<select class="variant-select" data-product="yves-saint-laurent-y-edp-100-ml" style="display:none;"><option value="2750000">Default</option></select></article>
-<article aria-label="Chanel – Bleu de Chanel EDP 100 ml" class="product-card p-0" data-product-id="chanel-bleu-de-chanel-edp-100-ml" role="listitem">
+</div>
+</article>
+<article aria-label="Chanel – Bleu de Chanel EDP 100 ml" class="product-card p-0" role="listitem">
 <div style="position:relative;">
 <img alt="Produk 11" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.no-img').style.display='flex'" src="produk11.jpg" style="width:100%;height:260px;object-fit:cover;display:block;"/>
 <div class="no-img" style="display:none;align-items:center;justify-content:center;height:260px;background:#f3f3f3;color:#2b2b2b;font-weight:700;border-radius:6px;">Produk 11</div>
@@ -707,9 +701,9 @@ It's recommended to generate optimized WebP files and serve them with proper cac
 <h5 class="product-title" style="margin:10px 0 6px;font-size:1rem;">Chanel – Bleu de Chanel EDP 100 ml</h5>
 <div class="product-price" style="margin-bottom:8px;font-weight:700;">Rp 3.433.000</div>
 <a class="btn btn-sm btn-primary-grad btn-ghost" href="https://wa.me/6281937036039?text=Halo%2C+saya+tertarik+Produk+Parfum.+Apakah+masih+tersedia%3F" rel="noopener" target="_blank"><svg aria-hidden="true" height="16" style="vertical-align:middle;margin-right:6px" viewbox="0 0 24 24" width="16"><path d="M12 5c-7 0-11 7-11 7s4 7 11 7 11-7 11-7-4-7-11-7zm0 12a5 5 0 110-10 5 5 0 010 10z" fill="currentColor"></path></svg>Detail</a>
-<button aria-label="Tambah ke Keranjang" class="add-to-cart" data-product="chanel-bleu-de-chanel-edp-100-ml" style="background:#0d6efd;color:#fff;border:none;padding:8px 12px;border-radius:8px;font-weight:700;cursor:pointer;margin-left:8px;" type="button">Tambah ke Keranjang</button></div>
-<select class="variant-select" data-product="chanel-bleu-de-chanel-edp-100-ml" style="display:none;"><option value="3433000">Default</option></select></article>
-<article aria-label="Montblanc – Explorer EDP 100 ml" class="product-card p-0" data-product-id="montblanc-explorer-edp-100-ml" role="listitem">
+</div>
+</article>
+<article aria-label="Montblanc – Explorer EDP 100 ml" class="product-card p-0" role="listitem">
 <div style="position:relative;">
 <img alt="Produk 12" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.no-img').style.display='flex'" src="produk12.jpg" style="width:100%;height:260px;object-fit:cover;display:block;"/>
 <div class="no-img" style="display:none;align-items:center;justify-content:center;height:260px;background:#f3f3f3;color:#2b2b2b;font-weight:700;border-radius:6px;">Produk 12</div>
@@ -718,9 +712,9 @@ It's recommended to generate optimized WebP files and serve them with proper cac
 <h5 class="product-title" style="margin:10px 0 6px;font-size:1rem;">Montblanc – Explorer EDP 100 ml</h5>
 <div class="product-price" style="margin-bottom:8px;font-weight:700;">Rp 1.225.000</div>
 <a class="btn btn-sm btn-primary-grad btn-ghost" href="https://wa.me/6281937036039?text=Halo%2C+saya+tertarik+Produk+Parfum.+Apakah+masih+tersedia%3F" rel="noopener" target="_blank"><svg aria-hidden="true" height="16" style="vertical-align:middle;margin-right:6px" viewbox="0 0 24 24" width="16"><path d="M12 5c-7 0-11 7-11 7s4 7 11 7 11-7 11-7-4-7-11-7zm0 12a5 5 0 110-10 5 5 0 010 10z" fill="currentColor"></path></svg>Detail</a>
-<button aria-label="Tambah ke Keranjang" class="add-to-cart" data-product="montblanc-explorer-edp-100-ml" style="background:#0d6efd;color:#fff;border:none;padding:8px 12px;border-radius:8px;font-weight:700;cursor:pointer;margin-left:8px;" type="button">Tambah ke Keranjang</button></div>
-<select class="variant-select" data-product="montblanc-explorer-edp-100-ml" style="display:none;"><option value="1225000">Default</option></select></article>
-<article aria-label="Giorgio Armani – Acqua di Giò Parfum 100 ml" class="product-card p-0" data-product-id="giorgio-armani-acqua-di-gi-parfum-100-ml" role="listitem">
+</div>
+</article>
+<article aria-label="Giorgio Armani – Acqua di Giò Parfum 100 ml" class="product-card p-0" role="listitem">
 <div style="position:relative;">
 <img alt="Produk 13" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.no-img').style.display='flex'" src="produk13.jpg" style="width:100%;height:260px;object-fit:cover;display:block;"/>
 <div class="no-img" style="display:none;align-items:center;justify-content:center;height:260px;background:#f3f3f3;color:#2b2b2b;font-weight:700;border-radius:6px;">Produk 13</div>
@@ -729,9 +723,9 @@ It's recommended to generate optimized WebP files and serve them with proper cac
 <h5 class="product-title" style="margin:10px 0 6px;font-size:1rem;">Giorgio Armani – Acqua di Giò Parfum 100 ml</h5>
 <div class="product-price" style="margin-bottom:8px;font-weight:700;">Rp 1.856.000</div>
 <a class="btn btn-sm btn-primary-grad btn-ghost" href="https://wa.me/6281937036039?text=Halo%2C+saya+tertarik+Produk+Parfum.+Apakah+masih+tersedia%3F" rel="noopener" target="_blank"><svg aria-hidden="true" height="16" style="vertical-align:middle;margin-right:6px" viewbox="0 0 24 24" width="16"><path d="M12 5c-7 0-11 7-11 7s4 7 11 7 11-7 11-7-4-7-11-7zm0 12a5 5 0 110-10 5 5 0 010 10z" fill="currentColor"></path></svg>Detail</a>
-<button aria-label="Tambah ke Keranjang" class="add-to-cart" data-product="giorgio-armani-acqua-di-gi-parfum-100-ml" style="background:#0d6efd;color:#fff;border:none;padding:8px 12px;border-radius:8px;font-weight:700;cursor:pointer;margin-left:8px;" type="button">Tambah ke Keranjang</button></div>
-<select class="variant-select" data-product="giorgio-armani-acqua-di-gi-parfum-100-ml" style="display:none;"><option value="1856000">Default</option></select></article>
-<article aria-label="Dolce &amp; Gabbana – K EDT 100 ml" class="product-card p-0" data-product-id="dolce-gabbana-k-edt-100-ml" role="listitem">
+</div>
+</article>
+<article aria-label="Dolce &amp; Gabbana – K EDT 100 ml" class="product-card p-0" role="listitem">
 <div style="position:relative;">
 <img alt="Produk 14" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.no-img').style.display='flex'" src="produk14.jpg" style="width:100%;height:260px;object-fit:cover;display:block;"/>
 <div class="no-img" style="display:none;align-items:center;justify-content:center;height:260px;background:#f3f3f3;color:#2b2b2b;font-weight:700;border-radius:6px;">Produk 14</div>
@@ -740,9 +734,9 @@ It's recommended to generate optimized WebP files and serve them with proper cac
 <h5 class="product-title" style="margin:10px 0 6px;font-size:1rem;">Dolce &amp; Gabbana – K EDT 100 ml</h5>
 <div class="product-price" style="margin-bottom:8px;font-weight:700;">Rp 990.000</div>
 <a class="btn btn-sm btn-primary-grad btn-ghost" href="https://wa.me/6281937036039?text=Halo%2C+saya+tertarik+Produk+Parfum.+Apakah+masih+tersedia%3F" rel="noopener" target="_blank"><svg aria-hidden="true" height="16" style="vertical-align:middle;margin-right:6px" viewbox="0 0 24 24" width="16"><path d="M12 5c-7 0-11 7-11 7s4 7 11 7 11-7 11-7-4-7-11-7zm0 12a5 5 0 110-10 5 5 0 010 10z" fill="currentColor"></path></svg>Detail</a>
-<button aria-label="Tambah ke Keranjang" class="add-to-cart" data-product="dolce-gabbana-k-edt-100-ml" style="background:#0d6efd;color:#fff;border:none;padding:8px 12px;border-radius:8px;font-weight:700;cursor:pointer;margin-left:8px;" type="button">Tambah ke Keranjang</button></div>
-<select class="variant-select" data-product="dolce-gabbana-k-edt-100-ml" style="display:none;"><option value="990000">Default</option></select></article>
-<article aria-label="Hugo Boss – The Scent Le Parfum Men 100 ml" class="product-card p-0" data-product-id="hugo-boss-the-scent-le-parfum-men-100-ml" role="listitem">
+</div>
+</article>
+<article aria-label="Hugo Boss – The Scent Le Parfum Men 100 ml" class="product-card p-0" role="listitem">
 <div style="position:relative;">
 <span class="sold-label">SOLD</span>
 <img alt="Produk 15" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.no-img').style.display='flex'" src="produk15.jpg" style="width:100%;height:260px;object-fit:cover;display:block;"/>
@@ -752,9 +746,9 @@ It's recommended to generate optimized WebP files and serve them with proper cac
 <h5 class="product-title" style="margin:10px 0 6px;font-size:1rem;">Hugo Boss – The Scent Le Parfum Men 100 ml</h5>
 <div class="product-price" style="margin-bottom:8px;font-weight:700;">Rp 1.544.000</div>
 <a class="btn btn-sm btn-primary-grad btn-ghost" href="https://wa.me/6281937036039?text=Halo%2C+saya+tertarik+Produk+Parfum.+Apakah+masih+tersedia%3F" rel="noopener" target="_blank"><svg aria-hidden="true" height="16" style="vertical-align:middle;margin-right:6px" viewbox="0 0 24 24" width="16"><path d="M12 5c-7 0-11 7-11 7s4 7 11 7 11-7 11-7-4-7-11-7zm0 12a5 5 0 110-10 5 5 0 010 10z" fill="currentColor"></path></svg>Detail</a>
-<button aria-label="Tambah ke Keranjang" class="add-to-cart" data-product="hugo-boss-the-scent-le-parfum-men-100-ml" style="background:#0d6efd;color:#fff;border:none;padding:8px 12px;border-radius:8px;font-weight:700;cursor:pointer;margin-left:8px;" type="button">Tambah ke Keranjang</button></div>
-<select class="variant-select" data-product="hugo-boss-the-scent-le-parfum-men-100-ml" style="display:none;"><option value="1544000">Default</option></select></article>
-<article aria-label="Carolina Herrera – Bad Boy EDT 100 ml" class="product-card p-0" data-product-id="carolina-herrera-bad-boy-edt-100-ml" role="listitem">
+</div>
+</article>
+<article aria-label="Carolina Herrera – Bad Boy EDT 100 ml" class="product-card p-0" role="listitem">
 <div style="position:relative;">
 <img alt="Produk 16" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.no-img').style.display='flex'" src="produk16.jpg" style="width:100%;height:260px;object-fit:cover;display:block;"/>
 <div class="no-img" style="display:none;align-items:center;justify-content:center;height:260px;background:#f3f3f3;color:#2b2b2b;font-weight:700;border-radius:6px;">Produk 16</div>
@@ -763,8 +757,8 @@ It's recommended to generate optimized WebP files and serve them with proper cac
 <h5 class="product-title" style="margin:10px 0 6px;font-size:1rem;">Carolina Herrera – Bad Boy EDT 100 ml</h5>
 <div class="product-price" style="margin-bottom:8px;font-weight:700;">Rp 1.550.000</div>
 <a class="btn btn-sm btn-primary-grad btn-ghost" href="https://wa.me/6281937036039?text=Halo%2C+saya+tertarik+Produk+Parfum.+Apakah+masih+tersedia%3F" rel="noopener" target="_blank"><svg aria-hidden="true" height="16" style="vertical-align:middle;margin-right:6px" viewbox="0 0 24 24" width="16"><path d="M12 5c-7 0-11 7-11 7s4 7 11 7 11-7 11-7-4-7-11-7zm0 12a5 5 0 110-10 5 5 0 010 10z" fill="currentColor"></path></svg>Detail</a>
-<button aria-label="Tambah ke Keranjang" class="add-to-cart" data-product="carolina-herrera-bad-boy-edt-100-ml" style="background:#0d6efd;color:#fff;border:none;padding:8px 12px;border-radius:8px;font-weight:700;cursor:pointer;margin-left:8px;" type="button">Tambah ke Keranjang</button></div>
-<select class="variant-select" data-product="carolina-herrera-bad-boy-edt-100-ml" style="display:none;"><option value="1550000">Default</option></select></article>
+</div>
+</article>
 </div></div></section>
 <!-- Gallery (masonry) -->
 <section aria-label="Galeri Produk" class="section bg-light" id="galeri">
@@ -810,34 +804,34 @@ It's recommended to generate optimized WebP files and serve them with proper cac
 <h2 class="section-title text-center">Blog &amp; Tips Singkat</h2>
 <div class="row g-3 mt-3">
 <div class="col-md-4">
-<article class="product-card p-0" data-product-id="memilih-parfum-sesuai-kepribadian">
+<article class="product-card p-0">
 <img alt="Blog image 1" decoding="async" height="800" loading="lazy" src="https://images.weserv.nl/?url=images.pexels.com/photos/33711971/pexels-photo-33711971.jpeg&amp;output=webp&amp;w=1200" width="1200"/>
 <div class="product-body text-start">
 <h5 class="product-title">Memilih Parfum Sesuai Kepribadian</h5>
 <p class="muted small">Tips singkat menentukan aroma yang cocok untukmu.</p>
 <a class="small" href="#">Baca selengkapnya →</a>
 </div>
-<select class="variant-select" data-product="memilih-parfum-sesuai-kepribadian" style="display:none;"><option value="0">Default</option></select><button aria-label="Tambah ke Keranjang" class="add-to-cart" data-product="memilih-parfum-sesuai-kepribadian" style="background:#0d6efd;color:#fff;border:none;padding:8px 12px;border-radius:8px;font-weight:700;cursor:pointer;margin-left:8px;" type="button">Tambah ke Keranjang</button></article>
+</article>
 </div>
 <div class="col-md-4">
-<article class="product-card p-0" data-product-id="cara-menyimpan-parfum-agar-awet">
+<article class="product-card p-0">
 <img alt="Blog image 2" decoding="async" height="800" loading="lazy" src="https://images.weserv.nl/?url=images.pexels.com/photos/16722498/pexels-photo-16722498.jpeg&amp;output=webp&amp;w=1200" width="1200"/>
 <div class="product-body text-start">
 <h5 class="product-title">Cara Menyimpan Parfum Agar Awet</h5>
 <p class="muted small">Suhu dan tips penyimpanan parfum agar kualitas terjaga.</p>
 <a class="small" href="#">Baca selengkapnya →</a>
 </div>
-<select class="variant-select" data-product="cara-menyimpan-parfum-agar-awet" style="display:none;"><option value="0">Default</option></select><button aria-label="Tambah ke Keranjang" class="add-to-cart" data-product="cara-menyimpan-parfum-agar-awet" style="background:#0d6efd;color:#fff;border:none;padding:8px 12px;border-radius:8px;font-weight:700;cursor:pointer;margin-left:8px;" type="button">Tambah ke Keranjang</button></article>
+</article>
 </div>
 <div class="col-md-4">
-<article class="product-card p-0" data-product-id="parfum-original-vs-inspired-penjelasan">
+<article class="product-card p-0">
 <img alt="Blog image 3" decoding="async" height="800" loading="lazy" src="https://images.weserv.nl/?url=images.pexels.com/photos/23230654/pexels-photo-23230654.jpeg&amp;output=webp&amp;w=1200" width="1200"/>
 <div class="product-body text-start">
 <h5 class="product-title">Parfum Original vs Inspired: Penjelasan</h5>
 <p class="muted small">Perbedaan utama yang perlu diketahui pembeli.</p>
 <a class="small" href="#">Baca selengkapnya →</a>
 </div>
-<select class="variant-select" data-product="parfum-original-vs-inspired-penjelasan" style="display:none;"><option value="0">Default</option></select><button aria-label="Tambah ke Keranjang" class="add-to-cart" data-product="parfum-original-vs-inspired-penjelasan" style="background:#0d6efd;color:#fff;border:none;padding:8px 12px;border-radius:8px;font-weight:700;cursor:pointer;margin-left:8px;" type="button">Tambah ke Keranjang</button></article>
+</article>
 </div>
 </div>
 </div>
@@ -1417,113 +1411,75 @@ const productDescriptions = {
   }
 };
 </script>
-<script id="dirac-cart-rebuild">
-(function(){
-  if(window.__DIRAC_CART_REBUILT__) return;
-  window.__DIRAC_CART_REBUILT__ = true;
 
-  // Utility: format rupiah
+<script id="dirac-cart-rebuild-v2">
+(function(){
+  if(window.__DIRAC_CART_REBUILT_V2__) return;
+  window.__DIRAC_CART_REBUILT_V2__ = true;
+  var CART_KEY = 'dirac_cart_v3';
   function fmt(n){ return 'Rp ' + (Number(n)||0).toLocaleString('id-ID'); }
   function parsePrice(text){
     if(!text) return 0;
-    var m = text.replace(/\s+/g,'').match(/Rp[^\d]*([0-9\.\,]+)/i);
+    var m = text.replace(/\s/g,'').match(/Rp[^\d]*([\d\.\,]+)/i);
     if(!m) return 0;
     var num = m[1].replace(/\./g,'').replace(/,/g,'');
     return parseInt(num) || 0;
   }
-
-  // Find product card candidates: element that contains an <img> and a price-like text and a title
   function findProductCards(){
-    var elems = Array.from(document.querySelectorAll('div,article,section'));
+    var elems = Array.from(document.querySelectorAll('article, div, section'));
     var cards = [];
     elems.forEach(function(el){
       try{
         if(!el.querySelector) return;
-        var img = el.querySelector('img');
-        if(!img) return;
-        var txt = el.textContent || '';
-        if(!/Rp[^\d]*\d/.test(txt)) return;
-        // also prefer containers that have product action buttons or headings nearby
-        var hasAction = el.querySelector('button, a') && /lihat|pesan|detail/i.test((el.textContent||''));
-        var hasTitle = !!el.querySelector('h1,h2,h3,h4,h5,strong,b');
-        // Accept if price present and (hasAction or hasTitle)
-        if(hasAction || hasTitle){
-          cards.push(el);
-        }
+        if(!el.querySelector('img')) return;
+        var text = el.textContent || '';
+        if(!/Rp[^\d]*\d/.test(text)) return;
+        // require presence of action button 'Lihat' or 'Pesan' or 'Detail' in same container
+        if(!/(lihat|pesan|detail)/i.test(text)) return;
+        cards.push(el);
       }catch(e){}
     });
-    // dedupe by keeping outermost containers
+    // keep only outermost
     var outer = cards.filter(function(c){
       return !cards.some(function(other){ return other !== c && other.contains(c); });
     });
     return outer;
   }
 
-  // Build product metadata and insert add buttons
-  var productMap = {}; // id -> {id,title,price,img,el}
+  var productMap = {}; // id -> meta
   function ensureProducts(){
     var cards = findProductCards();
+    productMap = {};
     cards.forEach(function(card, idx){
       try{
         var pid = card.getAttribute('data-product-id') || card.id;
-        if(!pid){
-          var tEl = card.querySelector('h1,h2,h3,h4,h5,strong,b') || card.querySelector('.product-title, .title, .name');
-          var title = tEl ? tEl.textContent.trim() : ('produk-'+idx);
-          pid = title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'').slice(0,40) || ('prod-'+idx);
-          card.setAttribute('data-product-id', pid);
-        }
-        var titleEl = card.querySelector('h1,h2,h3,h4,h5,strong,b') || card.querySelector('.product-title, .title, .name');
-        var titleText = titleEl ? titleEl.textContent.trim() : pid;
+        var titleEl = card.querySelector('h1,h2,h3,h4,h5,strong,b') || card.querySelector('.product-title');
+        var title = titleEl ? titleEl.textContent.trim() : ('produk-'+idx);
+        if(!pid){ pid = title.toLowerCase().replace(/[^a-z0-9]+/g,'-').slice(0,40) || ('prod-'+idx); card.setAttribute('data-product-id', pid); }
         var img = card.querySelector('img');
         var imgsrc = img ? (img.getAttribute('data-src')||img.getAttribute('src')||'') : '';
         var price = 0;
-        // try find element that looks like price specifically
-        var priceEl = card.querySelector('[class*=price], [class*=harga], .price, .product-price') || null;
+        var priceEl = card.querySelector('[class*=price], [class*=harga], .price, .product-price');
         if(priceEl && priceEl.textContent) price = parsePrice(priceEl.textContent);
-        if(!price){
-          // fallback parse in card text
-          price = parsePrice(card.textContent || '');
-        }
-        if(!price){
-          // invalid product, skip
-          return;
-        }
-        productMap[pid] = {id:pid, title:titleText, price:price, img:imgsrc, el:card};
-        // add hidden select for compatibility
+        if(!price) price = parsePrice(card.textContent || '');
+        if(price <= 0) return; // skip invalid
+        productMap[pid] = {id:pid, title:title, price:price, img:imgsrc, el:card};
+        // ensure hidden select for compatibility
         if(!card.querySelector('select.variant-select[data-product="'+pid+'"]')){
-          var sel = document.createElement('select');
-          sel.className = 'variant-select';
-          sel.setAttribute('data-product', pid);
-          sel.style.display = 'none';
-          var opt = document.createElement('option');
-          opt.value = String(price);
-          opt.text = 'Default';
-          sel.appendChild(opt);
-          card.appendChild(sel);
+          var sel = document.createElement('select'); sel.className='variant-select'; sel.setAttribute('data-product', pid); sel.style.display='none';
+          var opt = document.createElement('option'); opt.value = String(price); opt.text = 'Default'; sel.appendChild(opt); card.appendChild(sel);
         }
-        // insert add-to-cart button near action buttons if not exists
-        if(!card.querySelector('.add-to-cart')){
-          // find action area: prefer container with buttons . find first button with text 'Lihat' or 'Pesan'
-          var actionBtn = Array.from(card.querySelectorAll('button,a')).find(function(b){
-            return /lihat|pesan|detail/i.test((b.textContent||''));
-          });
-          var wrapper = document.createElement('div');
-          wrapper.className = 'add-controls';
-          wrapper.style.marginTop = '10px';
-          var btn = document.createElement('button');
-          btn.type = 'button';
-          btn.className = 'add-to-cart';
-          btn.setAttribute('data-product', pid);
-          btn.textContent = 'Tambah ke Keranjang';
-          btn.style.background = '#0d6efd';
-          btn.style.color = '#fff';
-          btn.style.border = 'none';
-          btn.style.padding = '8px 12px';
-          btn.style.borderRadius = '8px';
-          btn.style.fontWeight = '700';
+        // insert add-to-cart button if not exists
+        if(!card.querySelector('.add-to-cart.rebuilt')){
+          var actionBtn = Array.from(card.querySelectorAll('button,a')).find(function(b){ return /lihat|pesan|detail/i.test((b.textContent||'')); });
+          var container = actionBtn && actionBtn.parentElement ? actionBtn.parentElement : card;
+          var wrapper = document.createElement('div'); wrapper.className='add-controls rebuilt';
+          var btn = document.createElement('button'); btn.type='button'; btn.className='add-to-cart rebuilt'; btn.setAttribute('data-product', pid);
+          btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="vertical-align:middle;margin-right:8px;"><path d="M6 6h15l-1.5 9h-11z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="20" r="1" fill="currentColor"/><circle cx="18" cy="20" r="1" fill="currentColor"/></svg><span class="add-label">Tambah</span>';
           wrapper.appendChild(btn);
-          if(actionBtn && actionBtn.parentNode){
-            actionBtn.parentNode.insertBefore(wrapper, actionBtn.nextSibling);
+          // try to insert after actionBtn if present
+          if(actionBtn && actionBtn.parentElement){
+            actionBtn.parentElement.appendChild(wrapper);
           } else {
             card.appendChild(wrapper);
           }
@@ -1532,115 +1488,27 @@ const productDescriptions = {
     });
   }
 
-  // CART implementation (clean, robust)
-  var CART_KEY = 'dirac_cart_v2';
-  function loadCart(){ try{ return JSON.parse(localStorage.getItem(CART_KEY) || '[]'); }catch(e){ return []; } }
-  function saveCart(cart){ localStorage.setItem(CART_KEY, JSON.stringify(cart)); updateUI(); }
-  function addToCart(id, qty, variantName){
-    qty = Number(qty) || 1;
-    var prod = productMap[id];
-    if(!prod) return false;
-    var cart = loadCart();
-    var item = cart.find(function(i){ return i.id===id && i.variant===variantName; });
-    if(item) item.qty = (item.qty||1) + qty; else cart.push({id:id, title:prod.title, price:prod.price, qty:qty, variant:variantName||'Default', img:prod.img});
-    saveCart(cart);
-    return true;
-  }
-  function setQty(id, variant, qty){
-    var cart = loadCart();
-    var it = cart.find(function(i){ return i.id===id && i.variant===variant; });
-    if(it){ it.qty = Math.max(1, Number(qty)||1); saveCart(cart); }
-  }
-  function removeItem(id, variant){
-    var cart = loadCart().filter(function(i){ return !(i.id===id && i.variant===variant); });
-    saveCart(cart);
-  }
+  // CART logic (clean, v3)
+  function loadCart(){ try{ return JSON.parse(localStorage.getItem(CART_KEY)||'[]'); }catch(e){ return []; } }
+  function saveCart(c){ localStorage.setItem(CART_KEY, JSON.stringify(c)); renderCart(); }
+  function addToCart(id, qty){ qty = Number(qty)||1; var prod = productMap[id]; if(!prod) return false; var cart = loadCart(); var it = cart.find(function(x){ return x.id===id; }); if(it) it.qty = (it.qty||1)+qty; else cart.push({id:id,title:prod.title,price:prod.price,qty:qty,img:prod.img,variant:'Default'}); saveCart(cart); return true; }
+  function setQty(id, qty){ var cart = loadCart(); var it = cart.find(function(x){ return x.id===id; }); if(it){ it.qty = Math.max(1, Number(qty)||1); saveCart(cart); } }
+  function removeItem(id){ var cart = loadCart().filter(function(i){ return i.id!==id; }); saveCart(cart); }
 
-  // Create cart UI elements (toggle + drawer)
+  // UI: badge + drawer
   function ensureCartUI(){
-    // toggle button (badge)
-    var toggle = document.getElementById('cartToggleRebuilt');
-    if(!toggle){
-      toggle = document.createElement('button');
-      toggle.id = 'cartToggleRebuilt';
-      toggle.setAttribute('aria-label','Buka Keranjang');
-      toggle.style.position = 'fixed';
-      toggle.style.top = '18px';
-      toggle.style.right = '18px';
-      toggle.style.zIndex = '2147483647';
-      toggle.style.background = '#0d6efd';
-      toggle.style.color = '#fff';
-      toggle.style.border = 'none';
-      toggle.style.padding = '8px 12px';
-      toggle.style.borderRadius = '8px';
-      toggle.style.fontWeight = '700';
-      toggle.style.boxShadow = '0 6px 18px rgba(13,110,253,0.18)';
-      toggle.style.cursor = 'pointer';
-      toggle.innerHTML = 'Keranjang <span id="cartBadge" style="display:inline-block;background:#fff;color:#0d6efd;border-radius:999px;padding:2px 8px;margin-left:8px;font-weight:800;min-width:24px;text-align:center">0</span>';
-      document.body.appendChild(toggle);
-    }
-    // drawer
-    var drawer = document.getElementById('cartDrawerRebuilt');
-    if(!drawer){
-      drawer = document.createElement('aside');
-      drawer.id = 'cartDrawerRebuilt';
-      drawer.setAttribute('aria-hidden','true');
-      drawer.style.position = 'fixed';
-      drawer.style.right = '0';
-      drawer.style.top = '0';
-      drawer.style.height = '100%';
-      drawer.style.width = '360px';
-      drawer.style.maxWidth = '92vw';
-      drawer.style.background = '#fff';
-      drawer.style.color = '#111';
-      drawer.style.boxShadow = '-12px 0 30px rgba(0,0,0,0.12)';
-      drawer.style.transform = 'translateX(110%)';
-      drawer.style.transition = 'transform .32s ease';
-      drawer.style.zIndex = '2147483646';
-      drawer.style.padding = '18px 16px';
-      drawer.style.overflow = 'auto';
-      drawer.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;"><h3 style="margin:0">Keranjang Anda</h3><button id="closeCartRebuilt" style="background:transparent;border:none;font-weight:700;cursor:pointer">✕</button></div><div id="cartItemsRebuilt"></div><div id="cartSummaryRebuilt" style="margin-top:12px;padding-top:12px;border-top:1px solid #eee;"><div style="display:flex;justify-content:space-between;margin-bottom:8px"><strong>Total</strong><strong id="cartTotalRebuilt">Rp 0</strong></div><button id="checkoutBtnRebuilt" style="width:100%;padding:10px;border-radius:8px;background:#198754;color:#fff;border:none;font-weight:700;cursor:pointer">Checkout via WA</button><p style="font-size:13px;color:#666;margin-top:8px">Isi info di checkout untuk mengirim order ke WhatsApp.</p></div>';
-      document.body.appendChild(drawer);
-    }
-    // attach events
-    toggle.removeEventListener('click', toggleOpen);
-    toggle.addEventListener('click', toggleOpen);
-    var closeBtn = document.getElementById('closeCartRebuilt');
-    if(closeBtn){
-      closeBtn.removeEventListener('click', toggleOpen);
-      closeBtn.addEventListener('click', toggleOpen);
-    }
-    var checkout = document.getElementById('checkoutBtnRebuilt');
-    if(checkout){
-      checkout.removeEventListener('click', checkoutHandler);
-      checkout.addEventListener('click', checkoutHandler);
-    }
+    if(document.getElementById('cartToggleRebuilt')) return;
+    var toggle = document.createElement('button'); toggle.id='cartToggleRebuilt'; toggle.setAttribute('aria-label','Buka Keranjang');
+    toggle.innerHTML = 'Keranjang <span id="cartBadge">0</span>';
+    document.body.appendChild(toggle);
+    var drawer = document.createElement('aside'); drawer.id='cartDrawerRebuilt'; drawer.setAttribute('aria-hidden','true');
+    drawer.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;"><h3 style="margin:0">Keranjang Anda</h3><button id="closeCartRebuilt" style="background:transparent;border:none;font-weight:700;cursor:pointer">✕</button></div><div id="cartItemsRebuilt"></div><div id="cartSummaryRebuilt" style="margin-top:12px;padding-top:12px;border-top:1px solid #eee;"><div style="display:flex;justify-content:space-between;margin-bottom:8px"><strong>Total</strong><strong id="cartTotalRebuilt">Rp 0</strong></div><button id="checkoutBtnRebuilt" style="width:100%;padding:10px;border-radius:8px;background:#198754;color:#fff;border:none;font-weight:700;cursor:pointer">Checkout via WA</button><p style="font-size:13px;color:#666;margin-top:8px">Isi info di checkout untuk mengirim order ke WhatsApp.</p></div>';
+    document.body.appendChild(drawer);
+    toggle.addEventListener('click', function(){ drawer.classList.toggle('open'); drawer.setAttribute('aria-hidden', !drawer.classList.contains('open')); renderCart(); });
+    document.getElementById('closeCartRebuilt').addEventListener('click', function(){ drawer.classList.remove('open'); drawer.setAttribute('aria-hidden','true'); });
+    document.getElementById('checkoutBtnRebuilt').addEventListener('click', checkoutHandler);
   }
 
-  function toggleOpen(e){
-    var drawer = document.getElementById('cartDrawerRebuilt');
-    if(!drawer) return;
-    drawer.classList.toggle('open');
-    var open = drawer.classList.contains('open');
-    drawer.style.transform = open ? 'translateX(0)' : 'translateX(110%)';
-    drawer.setAttribute('aria-hidden', (!open).toString());
-  }
-
-  function checkoutHandler(){
-    var cart = loadCart();
-    if(!cart.length){ alert('Keranjang kosong'); return; }
-    var msg = 'Halo, saya ingin memesan:%0A';
-    cart.forEach(function(it, idx){
-      msg += (idx+1)+'. '+(it.title||it.id)+' - '+(it.variant||'')+' x'+it.qty+' (Rp '+(Number(it.price)||0).toLocaleString('id-ID')+')%0A';
-    });
-    var total = cart.reduce(function(s,i){ return s + (Number(i.price)||0) * (i.qty||1); },0);
-    msg += '%0ATotal: Rp '+total.toLocaleString('id-ID')+'%0A';
-    msg += '%0A%0ADetail Pengiriman:%0ANama:%0ANo HP:%0AAlamat:%0A';
-    var wa = 'https://wa.me/6281937036039?text='+encodeURIComponent(msg);
-    window.open(wa, '_blank');
-  }
-
-  // Render cart
   function renderCart(){
     var itemsEl = document.getElementById('cartItemsRebuilt');
     var totalEl = document.getElementById('cartTotalRebuilt');
@@ -1651,23 +1519,16 @@ const productDescriptions = {
     var total = 0;
     cart.forEach(function(it){
       var prod = productMap[it.id] || {title:it.title||it.id, price:it.price||0, img:it.img||''};
-      var row = document.createElement('div');
-      row.style.display = 'flex';
-      row.style.gap = '10px';
-      row.style.alignItems = 'center';
-      row.style.borderBottom = '1px solid #eee';
-      row.style.padding = '10px 0';
-      var img = document.createElement('img');
-      img.src = prod.img || '';
-      img.style.width = '56px'; img.style.height = '56px'; img.style.objectFit = 'cover'; img.style.borderRadius = '8px';
-      var right = document.createElement('div'); right.style.flex = '1';
+      var row = document.createElement('div'); row.style.display='flex'; row.style.gap='10px'; row.style.alignItems='center'; row.style.borderBottom='1px solid #eee'; row.style.padding='10px 0';
+      var img = document.createElement('img'); img.src = prod.img || ''; img.style.width='56px'; img.style.height='56px'; img.style.objectFit='cover'; img.style.borderRadius='8px';
+      var right = document.createElement('div'); right.style.flex='1';
       var title = document.createElement('strong'); title.textContent = prod.title || it.id;
       var variant = document.createElement('div'); variant.style.fontSize='13px'; variant.style.color='#666'; variant.textContent = 'Variant: '+(it.variant||'');
       var qtyRow = document.createElement('div'); qtyRow.style.display='flex'; qtyRow.style.alignItems='center'; qtyRow.style.gap='8px'; qtyRow.style.marginTop='8px';
       var dec = document.createElement('button'); dec.textContent='-'; dec.style.border='none'; dec.style.background='#f0f0f0'; dec.style.borderRadius='18px'; dec.style.width='34px'; dec.style.height='34px';
       var qspan = document.createElement('span'); qspan.textContent = it.qty||1; qspan.style.padding='0 8px';
       var inc = document.createElement('button'); inc.textContent='+'; inc.style.border='none'; inc.style.background='#f0f0f0'; inc.style.borderRadius='18px'; inc.style.width='34px'; inc.style.height='34px';
-      dec.addEventListener('click', function(){ if(it.qty>1){ it.qty--; saveCart(cart); } else { removeItem(it.id, it.variant); } renderCart(); });
+      dec.addEventListener('click', function(){ if(it.qty>1){ it.qty--; saveCart(cart); } else { removeItem(it.id); } renderCart(); });
       inc.addEventListener('click', function(){ it.qty = (it.qty||1)+1; saveCart(cart); renderCart(); });
       qtyRow.appendChild(dec); qtyRow.appendChild(qspan); qtyRow.appendChild(inc);
       right.appendChild(title); right.appendChild(variant); right.appendChild(qtyRow);
@@ -1680,63 +1541,62 @@ const productDescriptions = {
     badge.textContent = cart.reduce(function(s,i){ return s + (i.qty||1); },0) || '0';
   }
 
-  function updateUI(){ ensureCartUI(); renderCart(); }
+  function checkoutHandler(){
+    var cart = loadCart();
+    if(!cart.length){ alert('Keranjang kosong'); return; }
+    var msg = 'Halo, saya ingin memesan:%0A';
+    cart.forEach(function(it, idx){
+      msg += (idx+1)+'. '+(it.title||it.id)+' - '+(it.variant||'')+' x'+it.qty+' (Rp '+(Number(it.price)||0).toLocaleString('id-ID')+')%0A';
+    });
+    var total = cart.reduce(function(s,i){ return s + (Number(i.price)||0) * (i.qty||1); },0);
+    msg += '%0ATotal: Rp '+total.toLocaleString('id-ID')+'%0A%0ADetail Pengiriman:%0ANama:%0ANo HP:%0AAlamat:%0A';
+    var wa = 'https://wa.me/6281937036039?text='+encodeURIComponent(msg);
+    window.open(wa, '_blank');
+  }
 
-  // Clean previous invalid cart entries (price 0 etc)
-  function cleanCartAtStart(){
+  // Clean previous invalid entries for safety
+  function cleanCart(){
     try{
       var cart = loadCart();
-      var newC = cart.filter(function(it){
+      var newCart = cart.filter(function(it){
         return it && it.id && productMap[it.id] && Number(productMap[it.id].price) > 0;
       });
-      if(newC.length !== cart.length) saveCart(newC);
+      if(JSON.stringify(newCart)!==JSON.stringify(cart)) saveCart(newCart);
     }catch(e){}
   }
 
-  // Hook up newly added add-to-cart buttons (delegation)
+  // Delegated click handler for add-to-cart buttons
   document.addEventListener('click', function(e){
-    var btn = e.target.closest && e.target.closest('.add-to-cart');
+    var btn = e.target.closest && e.target.closest('.add-to-cart.rebuilt');
     if(!btn) return;
     e.preventDefault();
-    var pid = btn.getAttribute('data-product');
-    if(!pid){
-      var card = btn.closest('[data-product-id]');
-      pid = card ? card.getAttribute('data-product-id') : null;
-    }
-    if(!pid || !productMap[pid]){
-      // ensure we rebuild productMap and retry once
+    var pid = btn.getAttribute('data-product') || (btn.closest && btn.closest('[data-product-id]') && btn.closest('[data-product-id]').getAttribute('data-product-id'));
+    if(!pid) { alert('Produk tidak ditemukan'); return; }
+    if(!productMap[pid]){
       ensureProducts();
-      if(!pid || !productMap[pid]){
-        alert('Produk tidak dapat ditambahkan (data tidak lengkap)');
-        return;
-      }
+      if(!productMap[pid]){ alert('Produk tidak valid'); return; }
     }
-    addToCart(pid, 1, 'Default');
-    // small feedback
-    var txt = btn.innerText;
-    btn.innerText = '✓ Ditambahkan';
+    addToCart(pid, 1);
+    // feedback
+    var original = btn.innerHTML;
+    btn.innerHTML = '✓ Ditambahkan';
     btn.disabled = true;
-    setTimeout(function(){ btn.innerText = txt; btn.disabled = false; }, 900);
-  });
+    setTimeout(function(){ btn.innerHTML = original; btn.disabled = false; }, 900);
+  }, false);
 
   // Initialize
-  ensureProducts();
-  cleanCartAtStart();
-  ensureCartUI();
-  updateUI();
+  function init(){
+    ensureProducts();
+    ensureCartUI();
+    cleanCart();
+    renderCart();
+  }
 
-  // Expose API
-  window.dirac = window.dirac || {};
-  window.dirac.rebuilt = true;
-  window.dirac.addToCart = function(id,q,p,v){ return addToCart(id,q,v); };
-  window.dirac.getProducts = function(){ return productMap; };
-  window.dirac.getCart = loadCart;
-
-  // Re-scan after load and after short delay to catch lazy loaded content
-  window.addEventListener('load', function(){ setTimeout(function(){ ensureProducts(); updateUI(); }, 600); });
-  setTimeout(function(){ ensureProducts(); updateUI(); }, 1200);
-
-})(); 
+  document.addEventListener('DOMContentLoaded', function(){ init(); setTimeout(function(){ ensureProducts(); renderCart(); }, 800); });
+  window.addEventListener('load', function(){ setTimeout(function(){ ensureProducts(); renderCart(); }, 700); });
+  // expose API
+  window.dirac = window.dirac || {}; window.dirac.cartKey = CART_KEY; window.dirac.getProducts = function(){ return productMap; }; window.dirac.getCart = function(){ return loadCart(); };
+})();
 </script>
 </body>
 </html>
