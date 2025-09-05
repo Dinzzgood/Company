@@ -1688,7 +1688,96 @@ document.addEventListener('click', function(e){
   var badge = document.querySelector('#cartBadgeInjected, #cartBadgeFinal, #cartBadge') || document.querySelector('.cart-badge');
   if(badge) badge.textContent = cart.reduce(function(s,i){ return s + (i.qty||1); },0);
 });
-</script></body>
+</script>
+<!-- ========== CART WIDGET (injected) ========== -->
+<style>
+  #cartToggleInjected{position:fixed;top:14px;right:14px;z-index:2147483647;background:#0d6efd;color:#fff;border:none;padding:8px 12px;border-radius:10px;font-weight:700;box-shadow:0 8px 20px rgba(13,110,253,0.18);cursor:pointer;}
+  #cartBadgeInjected{background:#fff;color:#0d6efd;border-radius:999px;padding:2px 8px;margin-left:8px;font-weight:800;min-width:20px;text-align:center;display:inline-block;}
+  #cartDrawerInjected{position:fixed;right:0;top:0;height:100%;width:360px;max-width:92vw;background:#fff;box-shadow:-12px 0 30px rgba(0,0,0,0.12);transform:translateX(110%);transition:transform .32s ease;z-index:2147483646;padding:18px;overflow:auto;color:#111;font-family:inherit;}
+  #cartDrawerInjected.open{transform:translateX(0);}
+  #cartDrawerInjected h3{margin-top:0;margin-bottom:10px;}
+  .cart-item{display:flex;gap:10px;align-items:center;padding:10px;border-bottom:1px solid rgba(0,0,0,0.06);}
+  .cart-item img{width:64px;height:64px;object-fit:cover;border-radius:6px;background:#f3f3f3}
+  .cart-item .ci-meta{flex:1}
+  .cart-item .ci-meta .title{font-weight:700;font-size:0.95rem}
+  .cart-item .ci-meta .price{color:#0d6efd;font-weight:800;margin-top:6px}
+  .qty-controls{display:inline-flex;align-items:center;gap:6px;margin-top:8px}
+  .qty-controls button{padding:6px 8px;border-radius:8px;border:1px solid rgba(0,0,0,0.08);background:#fff;cursor:pointer}
+  .cart-footer{padding-top:12px;display:flex;flex-direction:column;gap:8px}
+  .cart-total{display:flex;justify-content:space-between;font-weight:800;padding:6px 0}
+  .cart-action{display:flex;gap:8px}
+  .btn-cart-primary{flex:1;padding:10px;border-radius:10px;border:none;background:#0d6efd;color:#fff;font-weight:800;cursor:pointer}
+  .btn-cart-secondary{flex:1;padding:10px;border-radius:10px;border:1px solid #ddd;background:#fff;color:#111;cursor:pointer}
+  @media(max-width:420px){ #cartDrawerInjected{width:92vw;}}
+</style>
+
+<button id="cartToggleInjected" aria-label="Buka Keranjang" title="Keranjang">
+  Keranjang <span id="cartBadgeInjected">0</span>
+</button>
+
+<aside id="cartDrawerInjected" aria-hidden="true" aria-label="Keranjang Belanja">
+  <div>
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <h3>Keranjang Anda</h3>
+      <button id="closeCartBtn" aria-label="Tutup keranjang" style="background:transparent;border:none;font-size:20px;cursor:pointer;">✕</button>
+    </div>
+
+    <div id="cartItemsWrap" style="margin-top:6px;"></div>
+
+    <div class="cart-footer">
+      <div class="cart-total"><span>Subtotal</span><span id="cartSubtotal">Rp 0</span></div>
+      <div style="font-size:0.95rem;color:#666">Catatan: Pesanan akan dikonfirmasi via WhatsApp.</div>
+      <div class="cart-action">
+        <button id="checkoutWA" class="btn-cart-primary">Checkout via WA</button>
+        <button id="clearCartBtn" class="btn-cart-secondary">Kosongkan</button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<script>
+(function(){
+  const KEY = 'dirac_cart_final_v2';
+  function parsePrice(text){ if(!text) return 0; var m = (''+text).match(/Rp[^\d]*([\d\.\,]+)/i) || (''+text).match(/([\d\.\,]+)\s*IDR/i); if(m) return Number(m[1].replace(/\./g,'').replace(/,/g,'')) || 0; return Number((''+text).replace(/[^0-9]/g,'')) || 0;}
+  function formatRp(n){ if(!n && n!==0) return 'Rp 0'; return 'Rp ' + n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,".");}
+  function loadCart(){ try{ return JSON.parse(localStorage.getItem(KEY)||'[]'); }catch(e){ return []; } }
+  function saveCart(cart){ localStorage.setItem(KEY, JSON.stringify(cart)); updateBadge(cart); }
+  const cartWrap = document.getElementById('cartItemsWrap');
+  const subtotalEl = document.getElementById('cartSubtotal');
+  const badgeEl = document.getElementById('cartBadgeInjected');
+  function updateBadge(cart){ cart = cart || loadCart(); const totalQty = cart.reduce((s,i)=>s+(i.qty||0),0); if(badgeEl) badgeEl.textContent = totalQty || 0;}
+  function renderCart(){ const cart = loadCart(); cartWrap.innerHTML = ''; if(cart.length===0){ cartWrap.innerHTML = '<div style="padding:18px;text-align:center;color:#666">Keranjang kosong.</div>'; subtotalEl.textContent = formatRp(0); updateBadge(cart); return;} let subtotal = 0; cart.forEach(item=>{ subtotal += (Number(item.price)||0) * (item.qty||1); const el = document.createElement('div'); el.className = 'cart-item'; el.innerHTML = `
+        <img src="${item.img||''}" alt="${(item.title||'')}" onerror="this.style.display='none'"/>
+        <div class="ci-meta">
+          <div class="title">${item.title||item.id}</div>
+          <div class="price">${formatRp(Number(item.price)||0)}</div>
+          <div class="qty-controls" data-id="${item.id}">
+            <button class="qty-decr" aria-label="Kurangi">−</button>
+            <span class="qty-display">${item.qty||1}</span>
+            <button class="qty-incr" aria-label="Tambah">+</button>
+            <button class="remove-item" style="margin-left:8px;background:transparent;border:none;color:#c62828;cursor:pointer">Hapus</button>
+          </div>
+        </div>`; cartWrap.appendChild(el);}); subtotalEl.textContent = formatRp(subtotal); updateBadge(cart);
+    Array.from(cartWrap.querySelectorAll('.qty-controls')).forEach(node=>{ const id = node.getAttribute('data-id'); node.querySelector('.qty-incr').onclick = function(){ changeQty(id, +1); }; node.querySelector('.qty-decr').onclick = function(){ changeQty(id, -1); }; node.querySelector('.remove-item').onclick = function(){ removeItem(id); }; }); }
+  function addItemFromElement(el){ const btn = el; const article = btn.closest('article[data-product-id]') || btn.closest('article') || btn.closest('.product-card') || document.body; let pid = btn.getAttribute('data-product') || (article && article.getAttribute('data-product-id')) || ('p-'+Math.random().toString(36).slice(2,8)); const titleEl = article && article.querySelector('.product-title, h1,h2,h3,h4,h5,strong,b'); const title = titleEl ? titleEl.textContent.trim() : pid; const sel = article && article.querySelector('select.variant-select[data-product="'+pid+'"]'); let price = 0; if(sel) price = Number(sel.value) || 0; if(!price){ const txt = article ? article.textContent : ''; price = parsePrice(txt) || 0;} const img = article && article.querySelector('img'); const imgsrc = img ? (img.getAttribute('data-src')||img.getAttribute('src')||'') : ''; addItem({id:pid, title:title, price:price, img:imgsrc}); }
+  function addItem(item){ if(!item || !item.id) return; const cart = loadCart(); const it = cart.find(x=>x.id===item.id); if(it) it.qty = (it.qty||1) + 1; else cart.push({id:item.id, title:item.title||item.id, price:Number(item.price)||0, qty:1, img:item.img||''}); saveCart(cart); renderCart(); }
+  function changeQty(id, delta){ const cart = loadCart(); const it = cart.find(x=>x.id===id); if(!it) return; it.qty = (it.qty||1) + delta; if(it.qty <= 0){ const idx = cart.findIndex(x=>x.id===id); if(idx>=0) cart.splice(idx,1);} saveCart(cart); renderCart(); }
+  function removeItem(id){ const cart = loadCart(); const idx = cart.findIndex(x=>x.id===id); if(idx>=0) cart.splice(idx,1); saveCart(cart); renderCart(); }
+  function clearCart(){ localStorage.removeItem(KEY); renderCart(); }
+  function checkoutViaWA(){ const cart = loadCart(); if(!cart.length){ alert('Keranjang kosong.'); return; } let lines = []; lines.push('Halo, saya ingin memesan:'); cart.forEach(it=>{ lines.push('- ' + (it.title||it.id) + ' x' + (it.qty||1) + ' — ' + formatRp((it.price||0)*(it.qty||1))); }); const subtotal = cart.reduce((s,i)=>s + (Number(i.price)||0)*(i.qty||1),0); lines.push(''); lines.push('Subtotal: ' + formatRp(subtotal)); lines.push(''); lines.push('Nama:'); lines.push('Alamat:'); lines.push('No. HP:'); const text = encodeURIComponent(lines.join('\n')); const waNumber = '6281937036039'; const url = 'https://wa.me/'+waNumber+'?text='+text; window.open(url,'_blank'); }
+  const drawer = document.getElementById('cartDrawerInjected');
+  document.getElementById('cartToggleInjected').addEventListener('click', function(){ drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false'); renderCart(); });
+  document.getElementById('closeCartBtn').addEventListener('click', function(){ drawer.classList.remove('open'); drawer.setAttribute('aria-hidden','true'); });
+  document.getElementById('checkoutWA').addEventListener('click', checkoutViaWA);
+  document.getElementById('clearCartBtn').addEventListener('click', function(){ if(confirm('Kosongkan keranjang?')) clearCart(); });
+  document.addEventListener('click', function(e){ const btn = e.target.closest && (e.target.closest('.add-to-cart-inserted') || e.target.closest('.add-to-cart-forced') || e.target.closest('.add-to-cart.injected') || e.target.closest('.add-to-cart') ); if(!btn) return; e.preventDefault(); const old = btn.innerHTML; addItemFromElement(btn); btn.innerHTML = '✓'; btn.disabled = true; setTimeout(function(){ btn.innerHTML = old; btn.disabled = false; }, 800); drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false'); renderCart(); });
+  document.addEventListener('DOMContentLoaded', function(){ updateBadge(); renderCart(); });
+  window.__dirac_cart = {loadCart, saveCart, addItem, renderCart, clearCart};
+})();
+</script>
+<!-- ========== END CART WIDGET ========== -->
+
+</body>
 </html>
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
