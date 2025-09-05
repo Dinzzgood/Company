@@ -1497,13 +1497,13 @@ const products = [
             <p class="muted small">${p.desc}</p>
             <div class="d-flex justify-content-center gap-2 mt-2">
               <button class="btn btn-sm btn-outline-secondary" onclick="viewProduct(${p.id})">Lihat</button>
-              <a class="btn btn-sm btn-primary-grad" href="https://wa.me/6281937036039?text=${encodeURIComponent('Halo Dirac Parfum, saya ingin memesan '+p.title)}" target="_blank">Pesan via WA</a>
+              <a class="btn btn-sm btn-primary-grad" href="https://wa.me/6281937036039?text=${encodeURIComponent('Halo kak, saya ingin memesan '+p.title)}" target="_blank">Pesan via WA</a>
             </div>
           </div>`;
         catalog.appendChild(card);
       });
     }
-  renderCatalog(products); // tampilkan semua produk// tampilkan 8 produk unggulan
+  renderCatalog(products.slice(0,5)); // tampilkan semua produk// tampilkan 8 produk unggulan
 
     // Render gallery masonry
     const galleryGrid = document.getElementById('galleryGrid');
