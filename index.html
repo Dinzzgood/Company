@@ -1306,7 +1306,35 @@ It's recommended to generate optimized WebP files and serve them with proper cac
       </div>
     </div> <!-- end .slides -->
   </div> <!-- end .testimonial-slider -->
+  <!-- optional small CSS to ensure visibility if your theme hides slides by default -->
+  <style>
+    /* make sure slide text is visible on dark backgrounds */
+    #testimoni .slides .slide p,
+    #testimoni .slides .slide h4 { color: inherit; margin: 0 0 8px 0; }
+    /* If your slider CSS hides non-active slides, this simple rule ensures active shows */
+    #testimoni .slides .slide { display: none; }
+    #testimoni .slides .slide.active { display: block; }
+  </style>
 
+  <!-- small auto-rotate script: automatically cycles .active every 4s -->
+  <script>
+    (function(){
+      const root = document.getElementById('testimoni');
+      if(!root) return;
+      const slides = Array.from(root.querySelectorAll('.slides .slide'));
+      if(slides.length <= 1) return;
+      let i = slides.findIndex(s => s.classList.contains('active'));
+      if(i < 0) i = 0;
+      // ensure exactly one active
+      slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
+      setInterval(() => {
+        slides[i].classList.remove('active');
+        i = (i + 1) % slides.length;
+        slides[i].classList.add('active');
+      }, 6000);
+    })();
+  </script>
+</section>
 
 <!-- Dots navigasi -->
 <div class="dots">
