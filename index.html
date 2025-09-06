@@ -22,15 +22,7 @@
     },
     "sameAs": ["https://instagram.com/diracparfum"]
   }
-  
-function resetFilters(){
-    if(searchInput) searchInput.value='';
-    if(categorySelect) categorySelect.value='all';
-    if(sortSelect) sortSelect.value='recommend';
-    applyFilters();
-}
-
-</script>
+  </script>
 <!-- Fonts & CSS -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&amp;family=Poppins:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
@@ -423,24 +415,7 @@ header{ animation: headerSlide 0.8s cubic-bezier(.2,.9,.2,1) both; will-change: 
 @keyframes zoomBg { from { background-size:110%;}
 to { background-size:120%;}
 }</style>
-<meta content="Promo Diskon 15% - Produk Kesehatan" property="og:title"/><meta content="Gunakan kode DIRAC15 untuk dapatkan diskon. Berlaku sampai akhir bulan!" property="og:description"/><meta content="https://example.com/share.jpg" property="og:image"/><meta content="Belanja parfum niche, designer, lokal, dan Timur Tengah. Jaminan ori, ready stock, dan konsultasi wangi gratis. Promo &amp; rekomendasi terbaru ada di sini." name="description"/><link href="https://dirac-parfum.example/" rel="canonical"/>
-<style>
-.status-badge{
-  position: absolute;
-  top:8px;
-  right:12px;
-  padding:6px 10px;
-  border-radius:20px;
-  font-weight:600;
-  font-size:13px;
-  box-shadow:0 2px 6px rgba(0,0,0,0.2);
-}
-.status-badge.sold{ background:#c0392b; color:#fff; }
-.status-badge.available{ background:#27ae60; color:#fff; }
-.card-wrap{ position:relative; margin-bottom:20px; }
-.product-card{ position:relative; overflow:hidden; border-radius:12px; }
-</style>
-</head>
+<meta content="Promo Diskon 15% - Produk Kesehatan" property="og:title"/><meta content="Gunakan kode DIRAC15 untuk dapatkan diskon. Berlaku sampai akhir bulan!" property="og:description"/><meta content="https://example.com/share.jpg" property="og:image"/><meta content="Belanja parfum niche, designer, lokal, dan Timur Tengah. Jaminan ori, ready stock, dan konsultasi wangi gratis. Promo &amp; rekomendasi terbaru ada di sini." name="description"/><link href="https://dirac-parfum.example/" rel="canonical"/></head>
 <!-- Open Graph & Twitter (added by assistant) -->
 <meta content="Dirac Parfum — Reseller Parfum Premium &amp; Resmi" property="og:title"/>
 <meta content="Dirac Parfum — reseller parfum premium, original &amp; inspired. Pesan 6281937036039" property="og:description"/>
@@ -803,11 +778,6 @@ It's recommended to generate optimized WebP files and serve them with proper cac
 <option value="daily">Daily</option>
 <option value="evening">Evening</option>
 <option value="premium">Premium</option>
-
-  <optgroup label="Status">
-    <option value="available">Available</option>
-    <option value="sold">Sold</option>
-  </optgroup>
 </select>
 <select class="form-select form-select-sm" id="sortSelect" style="max-width:180px">
 <option value="default">Urutkan: Rekomendasi</option>
@@ -1417,27 +1387,27 @@ const productDescriptions = {
 // Produk (lebih lengkap)
 
 const products = [
-{id:1,title:"All Parfum Timteng",desc:"“All Parfum Timteng",price:500000,img:"all_parfum_timteng.png",tag:"daily",link:"All Parfum Timteng",status:"sold"},
-{id:2,title:"All Parfum Designer",desc:"All Parfum Designer",price:1000000,img:"all_parfum_desaigner.png",tag:"daily",link:"All Parfum Designer",status:"available"},
-{id:3,title:"All Parfum Lokal",desc:"All Parfum Lokal",price:250000,img:"all_parfum_lokal.png",tag:"daily",link:"All Parfum Lokal",status:"available"},
-{id:4,title:"All Parfum Niche",desc:"All Parfum Niche",price:1000000,img:"all_parfum_niche.PNG",tag:"daily",link:"All Parfum Niche",status:"available"},
-{id:5,title:"Botol Kosong Niche",desc:"Botol Kosong Niche",price:500000,img:"botol_kosong_niche.png",tag:"daily",link:"Botol Kosong Niche",status:"sold"},
-{id:6,title:"Rasasi – Hawas for Him EDT 100 ml",desc:"Rasasi – Hawas for Him EDT 100 ml",price:753500,img:"produk6.PNG",tag:"daily",link:"Produk 6",status:"sold"},
-{id:7,title:"Lattafa – Bade’e Al Oud Amethyst EDP 100 ml",desc:"Lattafa – Bade’e Al Oud Amethyst EDP 100 ml",price:650000,img:"produk7.PNG",tag:"special",link:"Produk 7",status:"sold"},
-{id:8,title:"Afnan – 9PM EDP 100 ml",desc:"Afnan – 9PM EDP 100 ml",price:441000,img:"produk8.PNG",tag:"daily",link:"Produk 8",status:"sold"},
-{id:9,title:"Dior – Sauvage EDP 100 ml",desc:"Dior – Sauvage EDP 100 ml",price:2600000,img:"produk9.PNG",tag:"premium",link:"Produk 9",status:"available"},
-{id:10,title:"Yves Saint Laurent – Y EDP 100 ml",desc:"Yves Saint Laurent – Y EDP 100 ml",price:2750000,img:"produk10.PNG",tag:"premium",link:"Produk 10",status:"sold"},
-{id:11,title:"Chanel – Bleu de Chanel EDP 100 ml",desc:"Chanel – Bleu de Chanel EDP 100 ml",price:3433000,img:"produk11.PNG",tag:"premium",link:"Produk 11",status:"available"},
-{id:12,title:"Montblanc – Explorer EDP 100 ml",desc:"Montblanc – Explorer EDP 100 ml",price:1225000,img:"produk12.PNG",tag:"premium",link:"Produk 12",status:"available"},
-{id:13,title:"Giorgio Armani – Acqua di Giò Parfum 100 ml",desc:"Giorgio Armani – Acqua di Giò Parfum 100 ml",price:1856000,img:"produk13.PNG",tag:"premium",link:"Produk 13",status:"sold"},
-{id:14,title:"Dolce & Gabbana – K EDT 100 ml",desc:"Dolce & Gabbana – K EDT 100 ml",price:990000,img:"produk14.PNG",tag:"daily",link:"Produk 14",status:"available"},
-{id:15,title:"Hugo Boss – The Scent Le Parfum Men 100 ml",desc:"Hugo Boss – The Scent Le Parfum Men 100 ml",price:1544000,img:"produk15.PNG",tag:"premium",link:"Produk 15",status:"available"},
-{id:16,title:"Carolina Herrera – Bad Boy EDT 100 ml",desc:"Carolina Herrera – Bad Boy EDT 100 ml",price:1550000,img:"produk16.PNG",tag:"premium",link:"Produk 16",status:"sold"},
-{id:17,title:"Kajal – Almaz EDP 100 ml",desc:"Kajal – Almaz EDP 100 ml",price:4630000,img:"produk1.PNG",tag:"premium",link:"Produk 1",status:"available"},
-{id:18,title:"Spirit of Kings – Aludra EDP 100 ml",desc:"Spirit of Kings – Aludra EDP 100 ml",price:3050000,img:"produk2.PNG",tag:"premium",link:"Produk 2",status:"available"},
-{id:19,title:"Ajmal – Amber Wood EDP 100 ml",desc:"Ajmal – Amber Wood EDP 100 ml",price:2108500,img:"produk3.PNG",tag:"premium",link:"Produk 3",status:"available"},
-{id:20,title:"Swiss Arabian – Shaghaf Oud EDP 75 ml",desc:"Swiss Arabian – Shaghaf Oud EDP 75 ml",price:1850000,img:"produk4.PNG",tag:"premium",link:"Produk 4",status:"available"},
-{id:21,title:"Al Haramain – Amber Oud Gold Edition EDP 60 ml",desc:"Al Haramain – Amber Oud Gold Edition EDP 60 ml",price:1350000,img:"produk5.PNG",tag:"premium",link:"Produk 5",status:"available"}
+{id:1,title:"All Parfum Timteng",desc:"“All Parfum Timteng",price:500000,img:"all_parfum_timteng.png",tag:"daily",link:"All Parfum Timteng"},
+{id:2,title:"All Parfum Designer",desc:"All Parfum Designer",price:1000000,img:"all_parfum_desaigner.png",tag:"daily",link:"All Parfum Designer"},
+{id:3,title:"All Parfum Lokal",desc:"All Parfum Lokal",price:250000,img:"all_parfum_lokal.png",tag:"daily",link:"All Parfum Lokal"},
+{id:4,title:"All Parfum Niche",desc:"All Parfum Niche",price:1000000,img:"all_parfum_niche.PNG",tag:"daily",link:"All Parfum Niche"},
+{id:5,title:"Botol Kosong Niche",desc:"Botol Kosong Niche",price:500000,img:"botol_kosong_niche.png",tag:"daily",link:"Botol Kosong Niche"},
+{id:6,title:"Rasasi – Hawas for Him EDT 100 ml",desc:"Rasasi – Hawas for Him EDT 100 ml",price:753500,img:"produk6.PNG",tag:"daily",link:"Produk 6"},
+{id:7,title:"Lattafa – Bade’e Al Oud Amethyst EDP 100 ml",desc:"Lattafa – Bade’e Al Oud Amethyst EDP 100 ml",price:650000,img:"produk7.PNG",tag:"special",link:"Produk 7"},
+{id:8,title:"Afnan – 9PM EDP 100 ml",desc:"Afnan – 9PM EDP 100 ml",price:441000,img:"produk8.PNG",tag:"daily",link:"Produk 8"},
+{id:9,title:"Dior – Sauvage EDP 100 ml",desc:"Dior – Sauvage EDP 100 ml",price:2600000,img:"produk9.PNG",tag:"premium",link:"Produk 9"},
+{id:10,title:"Yves Saint Laurent – Y EDP 100 ml",desc:"Yves Saint Laurent – Y EDP 100 ml",price:2750000,img:"produk10.PNG",tag:"premium",link:"Produk 10"},
+{id:11,title:"Chanel – Bleu de Chanel EDP 100 ml",desc:"Chanel – Bleu de Chanel EDP 100 ml",price:3433000,img:"produk11.PNG",tag:"premium",link:"Produk 11"},
+{id:12,title:"Montblanc – Explorer EDP 100 ml",desc:"Montblanc – Explorer EDP 100 ml",price:1225000,img:"produk12.PNG",tag:"premium",link:"Produk 12"},
+{id:13,title:"Giorgio Armani – Acqua di Giò Parfum 100 ml",desc:"Giorgio Armani – Acqua di Giò Parfum 100 ml",price:1856000,img:"produk13.PNG",tag:"premium",link:"Produk 13"},
+{id:14,title:"Dolce & Gabbana – K EDT 100 ml",desc:"Dolce & Gabbana – K EDT 100 ml",price:990000,img:"produk14.PNG",tag:"daily",link:"Produk 14"},
+{id:15,title:"Hugo Boss – The Scent Le Parfum Men 100 ml",desc:"Hugo Boss – The Scent Le Parfum Men 100 ml",price:1544000,img:"produk15.PNG",tag:"premium",link:"Produk 15"},
+{id:16,title:"Carolina Herrera – Bad Boy EDT 100 ml",desc:"Carolina Herrera – Bad Boy EDT 100 ml",price:1550000,img:"produk16.PNG",tag:"premium",link:"Produk 16"},
+{id:17,title:"Kajal – Almaz EDP 100 ml",desc:"Kajal – Almaz EDP 100 ml",price:4630000,img:"produk1.PNG",tag:"premium",link:"Produk 1"},
+{id:18,title:"Spirit of Kings – Aludra EDP 100 ml",desc:"Spirit of Kings – Aludra EDP 100 ml",price:3050000,img:"produk2.PNG",tag:"premium",link:"Produk 2"},
+{id:19,title:"Ajmal – Amber Wood EDP 100 ml",desc:"Ajmal – Amber Wood EDP 100 ml",price:2108500,img:"produk3.PNG",tag:"premium",link:"Produk 3"},
+{id:20,title:"Swiss Arabian – Shaghaf Oud EDP 75 ml",desc:"Swiss Arabian – Shaghaf Oud EDP 75 ml",price:1850000,img:"produk4.PNG",tag:"premium",link:"Produk 4"},
+{id:21,title:"Al Haramain – Amber Oud Gold Edition EDP 60 ml",desc:"Al Haramain – Amber Oud Gold Edition EDP 60 ml",price:1350000,img:"produk5.PNG",tag:"premium",link:"Produk 5"}
 ];
 
 
@@ -1477,9 +1447,7 @@ const products = [
       list.forEach(p=>{
         const wrap = document.createElement('div'); wrap.className='card-wrap';
         wrap.innerHTML = `
-          <div class="product-card" data-status="${p.status}">
-            <div class="status-badge ${p.status==='sold' ? 'sold' : 'available'}">${p.status==='sold' ? 'Sold' : 'Available'}</div>
-            
+          <div class="product-card">
             <img src="${p.img}" alt="${p.title}" loading="lazy" decoding="async" width="300" height="400" data-id="${p.id}" style="cursor:pointer">
             <div class="product-body">
               <div class="product-title">${p.title}</div>
@@ -1504,36 +1472,21 @@ const products = [
     const categorySelect = document.getElementById('categorySelect');
     const sortSelect = document.getElementById('sortSelect');
     const resetBtn = document.getElementById('resetBtn');
-    const statusSelect = document.getElementById('statusSelect');
 
-
-    
-function applyFilters(){
-    let list = products.slice();
-    const q = searchInput.value.trim().toLowerCase();
-    let cat = categorySelect.value;
-    // If user picked a status option inside the category select, treat it as a status filter
-    let status = 'all';
-    if(cat === 'available' || cat === 'sold'){
-        status = cat;
-        cat = 'all';
+    function applyFilters(){
+      let list = products.slice();
+      const q = searchInput.value.trim().toLowerCase();
+      const cat = categorySelect.value;
+      if(q){ list = list.filter(p => (p.title+' '+p.desc+' '+p.tag).toLowerCase().includes(q)); }
+      if(cat && cat!=='all'){ list = list.filter(p => p.tag===cat); }
+      if(sortSelect.value==='price-asc'){ list.sort((a,b)=>a.price-b.price); }
+      else if(sortSelect.value==='price-desc'){ list.sort((a,b)=>b.price-a.price); }
+      renderGallery(list);
     }
-    if(q){ list = list.filter(p => (p.title+' '+p.desc+' '+p.tag).toLowerCase().includes(q)); }
-    if(cat && cat!=='all'){ list = list.filter(p => (p.category && p.category.toLowerCase()===cat.toLowerCase())); }
-    if(status && status!=='all'){ list = list.filter(p => (p.status && p.status.toLowerCase()===status.toLowerCase())); }
-    // sorting
-    const sortVal = sortSelect? sortSelect.value : 'recommend';
-    if(sortVal === 'low') list.sort((a,b)=>a.price-b.price);
-    else if(sortVal === 'high') list.sort((a,b)=>b.price-a.price);
-    else list.sort((a,b)=> (a.id||0)-(b.id||0));
-    renderProducts(list);
-}
-
     searchInput.addEventListener('input',applyFilters);
     categorySelect.addEventListener('change',applyFilters);
     sortSelect.addEventListener('change',applyFilters);
-    if(statusSelect) statusSelect.addEventListener('change',applyFilters);
-    resetBtn.addEventListener('click',()=>{ searchInput.value=''; categorySelect.value='all'; sortSelect.value='default'; if(statusSelect) statusSelect.value='all'; renderGallery(products); });
+    resetBtn.addEventListener('click',()=>{ searchInput.value=''; categorySelect.value='all'; sortSelect.value='default'; renderGallery(products); });
 
     // Product modal view (simple)
     function openModal(id){
