@@ -716,6 +716,85 @@ to { background-size:120%;}
 </style>
 <!-- End injected compact styles -->
 
+
+<!-- Injected: tighter compact + modern minimal button styles -->
+<style>
+/* Even tighter filter spacing */
+.filters-row {
+  gap: 6px !important;
+  margin-top: 6px !important;
+  margin-bottom: 6px !important;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+/* compact item sizes */
+.filters-row .filter-item { min-width: 100px !important; }
+.filters-row .filter-search { min-width: 140px !important; flex: 1 1 180px !important; }
+
+/* Dark minimal selects / inputs */
+.filters-row .form-select, .filters-row input[type="text"], .filters-row .form-control {
+  background: rgba(255,255,255,0.03) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  height:36px !important;
+  padding:6px 10px !important;
+  border-radius:8px !important;
+  font-size:15px !important;
+  box-shadow: none !important;
+}
+
+/* modern minimal buttons - outline blue, transparent fill */
+.product-card .product-actions .btn {
+  background: transparent !important;
+  color: #cfdfff !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  box-shadow: none !important;
+  padding:8px 14px !important;
+  border-radius:10px !important;
+  min-width: 80px;
+  transition: background .12s ease, transform .12s ease;
+}
+
+/* Primary action (Pesan) - blue outline, subtle fill on hover */
+.product-card .product-actions .order-btn.available {
+  border-color: rgba(0,123,255,0.9) !important;
+  color: #cfe4ff !important;
+}
+.product-card .product-actions .order-btn.available:hover {
+  background: rgba(0,123,255,0.12) !important;
+  color: #fff !important;
+  transform: translateY(-2px);
+}
+
+/* Disabled sold button - subtle dark outline, muted text */
+.product-card .product-actions .order-btn.sold,
+.product-card .product-actions .btn.sold {
+  border-color: rgba(255,255,255,0.04) !important;
+  color: rgba(255,255,255,0.5) !important;
+  background: rgba(0,0,0,0.12) !important;
+}
+
+/* Make view-btn minimal too */
+.product-card .product-actions .view-btn {
+  border-color: rgba(255,255,255,0.06) !important;
+  color: rgba(255,255,255,0.9) !important;
+}
+.product-card .product-actions .view-btn:hover {
+  background: rgba(255,255,255,0.03) !important;
+}
+
+/* Reduce grid gaps slightly for denser layout */
+.catalog-grid { gap: 12px !important; }
+
+/* For small screens stack filters tightly */
+@media (max-width:520px){
+  .filters-row { flex-direction: column !important; gap:6px !important; }
+  .filters-row .form-select, .filters-row input[type="text"]{ height:44px !important; }
+}
+</style>
+<!-- End injected tighter styles -->
+
 </head>
 <!-- Open Graph & Twitter (added by assistant) -->
 <meta content="Dirac Parfum — Reseller Parfum Premium &amp; Resmi" property="og:title"/>
@@ -1076,21 +1155,14 @@ It's recommended to generate optimized WebP files and serve them with proper cac
 <input class="form-control form-control-sm" id="searchInput" placeholder="Cari (misal: citrus, woody, floral)" style="max-width:420px"/>
 <select class="form-select form-select-sm" id="categorySelect" style="max-width:180px">
 <option value="all">Semua Kategori</option>
+    <option value=\"available\">Available</option>
+    <option value=\"sold\">Sold</option>
 <option value="daily">Daily</option>
 <option value="evening">Evening</option>
 <option value="premium">Premium</option>
 </select>
 
-<!-- Filter status produk (Inserted by assistant) -->
-<div class="filter-status-wrapper" style="display:inline-block;margin-left:12px;">
-  <label for="filterStatus" style="display:block;font-size:14px;color:#fff;margin-bottom:6px;">Filter Status</label>
-  <select id="filterStatus" class="form-select" style="display:inline-block;min-width:160px;padding:6px 10px;border-radius:8px;border:1px solid #ccc;">
-    <option value="all">Semua Status</option>
-    <option value="available">Available</option>
-    <option value="sold">Sold</option>
-  </select>
-</div>
-<!-- End filter status produk -->
+
 
 <select class="form-select form-select-sm" id="sortSelect" style="max-width:180px">
 <option value="default">Urutkan: Rekomendasi</option>
@@ -1941,6 +2013,53 @@ const productDescriptions = {
 })();
 </script>
 <!-- end remove script -->
+
+
+<!-- Injected: unified category+status filter script -->
+<script>
+(function(){
+  function applyCombinedFilter(){
+    var cat = (document.getElementById('categoryFilter') || document.querySelector('select')).value;
+    var status = null;
+    if(cat === 'available' || cat === 'sold'){
+      status = cat;
+    }
+    // if category has other values, status is null
+    var cards = document.querySelectorAll('.product-card');
+    cards.forEach(function(card){
+      var attr = card.getAttribute('data-available');
+      var isAvailable = (attr === null) ? true : (String(attr).toLowerCase() === 'true' || attr === '1');
+      // simple category filtering: if cat equals value of data-category attr on card, show; else hide
+      var cardCategory = (card.getAttribute('data-category') || '').toLowerCase();
+      var showByCategory = true;
+      if(cat && cat !== 'all' && cat !== 'available' && cat !== 'sold'){
+        showByCategory = (cardCategory === cat.toLowerCase());
+      }
+      var showByStatus = true;
+      if(status === 'available') showByStatus = isAvailable;
+      if(status === 'sold') showByStatus = !isAvailable;
+      // final visibility
+      card.style.display = (showByCategory && showByStatus) ? '' : 'none';
+    });
+  }
+
+  function attach(){
+    var sel = document.getElementById('categoryFilter') || document.querySelector('select');
+    if(!sel) return;
+    sel.addEventListener('change', applyCombinedFilter);
+    // also hook existing filter UI (if other selects change) to reapply
+    var otherSelects = document.querySelectorAll('select.form-select');
+    otherSelects.forEach(function(s){ s.addEventListener('change', applyCombinedFilter); });
+    // initial apply
+    applyCombinedFilter();
+    window.applyCombinedFilter = applyCombinedFilter;
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', attach);
+  else attach();
+})();
+</script>
+<!-- End injected unified script -->
 
 </body>
 </html>
