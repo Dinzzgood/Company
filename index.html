@@ -625,6 +625,97 @@ to { background-size:120%;}
 </style>
 <!-- End injected grid & blue buttons -->
 
+
+<!-- Injected: hide product-badge overlays -->
+<style>
+/* Completely hide badge elements */
+.product-badge, .product-card .product-badge {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+/* If badges were placed as pseudo-elements on product-media, hide them too */
+.product-media .badge, .badge.product-badge { display:none !important; }
+</style>
+<!-- end hide badges -->
+
+
+<!-- Injected: compact filter spacing styles -->
+<style>
+/* Reduce vertical spacing and make filters more compact */
+.filters-row {
+  gap: 8px !important;
+  margin-top: 8px !important;
+  margin-bottom: 8px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+/* smaller filter items */
+.filters-row .filter-item {
+  min-width: 110px !important;
+  flex: 0 1 auto !important;
+}
+
+/* search takes remaining space but with smaller min width */
+.filters-row .filter-search {
+  flex: 1 1 220px !important;
+  min-width: 160px !important;
+  margin-bottom: 0 !important;
+}
+
+/* make selects and inputs slightly smaller */
+.filters-row .form-select, .filters-row input[type="text"], .filters-row .form-control {
+  height:40px !important;
+  padding:6px 10px !important;
+  border-radius:10px !important;
+  font-size:15px !important;
+  box-shadow: none !important;
+}
+
+/* Reset link smaller and closer */
+.filters-row .filter-reset {
+  margin-left:6px !important;
+  font-size:14px !important;
+  align-self:center;
+  padding:0 6px;
+}
+
+/* On mobile, stack tightly */
+@media (max-width:520px){
+  .filters-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 8px !important;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .filters-row .filter-item, .filters-row .filter-search { width: 100% !important; min-width: 0 !important; }
+  .filters-row .form-select, .filters-row input[type="text"] { height:44px !important; font-size:16px; }
+  .product-card .product-actions .btn { padding:8px 12px; min-width: 80px; }
+}
+
+/* Slightly reduce top spacing of the whole section title */
+#gallery-section, .catalog-section, .galeri-section {
+  margin-top: 8px !important;
+  padding-top: 6px !important;
+}
+
+/* Ensure grid gap not too large */
+.catalog-grid {
+  gap: 14px !important;
+}
+
+/* Keep WhatsApp floating button offset comfortable */
+.floating-whatsapp, .whatsapp-float, .whatsapp-button {
+  right: 14px !important;
+  bottom: 14px !important;
+}
+</style>
+<!-- End injected compact styles -->
+
 </head>
 <!-- Open Graph & Twitter (added by assistant) -->
 <meta content="Dirac Parfum — Reseller Parfum Premium &amp; Resmi" property="og:title"/>
@@ -1824,6 +1915,32 @@ const productDescriptions = {
 })();
 </script>
 <!-- End injected script -->
+
+
+<!-- Injected: remove existing product-badge elements on load -->
+<script>
+(function(){
+  function removeBadges(){
+    try {
+      var badges = document.querySelectorAll('.product-badge');
+      badges.forEach(function(b){ b.parentNode && b.parentNode.removeChild(b); });
+      // also remove any element whose textContent matches 'Available' or 'SOLD' in badge-like positions
+      Array.from(document.querySelectorAll('.product-card *')).forEach(function(el){
+        if(el.classList && el.classList.contains('product-badge')) return;
+        if(el.nodeType === 1 && el.textContent && /(Available|SOLD|Tersedia|Habis)/i.test(el.textContent.trim())){
+          // but be conservative: only remove small badge-like elements (width/height small) - fallback: do nothing
+        }
+      });
+    } catch(e){ /* ignore */ }
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', removeBadges);
+  else removeBadges();
+  // also try removing after a short delay in case badges are injected later
+  setTimeout(removeBadges, 800);
+  setTimeout(removeBadges, 2000);
+})();
+</script>
+<!-- end remove script -->
 
 </body>
 </html>
