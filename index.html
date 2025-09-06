@@ -415,7 +415,217 @@ header{ animation: headerSlide 0.8s cubic-bezier(.2,.9,.2,1) both; will-change: 
 @keyframes zoomBg { from { background-size:110%;}
 to { background-size:120%;}
 }</style>
-<meta content="Promo Diskon 15% - Produk Kesehatan" property="og:title"/><meta content="Gunakan kode DIRAC15 untuk dapatkan diskon. Berlaku sampai akhir bulan!" property="og:description"/><meta content="https://example.com/share.jpg" property="og:image"/><meta content="Belanja parfum niche, designer, lokal, dan Timur Tengah. Jaminan ori, ready stock, dan konsultasi wangi gratis. Promo &amp; rekomendasi terbaru ada di sini." name="description"/><link href="https://dirac-parfum.example/" rel="canonical"/></head>
+<meta content="Promo Diskon 15% - Produk Kesehatan" property="og:title"/><meta content="Gunakan kode DIRAC15 untuk dapatkan diskon. Berlaku sampai akhir bulan!" property="og:description"/><meta content="https://example.com/share.jpg" property="og:image"/><meta content="Belanja parfum niche, designer, lokal, dan Timur Tengah. Jaminan ori, ready stock, dan konsultasi wangi gratis. Promo &amp; rekomendasi terbaru ada di sini." name="description"/><link href="https://dirac-parfum.example/" rel="canonical"/>
+<!-- Injected: filter layout styles -->
+<style>
+/* Filter row container */
+.filters-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  align-items:center;
+  justify-content:flex-start;
+  margin-top:12px;
+  margin-bottom:18px;
+}
+
+/* Each filter item */
+.filters-row .filter-item{
+  flex: 0 1 auto;
+  min-width: 140px;
+}
+
+/* Make search input stretch on larger widths */
+.filters-row .filter-search{
+  flex: 1 1 300px;
+  min-width: 200px;
+}
+
+/* Style selects for consistent height and border radius */
+.filters-row .form-select, .filters-row input[type="text"], .filters-row .form-control{
+  height:44px;
+  padding:8px 12px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,0.12);
+  background: #fff;
+  color: #111;
+  box-shadow: none;
+}
+
+/* Reset link styling aligned with filters */
+.filters-row .filter-reset{
+  margin-left:6px;
+  align-self:center;
+  color: #9aa0a6;
+  cursor:pointer;
+  text-decoration: none;
+  font-weight:600;
+}
+
+/* Responsive tweaks for very small screens */
+@media (max-width:600px){
+  .filters-row{gap:10px;}
+  .filters-row .filter-item{min-width: 120px;}
+  .filters-row .form-select, .filters-row input[type="text"]{height:42px;}
+}
+</style>
+<!-- End injected styles -->
+
+
+<!-- Injected: enhanced button & filter styles -->
+<style>
+/* Make filters visually consistent with gold theme */
+.filters-row .form-select, .filters-row input[type="text"], .filters-row .form-control{
+  background: #fff;
+  border: 1px solid rgba(212,175,55,0.95); /* gold border */
+  border-radius: 12px;
+  padding: 8px 14px;
+  height:46px;
+  color: #111;
+  font-weight: 600;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* Add a caret space on the right so native arrow doesn't overlap text */
+.filters-row .form-select {
+  padding-right: 36px;
+  background-image: linear-gradient(45deg, transparent 50%, #333 50%), linear-gradient(135deg, #333 50%, transparent 50%);
+  background-position: calc(100% - 18px) calc(1em + 2px), calc(100% - 13px) calc(1em + 2px);
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+}
+
+/* Label style */
+.filters-row label[for="filterStatus"]{
+  color:#fff;
+  font-weight:700;
+  margin-right:6px;
+  display:block;
+  font-size:13px;
+}
+
+/* Reset link */
+.filters-row .filter-reset{
+  color: #d4af37;
+  text-decoration: none;
+  font-weight:700;
+  margin-left:8px;
+  align-self:center;
+}
+
+/* Ensure filters row spacing and wrapping */
+.filters-row{ gap:14px; align-items:center; }
+
+/* Product action buttons uniform style */
+.product-card .product-actions .btn {
+  border-radius: 28px;
+  padding: 10px 20px;
+  font-weight: 700;
+  min-width: 90px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.25);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+
+/* Primary order button style */
+.product-card .product-actions .order-btn.available {
+  background: #000;
+  color: #fff;
+  border: 2px solid rgba(0,0,0,0.2);
+}
+
+/* Disabled / sold order button */
+.product-card .product-actions .order-btn.sold, .product-card .product-actions .btn.sold {
+  background: linear-gradient(180deg,#555,#222);
+  color: #eee;
+  cursor: not-allowed;
+  opacity: 0.95;
+  box-shadow: none;
+}
+
+/* Outline view button style */
+.product-card .product-actions .view-btn {
+  background: transparent;
+  border: 2px solid rgba(255,255,255,0.14);
+  color: #fff;
+}
+
+/* Hover effects */
+.product-card .product-actions .btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+}
+
+/* Badge styles */
+.product-card .product-badge.available {
+  background: linear-gradient(180deg,#28d27b,#1aa34a);
+}
+.product-card .product-badge.sold {
+  background: linear-gradient(180deg,#222,#111);
+}
+
+/* Ensure the filter-search input keeps full width on mobile */
+.filter-search input[type="text"], .filter-search .form-control {
+  width: 100%;
+}
+
+/* Small screens: stack if needed */
+@media (max-width:420px){
+  .filters-row{ flex-direction:column; align-items:stretch; gap:10px; }
+  .filters-row .filter-item{ width:100%; }
+  .product-card .product-actions .btn{ width:48%; }
+  .product-card .product-actions{ display:flex; gap:8px; }
+}
+</style>
+<!-- End injected enhanced styles -->
+
+
+<!-- Injected: grid layout & blue buttons -->
+<style>
+/* Catalog grid layout */
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  align-items: stretch;
+}
+
+/* Ensure product card fills grid cell */
+.catalog-grid .product-card {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Blue theme for buttons */
+.product-card .product-actions .order-btn.available {
+  background: #007bff; /* Bootstrap primary blue */
+  border: 2px solid rgba(0,0,0,0.2);
+  color: #fff;
+}
+.product-card .product-actions .btn:hover {
+  background: #0056b3;
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+}
+.product-card .product-actions .view-btn {
+  background: transparent;
+  border: 2px solid #007bff;
+  color: #007bff;
+}
+.product-card .product-actions .view-btn:hover {
+  background: #007bff;
+  color: #fff;
+}
+</style>
+<!-- End injected grid & blue buttons -->
+
+</head>
 <!-- Open Graph & Twitter (added by assistant) -->
 <meta content="Dirac Parfum — Reseller Parfum Premium &amp; Resmi" property="og:title"/>
 <meta content="Dirac Parfum — reseller parfum premium, original &amp; inspired. Pesan 6281937036039" property="og:description"/>
@@ -1524,6 +1734,96 @@ const productDescriptions = {
 })();
 </script>
 <!-- End injected status filter script -->
+
+
+<!-- Injected: script to tidy filter controls -->
+<script>
+(function(){
+  function tidyFilters(){
+    // find the search input (by placeholder) and the first few selects near it
+    var search = document.querySelector('input[placeholder*="Cari"], input[placeholder*="cari"], input[type="search"]');
+    // gather select.form-select elements that are visible on page
+    var selects = Array.from(document.querySelectorAll('select.form-select'));
+    if(!search || selects.length === 0) return;
+
+    // determine a parent where filters live: use nearest common ancestor of search and first select
+    var firstSelect = selects[0];
+    var commonParent = search.parentElement;
+    while(commonParent && !commonParent.contains(firstSelect)){
+      commonParent = commonParent.parentElement;
+    }
+    if(!commonParent) commonParent = search.parentElement || document.body;
+
+    // create filters-row container if not exists
+    if(commonParent.querySelector('.filters-row')) return; // already wrapped
+
+    var row = document.createElement('div');
+    row.className = 'filters-row';
+
+    // create and append search wrapper
+    var searchWrap = document.createElement('div');
+    searchWrap.className = 'filter-item filter-search';
+    // move search into wrapper
+    search.parentElement.insertBefore(searchWrap, search);
+    searchWrap.appendChild(search);
+
+    row.appendChild(searchWrap);
+
+    // move up to next 3 selects into the row (category, status, sort) keeping their order
+    // prioritize selects that are after the search input in DOM
+    var moved = [];
+    selects.forEach(function(sel){
+      // avoid selects that are inside filters-row already
+      if(sel.closest('.filters-row')) return;
+      // create wrapper
+      var w = document.createElement('div');
+      w.className = 'filter-item';
+      sel.parentElement.insertBefore(w, sel);
+      w.appendChild(sel);
+      row.appendChild(w);
+      moved.push(sel);
+      // limit to 3 selects to prevent moving unrelated selects
+      if(moved.length >= 3) return;
+    });
+
+    // try to find reset link/button nearby and move it
+    var reset = commonParent.querySelector('a, button, span');
+    // find a reset link with text 'Reset' or similar
+    var possible = Array.from(commonParent.querySelectorAll('a,button,span'));
+    var resetEl = possible.find(function(el){
+      var t = (el.textContent || '').trim().toLowerCase();
+      return t === 'reset' || t === 'atur ulang' || t === 'reset ';
+    });
+    if(resetEl){
+      var rr = document.createElement('a');
+      rr.className = 'filter-reset';
+      rr.textContent = resetEl.textContent.trim();
+      rr.href = 'javascript:void(0)';
+      rr.addEventListener('click', function(e){
+        // try to reset selects and search
+        var sels = row.querySelectorAll('select');
+        sels.forEach(function(s){ s.value = 'all' in s.options ? 'all' : s.options[0].value; });
+        var sIn = row.querySelector('input[type="text"], input[type="search"]');
+        if(sIn) sIn.value = '';
+        // dispatch change events
+        sels.forEach(function(s){ s.dispatchEvent(new Event('change')); });
+        if(window.applyStatusFilter) window.applyStatusFilter();
+      });
+      row.appendChild(rr);
+    }
+
+    // insert row into commonParent before the element after searchWrap parent
+    commonParent.insertBefore(row, searchWrap.parentElement.nextSibling);
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', tidyFilters);
+  } else {
+    tidyFilters();
+  }
+})();
+</script>
+<!-- End injected script -->
 
 </body>
 </html>
