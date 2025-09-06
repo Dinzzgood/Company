@@ -779,6 +779,18 @@ It's recommended to generate optimized WebP files and serve them with proper cac
 <option value="evening">Evening</option>
 <option value="premium">Premium</option>
 </select>
+
+<!-- Filter status produk (Inserted by assistant) -->
+<div class="filter-status-wrapper" style="display:inline-block;margin-left:12px;">
+  <label for="filterStatus" style="display:block;font-size:14px;color:#fff;margin-bottom:6px;">Filter Status</label>
+  <select id="filterStatus" class="form-select" style="display:inline-block;min-width:160px;padding:6px 10px;border-radius:8px;border:1px solid #ccc;">
+    <option value="all">Semua Status</option>
+    <option value="available">Available</option>
+    <option value="sold">Sold</option>
+  </select>
+</div>
+<!-- End filter status produk -->
+
 <select class="form-select form-select-sm" id="sortSelect" style="max-width:180px">
 <option value="default">Urutkan: Rekomendasi</option>
 <option value="price-asc">Harga: Terendah</option>
@@ -1375,6 +1387,144 @@ const productDescriptions = {
   }
 };
 </script>
+
+<!-- Injected: auto-set product availability by reading image filenames -->
+<script>
+(function(){
+  var availability = {"1": false, "2": true, "3": true, "4": true, "5": false, "6": false, "7": false, "8": false, "9": true, "10": false, "11": true, "12": true, "13": false, "14": true, "15": true, "16": false};
+
+  function extractNumberFromFilename(src){
+    if(!src) return null;
+    try {
+      var file = src.split('/').pop().split('?')[0];
+    } catch(e) { return null; }
+    var m = file.match(/(\d+)/);
+    return m ? parseInt(m[1],10) : null;
+  }
+
+  function applyAvailability(){
+    var cards = document.querySelectorAll('.product-card');
+    cards.forEach(function(card){
+      var img = card.querySelector('img');
+      var num = null;
+      if(img && img.getAttribute('src')) {
+        num = extractNumberFromFilename(img.getAttribute('src'));
+      } else {
+        var ds = card.getAttribute('data-image') || card.getAttribute('data-src') || card.getAttribute('data-bg');
+        if(ds) num = extractNumberFromFilename(ds);
+      }
+
+      if(num !== null && availability.hasOwnProperty(num)){
+        card.setAttribute('data-available', availability[num]);
+      }
+    });
+
+    if(window.refreshProductBadges && typeof window.refreshProductBadges === 'function'){
+      window.refreshProductBadges();
+      return;
+    }
+
+    document.querySelectorAll('.product-card').forEach(function(card){
+      var attr = card.getAttribute('data-available');
+      var isAvailable = (attr === null) ? true : (String(attr).toLowerCase() === 'true' || attr === '1');
+      var media = card.querySelector('.product-media') || card.querySelector('div[style*="position:relative"]') || card;
+      if(!media) return;
+      var existing = media.querySelector('.product-badge');
+      if(existing){
+        existing.textContent = isAvailable ? 'Available' : 'SOLD';
+        existing.classList.toggle('available', isAvailable);
+        existing.classList.toggle('sold', !isAvailable);
+      } else {
+        var b = document.createElement('div');
+        b.className = 'product-badge ' + (isAvailable ? 'available' : 'sold');
+        b.textContent = isAvailable ? 'Available' : 'SOLD';
+        b.style.position = 'absolute';
+        b.style.top = '12px';
+        b.style.right = '12px';
+        b.style.padding = '7px 11px';
+        b.style.borderRadius = '999px';
+        b.style.fontWeight = '600';
+        b.style.fontSize = '13px';
+        b.style.color = '#fff';
+        b.style.boxShadow = '0 6px 18px rgba(0,0,0,0.35)';
+        media.style.position = 'relative';
+        media.appendChild(b);
+      }
+
+      var orderBtn = card.querySelector('.order-btn, .btn-order, button.pesan, button.order, .btn-primary, a.btn-primary');
+      if(orderBtn){
+        if(isAvailable){
+          orderBtn.disabled = false;
+          orderBtn.style.cursor = '';
+          if(orderBtn.tagName === 'BUTTON') orderBtn.textContent = orderBtn.getAttribute('data-label') || 'Pesan';
+        } else {
+          orderBtn.disabled = true;
+          orderBtn.style.cursor = 'not-allowed';
+          orderBtn.style.opacity = '0.9';
+          if(orderBtn.tagName === 'BUTTON') orderBtn.textContent = 'Sold Out';
+          if(orderBtn.tagName === 'A') {
+            orderBtn.setAttribute('aria-disabled', 'true');
+            orderBtn.removeAttribute('href');
+            orderBtn.textContent = 'Sold Out';
+          }
+        }
+      }
+    });
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', applyAvailability);
+  } else {
+    applyAvailability();
+  }
+
+  window.applyAvailabilityFromFilenames = applyAvailability;
+})();
+</script>
+<!-- end injected script -->
+
+<!-- Injected: product status filter script -->
+<script>
+(function(){
+  function applyStatusFilter(){
+    var sel = document.getElementById('filterStatus');
+    if(!sel) return;
+    var status = sel.value;
+    var cards = document.querySelectorAll('.product-card');
+    cards.forEach(function(card){
+      var attr = card.getAttribute('data-available');
+      var isAvailable = (attr === null) ? true : (String(attr).toLowerCase() === 'true' || attr === '1');
+      if(status === 'all'){
+        card.style.display = '';
+      } else if(status === 'available'){
+        card.style.display = isAvailable ? '' : 'none';
+      } else if(status === 'sold'){
+        card.style.display = isAvailable ? 'none' : '';
+      }
+    });
+  }
+
+  // attach event to select when DOM ready
+  function attach(){
+    var sel = document.getElementById('filterStatus');
+    if(!sel) return;
+    sel.addEventListener('change', applyStatusFilter);
+    // also call initially to reflect any pre-selected value
+    applyStatusFilter();
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', attach);
+  } else {
+    attach();
+  }
+
+  // expose for console usage
+  window.applyStatusFilter = applyStatusFilter;
+})();
+</script>
+<!-- End injected status filter script -->
+
 </body>
 </html>
 <!-- Scripts -->
