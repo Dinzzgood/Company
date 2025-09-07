@@ -415,7 +415,50 @@ header{ animation: headerSlide 0.8s cubic-bezier(.2,.9,.2,1) both; will-change: 
 @keyframes zoomBg { from { background-size:110%;}
 to { background-size:120%;}
 }</style>
-<meta content="Promo Diskon 15% - Produk Kesehatan" property="og:title"/><meta content="Gunakan kode DIRAC15 untuk dapatkan diskon. Berlaku sampai akhir bulan!" property="og:description"/><meta content="https://example.com/share.jpg" property="og:image"/><meta content="Belanja parfum niche, designer, lokal, dan Timur Tengah. Jaminan ori, ready stock, dan konsultasi wangi gratis. Promo &amp; rekomendasi terbaru ada di sini." name="description"/><link href="https://dirac-parfum.example/" rel="canonical"/></head>
+<meta content="Promo Diskon 15% - Produk Kesehatan" property="og:title"/><meta content="Gunakan kode DIRAC15 untuk dapatkan diskon. Berlaku sampai akhir bulan!" property="og:description"/><meta content="https://example.com/share.jpg" property="og:image"/><meta content="Belanja parfum niche, designer, lokal, dan Timur Tengah. Jaminan ori, ready stock, dan konsultasi wangi gratis. Promo &amp; rekomendasi terbaru ada di sini." name="description"/><link href="https://dirac-parfum.example/" rel="canonical"/><style>
+:root{
+  --bg: #F7F6F3;
+  --surface: #FFFFFF;
+  --text: #0F1724;
+  --muted: #8A8F98;
+  --accent: #E75448;
+  --radius: 12px;
+  --shadow-sm: 0 6px 18px rgba(15,23,36,0.06);
+  --shadow-md: 0 12px 30px rgba(15,23,36,0.08);
+  --max-width: 1200px;
+}
+
+body { font-family: 'Inter', sans-serif; color:var(--text); background:var(--bg); margin:0; }
+
+h1,h2,h3{ font-family: 'Playfair Display', serif; margin:0 0 .5rem 0; }
+
+.container{ max-width:var(--max-width); margin:0 auto; padding:0 16px; }
+
+.hero{ padding:60px 0; background:linear-gradient(180deg,#fff0 0%, #fff 100%); }
+.hero .content{ display:flex; gap:20px; align-items:center; flex-wrap:wrap; }
+.hero .text{ flex:1 1 320px; min-width:260px; }
+.hero .image{ flex:0 1 300px; min-width:220px; }
+
+.grid { display:grid; gap:16px; grid-template-columns: repeat(2, 1fr); }
+@media(min-width:900px){ .grid { grid-template-columns: repeat(4, 1fr);} }
+
+.card{ background:var(--surface); border-radius:var(--radius); box-shadow:var(--shadow-sm);
+  overflow:hidden; transition:transform .28s, box-shadow .28s; }
+.card:hover{ transform:translateY(-6px); box-shadow: var(--shadow-md); }
+.card .imgwrap{ aspect-ratio: 4/5; overflow:hidden; display:block; }
+.card img{ width:100%; height:100%; object-fit:cover; display:block; }
+.card .meta{ padding:12px; }
+.card .title{ font-weight:600; font-size:1rem; color:var(--text); }
+.card .price{ color:var(--accent); font-weight:700; margin-top:6px; }
+
+.btn { display:inline-flex; gap:8px; align-items:center; justify-content:center;
+  padding:.7rem 1rem; border-radius:10px; border:0; cursor:pointer;
+  background:var(--accent); color:white; font-weight:600; transition:transform .12s; }
+.btn:active{ transform: translateY(1px); }
+
+.fab-wa{ position:fixed; right:18px; bottom:18px; z-index:999; width:56px; height:56px; border-radius:50%;
+  display:grid; place-items:center; background:#25D366; box-shadow:0 8px 20px rgba(0,0,0,0.15); }
+</style></head>
 <!-- Open Graph & Twitter (added by assistant) -->
 <meta content="Dirac Parfum — Reseller Parfum Premium &amp; Resmi" property="og:title"/>
 <meta content="Dirac Parfum — reseller parfum premium, original &amp; inspired. Pesan 6281937036039" property="og:description"/>
@@ -442,7 +485,23 @@ to { background-size:120%;}
 Example (images.weserv.nl proxy): <source type="image/webp" srcset="https://images.weserv.nl/?url=images.pexels.com/photos/1190829/pexels-photo-1190829.jpeg&output=webp&w=600">
 It's recommended to generate optimized WebP files and serve them with proper cache headers.
 -->
-<body><a class="skip-link" href="#main">Lewati ke konten</a>
+<body>
+<section class="hero">
+<div class="container content">
+<div class="text">
+<h1>Parfum Premium — Wangi yang Meninggalkan Kesan</h1>
+<p>Koleksi parfum original &amp; inspired. Gratis pengiriman untuk pembelian di atas IDR 500.000.</p>
+<div style="display:flex; gap:12px; margin-top:16px;">
+<a class="btn" href="#produk">Lihat Koleksi</a>
+<a class="btn" href="#tentang" style="background:transparent; color:var(--text); border:1px solid #EAEAEA;">Tentang Kami</a>
+</div>
+</div>
+<div class="image">
+<img alt="Hero parfum" loading="lazy" src="images/hero.jpg" style="width:100%; border-radius:12px; box-shadow:var(--shadow-sm);"/>
+</div>
+</div>
+</section>
+<a class="skip-link" href="#main">Lewati ke konten</a>
 <a class="skip-link" href="#main">Lewati ke konten utama</a>
 <!-- Topbar -->
 <div class="topbar">
@@ -917,50 +976,76 @@ It's recommended to generate optimized WebP files and serve them with proper cac
 <h4>- Rizky Saputra, Jakarta</h4>
 </div>
 <div class="slide">
-  <p>"Saya sering beli parfum Dirac untuk koleksi pribadi sekaligus saya jual lagi, laris banget di pasaran."</p>
-  <h4>- Rahmat Hidayat, Jakarta</h4>
+<p>"Saya sering beli parfum Dirac untuk koleksi pribadi sekaligus saya jual lagi, laris banget di pasaran."</p>
+<h4>- Rahmat Hidayat, Jakarta</h4>
 </div>
-
 <div class="slide">
-  <p>"Awalnya saya cuma beli untuk dipakai sendiri, ternyata banyak teman yang ikut nitip. Sekarang jadi usaha kecil-kecilan."</p>
-  <h4>- Siti Nurjanah, Bandung</h4>
+<p>"Awalnya saya cuma beli untuk dipakai sendiri, ternyata banyak teman yang ikut nitip. Sekarang jadi usaha kecil-kecilan."</p>
+<h4>- Siti Nurjanah, Bandung</h4>
 </div>
-
 <div class="slide">
-  <p>"Parfum Dirac punya kualitas bagus, jadi gampang banget saya jual lagi ke customer."</p>
-  <h4>- Fajar Ramadhan, Surabaya</h4>
+<p>"Parfum Dirac punya kualitas bagus, jadi gampang banget saya jual lagi ke customer."</p>
+<h4>- Fajar Ramadhan, Surabaya</h4>
 </div>
-
 <div class="slide">
-  <p>"Selain dipakai pribadi, parfum dari Dirac selalu saya stok untuk dijual kembali. Untungnya lumayan."</p>
-  <h4>- Dewi Ayu, Medan</h4>
+<p>"Selain dipakai pribadi, parfum dari Dirac selalu saya stok untuk dijual kembali. Untungnya lumayan."</p>
+<h4>- Dewi Ayu, Medan</h4>
 </div>
-
 <div class="slide">
-  <p>"Saya suka jual-beli parfum, dan Dirac salah satu yang paling dicari karena wanginya eksklusif."</p>
-  <h4>- Aditya Saputra, Yogyakarta</h4>
+<p>"Saya suka jual-beli parfum, dan Dirac salah satu yang paling dicari karena wanginya eksklusif."</p>
+<h4>- Aditya Saputra, Yogyakarta</h4>
 </div>
-
 <div class="slide">
-  <p>"Banyak teman dan saudara minta saya carikan parfum Dirac, jadi saya sekalian ambil untuk dijual."</p>
-  <h4>- Laila Amalia, Malang</h4>
+<p>"Banyak teman dan saudara minta saya carikan parfum Dirac, jadi saya sekalian ambil untuk dijual."</p>
+<h4>- Laila Amalia, Malang</h4>
 </div>
-
 <div class="slide">
-  <p>"Saya jualan parfum online, produk Dirac selalu cepat habis karena banyak yang suka."</p>
-  <h4>- Ridwan Kurniawan, Makassar</h4>
+<p>"Saya jualan parfum online, produk Dirac selalu cepat habis karena banyak yang suka."</p>
+<h4>- Ridwan Kurniawan, Makassar</h4>
 </div>
-
 <div class="slide">
-  <p>"Sebagai penjual, saya puas karena kualitas Dirac memudahkan saya dapat pelanggan setia."</p>
-  <h4>- Nisa Putri, Palembang</h4>
+<p>"Sebagai penjual, saya puas karena kualitas Dirac memudahkan saya dapat pelanggan setia."</p>
+<h4>- Nisa Putri, Palembang</h4>
 </div>
-
 <div class="slide">
-  <p>"Saya dulu pembeli setia, sekarang malah ikut jualan parfum Dirac. Produknya memang berkualitas."</p>
-  <h4>- Ilham Maulana, Semarang</h4>
+<p>"Saya dulu pembeli setia, sekarang malah ikut jualan parfum Dirac. Produknya memang berkualitas."</p>
+<h4>- Ilham Maulana, Semarang</h4>
 </div>
-
+<div class="slide">
+<p>"Dirac bikin saya bisa punya usaha kecil-kecilan dari hobi koleksi parfum."</p>
+<h4>- Putri Maharani, Bogor</h4>
+</div>
+<div class="slide">
+<p>"Saya jual di marketplace, parfum Dirac jadi produk favorit karena aromanya unik."</p>
+<h4>- Akbar Santoso, Depok</h4>
+</div>
+<div class="slide">
+<p>"Walau saya baru coba jual parfum Dirac, ternyata peminatnya langsung banyak."</p>
+<h4>- Rani Fitriyani, Bali</h4>
+</div>
+<div class="slide">
+<p>"Kualitas parfum Dirac membuat saya percaya diri menjualnya ke customer premium."</p>
+<h4>- Heru Prasetyo, Pekanbaru</h4>
+</div>
+<div class="slide">
+<p>"Setiap saya pakai parfum Dirac, banyak yang tertarik beli. Jadi sekalian saya stok untuk dijual."</p>
+<h4>- Melati Anggraini, Banjarmasin</h4>
+</div>
+<div class="slide">
+<p>"Saya sudah beberapa kali beli parfum Dirac untuk dijual lagi, repeat order customer selalu tinggi."</p>
+<h4>- Yusuf Adnan, Pontianak</h4>
+</div>
+<div class="slide">
+<p>"Wanginya elegan dan bikin banyak yang muji. Senang bisa nemu toko parfum terpercaya."</p>
+<h4>- Dian Anggraini, Banjarmasin</h4>
+</div>
+<div class="slide">
+<p>"Setiap order selalu dikasih pelayanan ramah. Rekomendasi banget buat pecinta parfum ori."</p>
+<h4>- Heru Nugroho, Medan</h4>
+</div>
+<div class="slide">
+<p>"Parfum designer dan niche lengkap banget di sini. Gampang cari koleksi favorit."</p>
+<h4>- Nabila Ayu, Jakarta</h4>
 <div class="slide">
 <p>"Barang sampai cepat, pelayanan ramah, dan parfum dijamin original."</p>
 <h4>- Andri Kurnia, Bali</h4>
@@ -989,7 +1074,7 @@ It's recommended to generate optimized WebP files and serve them with proper cac
         slides[i].classList.remove('active');
         i = (i + 1) % slides.length;
         slides[i].classList.add('active');
-      }, 5500);
+      }, 7500);
     })();
   </script>
 </div></section>
@@ -1335,6 +1420,12 @@ const productDescriptions = {
   }
 };
 </script>
+
+<a aria-label="Chat WhatsApp" class="fab-wa" href="https://wa.me/6281937036039?text=Halo%20Dirac%20Parfum%2C%20saya%20ingin%20pesan...">
+<svg fill="white" height="28" viewbox="0 0 32 32" width="28" xmlns="http://www.w3.org/2000/svg">
+<path d="M16 3C9.373 3 4 8.373 4 15c0 2.828.977 5.423 2.613 7.5L6 29l6.727-1.76C14.121 28.07 15.994 29 18 29c6.627 0 12-5.373 12-12S22.627 3 16 3zm0 22c-1.61 0-3.094-.489-4.341-1.326l-.31-.206-3.886 1.016 1.037-3.787-.202-.311C7.489 19.093 7 17.61 7 16c0-4.962 4.037-9 9-9s9 4.038 9 9-4.037 9-9 9zm4.594-6.406c-.25-.125-1.476-.728-1.705-.812-.229-.084-.396-.125-.562.125s-.646.812-.793.979c-.146.166-.292.187-.542.062-.25-.125-1.056-.389-2.012-1.239-.743-.662-1.245-1.479-1.391-1.729s-.015-.385.11-.51c.113-.113.25-.292.375-.438.125-.146.167-.25.25-.416.083-.166.042-.312-.021-.437-.062-.125-.562-1.354-.771-1.854-.203-.489-.411-.422-.562-.429-.146-.007-.312-.009-.479-.009s-.437.062-.667.291c-.229.229-.875.854-.875 2.083s.896 2.417 1.021 2.583c.125.166 1.767 2.698 4.286 3.781.6.259 1.067.414 1.431.529.601.191 1.146.164 1.583.1.484-.072 1.476-.604 1.683-1.187.208-.583.208-1.083.146-1.187-.063-.104-.229-.166-.479-.291z"></path>
+</svg>
+</a>
 </body>
 </html>
 <!-- Scripts -->
