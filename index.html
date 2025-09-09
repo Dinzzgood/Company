@@ -1378,82 +1378,522 @@ const productDescriptions = {
 };
 </script>
 
-   
-   <!-- Animasi produk (versi lebih cepat) -->
+   <!-- Animasi produk (versi cepat) -->
    <script>
-   // Animasi untuk setiap product-card (lebih cepat, stagger pendek)
-   const cardObserver = new IntersectionObserver((entries, obs) => {
+   const observer = new IntersectionObserver((entries, obs) => {
      entries.forEach(entry => {
        if (entry.isIntersecting) {
          entry.target.classList.add("show");
-         obs.unobserve(entry.target); // jalankan hanya sekali
+         obs.unobserve(entry.target); // biar animasi hanya sekali
        }
      });
-   }, { threshold: 0.12 });
+   }, { threshold: 0.15 });
 
    document.querySelectorAll(".product-card").forEach((card, i) => {
-     // arah animasi kiri-kanan bergantian
      if (i % 2 === 0) {
        card.classList.add("hidden-left");
      } else {
        card.classList.add("hidden-right");
      }
-     // delay lebih singkat (0.06s per item) -> cepat tapi rapi
-     card.style.transitionDelay = `${i * 0.06}s`;
-     cardObserver.observe(card);
+     // delay lebih cepat (0.1s per item)
+     card.style.transitionDelay = `${i * 0.1}s`;
+     observer.observe(card);
    });
-
-   // Animasi untuk keseluruhan katalog (sedikit 'pop' saat container muncul)
-   const catalog = document.getElementById('catalog');
-   if (catalog) {
-     const catalogObserver = new IntersectionObserver((entries, obs) => {
-       entries.forEach(entry => {
-         if (entry.isIntersecting) {
-           entry.target.classList.add('catalog-show');
-           obs.unobserve(entry.target);
-         }
-       });
-     }, { threshold: 0.05 });
-     catalog.classList.add('catalog-hidden');
-     catalogObserver.observe(catalog);
-   }
    </script>
 
    <style>
-   /* kartu produk - posisi awal */
    .product-card.hidden-left,
    .product-card.hidden-right {
      opacity: 0;
-     transition: opacity .45s cubic-bezier(.2,.9,.25,1), transform .45s cubic-bezier(.2,.9,.25,1);
-     transform: scale(0.97);
-     will-change: opacity, transform;
+     transition: opacity .6s ease, transform .6s ease;
+     transform: scale(0.94);
    }
 
    .product-card.hidden-left {
-     transform: translateX(-36px) scale(0.97);
+     transform: translateX(-50px) scale(0.94);
    }
    .product-card.hidden-right {
-     transform: translateX(36px) scale(0.97);
+     transform: translateX(50px) scale(0.94);
    }
 
-   /* setelah muncul */
    .product-card.show {
      opacity: 1;
      transform: translateX(0) scale(1);
    }
-
-   /* katalog container reveal (subtle pop) */
-   .catalog-hidden {
-     opacity: 0;
-     transform: translateY(10px) scale(0.995);
-     transition: opacity .45s ease, transform .45s ease;
-     will-change: opacity, transform;
-   }
-   .catalog-hidden.catalog-show {
-     opacity: 1;
-     transform: translateY(0) scale(1);
-   }
    </style>
 
+</body>
+</html>
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Produk (lebih lengkap)
+    
+    // Produk (lebih lengkap)
 
-</body></html>
+// Produk (lebih lengkap)
+
+const products = [
+{id:1,title:"All Parfum Timteng",desc:"“All Parfum Timteng",price:500000,img:"all_parfum_timteng.png",tag:"sold",link:"All Parfum Timteng"},
+{id:2,title:"All Parfum Designer",desc:"All Parfum Designer",price:1000000,img:"all_parfum_desaigner.png",tag:"avaible",link:"All Parfum Designer"},
+{id:3,title:"All Parfum Lokal",desc:"All Parfum Lokal",price:250000,img:"all_parfum_lokal.png",tag:"daily",link:"All Parfum Lokal"},
+{id:4,title:"All Parfum Niche",desc:"All Parfum Niche",price:1000000,img:"all_parfum_niche.PNG",tag:"daily",link:"All Parfum Niche"},
+{id:5,title:"Botol Kosong Niche",desc:"Botol Kosong Niche",price:500000,img:"botol_kosong_niche.png",tag:"daily",link:"Botol Kosong Niche"},
+{id:6,title:"Rasasi – Hawas for Him EDT 100 ml",desc:"Rasasi – Hawas for Him EDT 100 ml",price:753500,img:"produk6.PNG",tag:"daily",link:"Produk 6"},
+{id:7,title:"Lattafa – Bade’e Al Oud Amethyst EDP 100 ml",desc:"Lattafa – Bade’e Al Oud Amethyst EDP 100 ml",price:650000,img:"produk7.PNG",tag:"special",link:"Produk 7"},
+{id:8,title:"Afnan – 9PM EDP 100 ml",desc:"Afnan – 9PM EDP 100 ml",price:441000,img:"produk8.PNG",tag:"daily",link:"Produk 8"},
+{id:9,title:"Dior – Sauvage EDP 100 ml",desc:"Dior – Sauvage EDP 100 ml",price:2600000,img:"produk9.PNG",tag:"premium",link:"Produk 9"},
+{id:10,title:"Yves Saint Laurent – Y EDP 100 ml",desc:"Yves Saint Laurent – Y EDP 100 ml",price:2750000,img:"produk10.PNG",tag:"premium",link:"Produk 10"},
+{id:11,title:"Chanel – Bleu de Chanel EDP 100 ml",desc:"Chanel – Bleu de Chanel EDP 100 ml",price:3433000,img:"produk11.PNG",tag:"premium",link:"Produk 11"},
+{id:12,title:"Montblanc – Explorer EDP 100 ml",desc:"Montblanc – Explorer EDP 100 ml",price:1225000,img:"produk12.PNG",tag:"premium",link:"Produk 12"},
+{id:13,title:"Giorgio Armani – Acqua di Giò Parfum 100 ml",desc:"Giorgio Armani – Acqua di Giò Parfum 100 ml",price:1856000,img:"produk13.PNG",tag:"premium",link:"Produk 13"},
+{id:14,title:"Dolce & Gabbana – K EDT 100 ml",desc:"Dolce & Gabbana – K EDT 100 ml",price:990000,img:"produk14.PNG",tag:"daily",link:"Produk 14"},
+{id:15,title:"Hugo Boss – The Scent Le Parfum Men 100 ml",desc:"Hugo Boss – The Scent Le Parfum Men 100 ml",price:1544000,img:"produk15.PNG",tag:"premium",link:"Produk 15"},
+{id:16,title:"Carolina Herrera – Bad Boy EDT 100 ml",desc:"Carolina Herrera – Bad Boy EDT 100 ml",price:1550000,img:"produk16.PNG",tag:"premium",link:"Produk 16"},
+{id:17,title:"Kajal – Almaz EDP 100 ml",desc:"Kajal – Almaz EDP 100 ml",price:4630000,img:"produk1.PNG",tag:"premium",link:"Produk 1"},
+{id:18,title:"Spirit of Kings – Aludra EDP 100 ml",desc:"Spirit of Kings – Aludra EDP 100 ml",price:3050000,img:"produk2.PNG",tag:"premium",link:"Produk 2"},
+{id:19,title:"Ajmal – Amber Wood EDP 100 ml",desc:"Ajmal – Amber Wood EDP 100 ml",price:2108500,img:"produk3.PNG",tag:"premium",link:"Produk 3"},
+{id:20,title:"Swiss Arabian – Shaghaf Oud EDP 75 ml",desc:"Swiss Arabian – Shaghaf Oud EDP 75 ml",price:1850000,img:"produk4.PNG",tag:"premium",link:"Produk 4"},
+{id:21,title:"Al Haramain – Amber Oud Gold Edition EDP 60 ml",desc:"Al Haramain – Amber Oud Gold Edition EDP 60 ml",price:1350000,img:"produk5.PNG",tag:"premium",link:"Produk 5"}
+];
+
+
+    // Helper: format harga
+    function formatRupiah(num){
+      return 'Rp' + num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    }
+
+    // Render katalog produk
+    const catalog = document.getElementById('catalog');
+    function renderCatalog(list){
+      catalog.innerHTML = '';
+      list.forEach(p=>{
+        const card = document.createElement('article');
+        card.className = 'product-card';
+        card.innerHTML = `
+          <img src="${p.img}" alt="${p.title}" loading="lazy" decoding="async" width="300" height="400">
+          <div class="product-body">
+            <div class="product-title">${p.title}</div>
+            <div class="product-price">${formatRupiah(p.price)}</div>
+            <p class="muted small">${p.desc}</p>
+            <div class="d-flex justify-content-center gap-2 mt-2">
+              <button class="btn btn-sm btn-outline-secondary" onclick="viewProduct(${p.id})">Lihat</button>
+              <a class="btn btn-sm btn-primary-grad" href="https://wa.me/6281937036039?text=${encodeURIComponent('Halo kak, saya ingin memesan '+p.title)}" target="_blank">Pesan</a>
+            </div>
+          </div>`;
+        catalog.appendChild(card);
+      });
+    }
+  renderCatalog(products.slice(0,5)); // tampilkan semua produk// tampilkan 8 produk unggulan
+
+    // Render gallery masonry
+    const galleryGrid = document.getElementById('galleryGrid');
+    function renderGallery(list){
+      galleryGrid.innerHTML='';
+      if(list.length===0){ galleryGrid.innerHTML='<div class="text-center muted">Produk tidak ditemukan.</div>'; return; }
+      list.forEach(p=>{
+        const wrap = document.createElement('div'); wrap.className='card-wrap';
+        wrap.innerHTML = `
+          <div class="product-card">
+            <img src="${p.img}" alt="${p.title}" loading="lazy" decoding="async" width="300" height="400" data-id="${p.id}" style="cursor:pointer">
+            <div class="product-body">
+              <div class="product-title">${p.title}</div>
+              <div class="product-price">${formatRupiah(p.price)}</div>
+              <p class="muted small">${p.desc}</p>
+              <div class="d-flex justify-content-center gap-2 mt-2">
+                <button class="btn btn-sm btn-outline-secondary view-btn" data-id="${p.id}">Lihat</button>
+                <a class="btn btn-sm btn-primary-grad" href="https://wa.me/6281937036039?text=${encodeURIComponent('Halo Dirac Parfum, saya ingin memesan '+p.title)}" target="_blank">Pesan</a>
+              </div>
+            </div>
+          </div>`;
+        galleryGrid.appendChild(wrap);
+      });
+      // listeners
+      document.querySelectorAll('.view-btn').forEach(btn=>btn.addEventListener('click',e=>openModal(Number(e.currentTarget.dataset.id))));
+      document.querySelectorAll('#galleryGrid img').forEach(img=>img.addEventListener('click',e=>openModal(Number(e.currentTarget.dataset.id))));
+    }
+    renderGallery(products);
+
+    // Filters / Search
+    const searchInput = document.getElementById('searchInput');
+    const categorySelect = document.getElementById('categorySelect');
+    const sortSelect = document.getElementById('sortSelect');
+    const resetBtn = document.getElementById('resetBtn');
+
+    function applyFilters(){
+      let list = products.slice();
+      const q = searchInput.value.trim().toLowerCase();
+      const cat = categorySelect.value;
+      if(q){ list = list.filter(p => (p.title+' '+p.desc+' '+p.tag).toLowerCase().includes(q)); }
+      if(cat && cat!=='all'){ list = list.filter(p => p.tag===cat); }
+      if(sortSelect.value==='price-asc'){ list.sort((a,b)=>a.price-b.price); }
+      else if(sortSelect.value==='price-desc'){ list.sort((a,b)=>b.price-a.price); }
+      renderGallery(list);
+    }
+    searchInput.addEventListener('input',applyFilters);
+    categorySelect.addEventListener('change',applyFilters);
+    sortSelect.addEventListener('change',applyFilters);
+    resetBtn.addEventListener('click',()=>{ searchInput.value=''; categorySelect.value='all'; sortSelect.value='default'; renderGallery(products); });
+
+    // Product modal view (simple)
+    function openModal(id){
+      const p = products.find(x=>x.id===id); if(!p) return;
+      // custom modal: simple window.open for demo, or Bootstrap modal could be used.
+      const details = `*${p.title}*%0A${p.desc}%0AHarga: ${formatRupiah(p.price)}%0A%0AIngin pesan? Kirim pesan ini ke WA.`;
+      window.open('https://wa.me/6281937036039?text='+encodeURIComponent(details),'_blank');
+    }
+    function viewProduct(id){ openModal(id); }
+
+    // Order form -> open WA with message
+    function prepareWA(e){
+      e.preventDefault();
+      const name = document.getElementById('custName').value.trim();
+      const phone = document.getElementById('custPhone').value.trim();
+      const product = document.getElementById('custProduct').value.trim();
+      const qty = document.getElementById('custQty').value.trim();
+      const city = document.getElementById('custCity').value.trim();
+      const note = document.getElementById('custNote').value.trim();
+      if(!name||!phone||!product||!qty||!city){ alert('Lengkapi field yang wajib.'); return; }
+      const msg = `Halo Dirac Parfum,%0ASaya ingin memesan:%0A- Nama: ${name}%0A- No WA: ${phone}%0A- Produk: ${product}%0A- Jumlah: ${qty}%0A- Kota: ${city}%0A- Catatan: ${note}%0A%0AMohon info total & metode pembayaran.`;
+      window.open('https://wa.me/6281937036039?text='+encodeURIComponent(msg),'_blank');
+    }
+
+    // subtle parallax
+    const heroBg = document.querySelector('.hero-bg');
+    document.addEventListener('mousemove',(e)=>{ const x=(e.clientX/window.innerWidth-0.5)*8; const y=(e.clientY/window.innerHeight-0.5)*6; if(heroBg) heroBg.style.transform=`translate(${x}px, ${y}px) scale(1.03)`; });
+
+    // Accessibility: focus outlines when navigating via keyboard
+    document.body.addEventListener('keyup', (e)=>{ if(e.key==='Tab') document.documentElement.style.scrollBehavior='smooth'; });
+  </script>
+<script>
+    // --- Enhanced interactions (added by assistant) ---
+
+    // Format rupiah (re-use if needed)
+    function formatRupiah(num){
+      return 'Rp' + num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    }
+
+    // Override openModal to show Bootstrap modal with details
+    function openModal(id){
+      const p = products.find(x=>x.id===id); if(!p) return;
+      document.getElementById('productModalTitle').textContent = p.title;
+      document.getElementById('productModalImg').src = p.img;
+      document.getElementById('productModalImg').alt = p.title;
+      document.getElementById('productModalDesc').textContent = p.desc;
+      document.getElementById('productModalPrice').textContent = formatRupiah(p.price);
+      document.getElementById('productModalNotes').innerHTML = '<small class="muted">Kategori: '+p.tag+'</small>';
+      const waLink = 'https://wa.me/6281937036039?text=' + encodeURIComponent('Halo Dirac Parfum, saya tertarik dengan '+p.title+' (ID:'+p.id+'). Mohon info stok & total.');
+      document.getElementById('productModalWA').href = waLink;
+      // show bootstrap modal
+      const modalEl = document.getElementById('productModal');
+      const modal = new bootstrap.Modal(modalEl);
+      modal.show();
+    }
+
+    // Add badges to product cards (premium/baru)
+    function addBadges(){
+      products.forEach(p=>{
+        // premium if price >= 150k
+        const id = p.id;
+        const selector = '[data-id="'+id+'"]';
+        const imgs = document.querySelectorAll(selector);
+        imgs.forEach(img=>{
+          const card = img.closest('.product-card');
+          if(!card) return;
+          // avoid duplicate
+          if(card.querySelector('.badge-top')) return;
+          if(p.price >= 150000){
+            const span = document.createElement('span'); span.className='badge-top'; span.textContent='Premium';
+            card.appendChild(span);
+          } else if(p.id === products[products.length-1].id || p.id === products[products.length-2].id){
+            const span = document.createElement('span'); span.className='badge-top'; span.textContent='Baru';
+            card.appendChild(span);
+          }
+        });
+      });
+    }
+
+    // Run addBadges after initial render
+    document.addEventListener('DOMContentLoaded', ()=>{ addBadges(); });
+
+    // Newsletter simple handler (no backend)
+    document.addEventListener('DOMContentLoaded',()=>{
+      const form = document.getElementById('newsletterForm');
+      if(form){
+        form.addEventListener('submit', (e)=>{
+          e.preventDefault();
+          const email = document.getElementById('newsEmail').value.trim();
+          if(!email){ alert('Masukkan email valid.'); return; }
+          // For privacy: we won't store email here. In production, send to backend.
+          alert('Terima kasih! ' + email + ' telah terdaftar untuk menerima promo.');
+          form.reset();
+        });
+      }
+    });
+
+    // Reveal on scroll (IntersectionObserver)
+    (function(){
+      const obs = new IntersectionObserver((entries)=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting){
+            entry.target.classList.add('reveal');
+            obs.unobserve(entry.target);
+          }
+        });
+      },{threshold:0.15});
+      document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+    })();
+  </script>
+<script>
+// Overwrite prepareWA for improved form (safe & simple)
+function prepareWA(e){
+  e.preventDefault();
+  const name = document.getElementById('custName').value.trim();
+  const phone = document.getElementById('custPhone').value.trim();
+  const product = document.getElementById('custProduct').value.trim();
+  const qty = document.getElementById('custQty').value.trim();
+  const size = document.getElementById('sizeSelect') ? document.getElementById('sizeSelect').value : '';
+  const city = document.getElementById('custCity').value.trim();
+  const note = document.getElementById('custNote').value.trim();
+
+  if(!name || !phone || !product){
+    alert('Mohon lengkapi Nama, No. WhatsApp, dan Produk.');
+    return;
+  }
+
+  const text = 'Halo Dirac Parfum,%0A%0ASaya ingin memesan:%0A- Nama: ' + encodeURIComponent(name) +
+               '%0A- No.WA: ' + encodeURIComponent(phone) +
+               '%0A- Produk: ' + encodeURIComponent(product) + (size ? ' ('+encodeURIComponent(size)+')' : '') +
+               '%0A- Jumlah: ' + encodeURIComponent(qty) +
+               '%0A- Kota: ' + encodeURIComponent(city) +
+               '%0A- Catatan: ' + encodeURIComponent(note) + '%0A%0ATerima kasih.';
+
+  const url = 'https://wa.me/6281937036039?text=' + text;
+  window.open(url, '_blank');
+}
+
+// Reset form and focus first field
+function resetForm(){
+  const form = document.getElementById('orderForm');
+  form.reset();
+  document.getElementById('custName').focus();
+}
+</script>
+<script>
+    (function(){
+      const cards = Array.from(document.querySelectorAll('.testi-card'));
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => { if(entry.isIntersecting){ const idx = cards.indexOf(entry.target); setTimeout(()=>entry.target.classList.add('visible'), Math.min(600, idx*140)); } });
+      }, {threshold:0.2});
+      cards.forEach(card => observer.observe(card));
+    })();
+  </script>
+<script>
+    (function(){
+      const track = document.querySelector('.testi-track');
+      const next = document.querySelector('.testi-next');
+      if(!track || !next) return;
+
+      function getStep(){
+        const card = track.querySelector('.testi-card');
+        if(!card) return 320;
+        const style = getComputedStyle(card);
+        const minw = parseFloat(style.minWidth) || card.offsetWidth;
+        return Math.round(minw + 14);
+      }
+
+      let autoplay = setInterval(()=>{
+        track.scrollBy({left: getStep(), behavior:'smooth'});
+      }, 5000);
+
+      // Pause on hover
+      track.addEventListener('mouseenter', ()=> clearInterval(autoplay));
+      track.addEventListener('mouseleave', ()=> {
+        autoplay = setInterval(()=>{
+          track.scrollBy({left: getStep(), behavior:'smooth'});
+        }, 5000);
+      });
+    })();
+  </script>
+<!-- PRODUCT DETAIL MODAL -->
+<div aria-hidden="true" id="product-modal" style="display:none;position:fixed;inset:0;z-index:12000;align-items:center;justify-content:center;padding:24px;">
+<div style="background:linear-gradient(180deg,#0b0b0b,#111);color:#fff;border-radius:12px;max-width:900px;width:100%;box-shadow:0 30px 80px rgba(0,0,0,0.7);overflow:hidden;">
+<div style="display:flex;gap:20px;align-items:stretch;flex-wrap:wrap;">
+<div style="flex:1;min-width:260px;">
+<img alt="Gambar produk parfum" id="product-modal-img" loading="lazy" src="" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+</div>
+<div style="flex:1;padding:20px;">
+<button id="product-modal-close" style="background:transparent;border:none;color:#ffd966;font-weight:700;float:right;font-size:18px;cursor:pointer">Tutup ✕</button>
+<h3 id="product-modal-title" style="margin-top:6px;margin-bottom:6px"></h3>
+<div id="product-modal-price" style="color:#ffd966;font-weight:800;margin-bottom:10px"></div>
+<p id="product-modal-desc" style="color:#ddd;line-height:1.6"></p>
+<div style="margin-top:16px;display:flex;gap:10px;">
+<a href="https://wa.me/6281937036039?text=Halo%2C+saya+tertarik+produk+parfum.+Apakah+masih+tersedia%3F" id="product-modal-ws" rel="noopener" style="background:#ffd966;color:#000;padding:10px 14px;border-radius:999px;font-weight:800;text-decoration:none;" target="_blank">Pesan</a>
+<button id="product-modal-close2" style="background:transparent;border:1px solid rgba(255,255,255,0.06);color:#fff;padding:10px 14px;border-radius:999px;cursor:pointer;">Tutup</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // productDescriptions mapping (auto-generated)
+  const productDescriptions = {"kajal-almaz-edp-100-ml": {"title": "Kajal – Almaz EDP 100 ml", "img": "produk1.jpg", "price": "Rp 4.630.000", "desc": "Kajal – Almaz EDP 100 ml menawarkan aroma seimbang yang cocok untuk berbagai suasana. Daya tahan dan projeknya memadai untuk penggunaan sehari-hari hingga malam."}, "spirit-of-kings-aludra-edp-100-ml": {"title": "Spirit of Kings – Aludra EDP 100 ml", "img": "produk2.jpg", "price": "Rp 3.050.000", "desc": "Spirit of Kings – Aludra EDP 100 ml menawarkan aroma seimbang yang cocok untuk berbagai suasana. Daya tahan dan projeknya memadai untuk penggunaan sehari-hari hingga malam."}, "ajmal-amber-wood-edp-100-ml": {"title": "Ajmal – Amber Wood EDP 100 ml", "img": "produk3.jpg", "price": "Rp 2.108.500", "desc": "Ajmal – Amber Wood EDP 100 ml menawarkan aroma seimbang yang cocok untuk berbagai suasana. Daya tahan dan projeknya memadai untuk penggunaan sehari-hari hingga malam."}, "swiss-arabian-shaghaf-oud-edp-75-ml": {"title": "Swiss Arabian – Shaghaf Oud EDP 75 ml", "img": "produk4.jpg", "price": "Rp 1.850.000", "desc": "Swiss Arabian – Shaghaf Oud EDP 75 ml menawarkan aroma seimbang yang cocok untuk berbagai suasana. Daya tahan dan projeknya memadai untuk penggunaan sehari-hari hingga malam."}, "al-haramain-amber-oud-gold-edition-edp-60-ml": {"title": "Al Haramain – Amber Oud Gold Edition EDP 60 ml", "img": "produk5.jpg", "price": "Rp 1.350.000", "desc": "Al Haramain – Amber Oud Gold Edition EDP 60 ml menawarkan aroma seimbang yang cocok untuk berbagai suasana. Daya tahan dan projeknya memadai untuk penggunaan sehari-hari hingga malam."}, "rasasi-hawas-for-him-edt-100-ml": {"title": "Rasasi – Hawas for Him EDT 100 ml", "img": "produk6.jpg", "price": "Rp 753.500", "desc": "Rasasi – Hawas for Him EDT 100 ml menawarkan aroma seimbang yang cocok untuk berbagai suasana. Daya tahan dan projeknya memadai untuk penggunaan sehari-hari hingga malam."}, "lattafa-bade-e-al-oud-amethyst-edp-100-ml": {"title": "Lattafa – Bade’e Al Oud Amethyst EDP 100 ml", "img": "produk7.jpg", "price": "Rp 650.000", "desc": "Lattafa – Bade’e Al Oud Amethyst EDP 100 ml menawarkan aroma seimbang yang cocok untuk berbagai suasana. Daya tahan dan projeknya memadai untuk penggunaan sehari-hari hingga malam."}, "afnan-9pm-edp-100-ml": {"title": "Afnan – 9PM EDP 100 ml", "img": "produk8.jpg", "price": "Rp 441.000", "desc": "Afnan – 9PM EDP 100 ml menawarkan aroma seimbang yang cocok untuk berbagai suasana. Daya tahan dan projeknya memadai untuk penggunaan sehari-hari hingga malam."}, "dior-sauvage-edp-100-ml": {"title": "Dior – Sauvage EDP 100 ml", "img": "produk9.jpg", "price": "Rp 2.600.000", "desc": "Dior – Sauvage EDP 100 ml menawarkan aroma seimbang yang cocok untuk berbagai suasana. Daya tahan dan projeknya memadai untuk penggunaan sehari-hari hingga malam."}, "yves-saint-laurent-y-edp-100-ml": {"title": "Yves Saint Laurent – Y EDP 100 ml", "img": "produk10.jpg", "price": "Rp 2.750.000", "desc": "Yves Saint Laurent – Y EDP 100 ml menawarkan aroma seimbang yang cocok untuk berbagai suasana. Daya tahan dan projeknya memadai untuk penggunaan sehari-hari hingga malam."}, "chanel-bleu-de-chanel-edp-100-ml": {"title": "Chanel – Bleu de Chanel EDP 100 ml", "img": "produk11.jpg", "price": "Rp 3.433.000", "desc": "Chanel – Bleu de Chanel EDP 100 ml menawarkan aroma seimbang yang cocok untuk berbagai suasana. Daya tahan dan projeknya memadai untuk penggunaan sehari-hari hingga malam."}, "montblanc-explorer-edp-100-ml": {"title": "Montblanc – Explorer EDP 100 ml", "img": "produk12.jpg", "price": "Rp 1.225.000", "desc": "Montblanc – Explorer EDP 100 ml menawarkan aroma seimbang yang cocok untuk berbagai suasana. Daya tahan dan projeknya memadai untuk penggunaan sehari-hari hingga malam."}, "giorgio-armani-acqua-di-gi-parfum-100-ml": {"title": "Giorgio Armani – Acqua di Giò Parfum 100 ml", "img": "produk13.jpg", "price": "Rp 1.856.000", "desc": "Giorgio Armani – Acqua di Giò Parfum 100 ml menawarkan aroma seimbang yang cocok untuk berbagai suasana. Daya tahan dan projeknya memadai untuk penggunaan sehari-hari hingga malam."}, "dolce-gabbana-k-edt-100-ml": {"title": "Dolce & Gabbana – K EDT 100 ml", "img": "produk14.jpg", "price": "Rp 990.000", "desc": "Dolce & Gabbana – K EDT 100 ml menawarkan aroma seimbang yang cocok untuk berbagai suasana. Daya tahan dan projeknya memadai untuk penggunaan sehari-hari hingga malam."}, "hugo-boss-the-scent-le-parfum-men-100-ml": {"title": "Hugo Boss – The Scent Le Parfum Men 100 ml", "img": "produk15.jpg", "price": "Rp 1.544.000", "desc": "Hugo Boss – The Scent Le Parfum Men 100 ml menawarkan aroma seimbang yang cocok untuk berbagai suasana. Daya tahan dan projeknya memadai untuk penggunaan sehari-hari hingga malam."}, "carolina-herrera-bad-boy-edt-100-ml": {"title": "Carolina Herrera – Bad Boy EDT 100 ml", "img": "produk16.jpg", "price": "Rp 1.550.000", "desc": "Carolina Herrera – Bad Boy EDT 100 ml menawarkan aroma seimbang yang cocok untuk berbagai suasana. Daya tahan dan projeknya memadai untuk penggunaan sehari-hari hingga malam."}, "memilih-parfum-sesuai-kepribadian": {"title": "Memilih Parfum Sesuai Kepribadian", "img": "https://images.weserv.nl/?url=images.pexels.com/photos/33711971/pexels-photo-33711971.jpeg&output=webp&w=1200", "price": "", "desc": "Memilih Parfum Sesuai Kepribadian menawarkan aroma seimbang yang cocok untuk berbagai suasana. Daya tahan dan projeknya memadai untuk penggunaan sehari-hari hingga malam."}, "cara-menyimpan-parfum-agar-awet": {"title": "Cara Menyimpan Parfum Agar Awet", "img": "https://images.weserv.nl/?url=images.pexels.com/photos/16722498/pexels-photo-16722498.jpeg&output=webp&w=1200", "price": "", "desc": "Cara Menyimpan Parfum Agar Awet menawarkan aroma seimbang yang cocok untuk berbagai suasana. Daya tahan dan projeknya memadai untuk penggunaan sehari-hari hingga malam."}, "parfum-original-vs-inspired-penjelasan": {"title": "Parfum Original vs Inspired: Penjelasan", "img": "https://images.weserv.nl/?url=images.pexels.com/photos/23230654/pexels-photo-23230654.jpeg&output=webp&w=1200", "price": "", "desc": "Parfum Original vs Inspired: Penjelasan menawarkan aroma seimbang yang cocok untuk berbagai suasana. Daya tahan dan projeknya memadai untuk penggunaan sehari-hari hingga malam."}};
+
+  function openProductModal(slug){
+    const info = productDescriptions[slug];
+    if(!info) return console.warn('Product not found', slug);
+    document.getElementById('product-modal-title').textContent = info.title || '';
+    document.getElementById('product-modal-price').textContent = info.price || '';
+    document.getElementById('product-modal-desc').textContent = info.desc || '';
+    document.getElementById('product-modal-img').src = info.img || '';
+    // whatsapp link
+    const phone = '6281937036039';
+    document.getElementById('product-modal-ws').href = 'https://wa.me/' + phone + '?text=' + encodeURIComponent('Halo, saya mau pesan: ' + (info.title||''));
+    // show modal
+    const modal = document.getElementById('product-modal');
+    modal.style.display = 'flex';
+    modal.setAttribute('aria-hidden','false');
+    // lock scroll
+    document.documentElement.style.overflow = 'hidden';
+  }
+
+  function closeProductModal(){
+    const modal = document.getElementById('product-modal');
+    modal.style.display = 'none';
+    modal.setAttribute('aria-hidden','true');
+    document.documentElement.style.overflow = '';
+  }
+
+  document.addEventListener('click', function(e){
+    // open modal when clicking a button with data-slug attribute
+    const btn = e.target.closest('[data-slug]');
+    if(btn && btn.getAttribute('data-slug')){
+      openProductModal(btn.getAttribute('data-slug'));
+    }
+    // close handlers
+    if(e.target.id === 'product-modal-close' || e.target.id === 'product-modal-close2') closeProductModal();
+    // click outside modal to close
+    if(e.target.id === 'product-modal') closeProductModal();
+  });
+
+  // allow ESC to close
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') closeProductModal();
+  });
+</script>
+<script>
+let slideIndex = 0;
+const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.dot');
+
+function showSlide(n) {
+  slides.forEach((s, i) => {
+    s.classList.remove('active');
+    dots[i].classList.remove('active');
+  });
+  slides[n].classList.add('active');
+  dots[n].classList.add('active');
+}
+
+function nextSlide() {
+  slideIndex = (slideIndex + 1) % slides.length;
+  showSlide(slideIndex);
+}
+setInterval(nextSlide, 5000);
+
+dots.forEach((dot, i) => {
+  dot.addEventListener('click', () => {
+    slideIndex = i;
+    showSlide(slideIndex);
+  });
+});
+
+showSlide(slideIndex);
+</script>
+<!-- CSS Statistik -->
+<style>
+#stats {
+  padding: 60px 0;
+  background: #0f1720;
+  color: #fff;
+}
+#stats .stat { text-align: center; margin: 20px; }
+#stats .stat-title {
+  margin: 0 0 10px;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #ffd966; /* biru menarik */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+#stats .stat h2 {
+  font-size: 3rem;
+  margin: 0;
+  font-weight: 800;
+  color: #fff;
+}
+#stats .stat p { margin-top: 8px; color: #fff; font-weight: 600; font-size: 1.1rem; }
+</style>
+<!-- JavaScript Counter (updated) -->
+<script>
+/* Counters: start only when #stats is visible. Slower, smoother counting. */
+function animateCountersOnce() {
+  const counters = document.querySelectorAll('.counter');
+  counters.forEach((counter, index) => {
+    counter.innerText = '0';
+    const target = Math.max(0, parseInt(counter.getAttribute('data-target') || '0', 10));
+    // duration grows slightly per index for subtle staggering
+    const duration = 2200 + (index * 250); // total duration in ms
+    const frameRate = 30; // ms per frame
+    const totalFrames = Math.max(6, Math.round(duration / frameRate));
+    const increment = target / totalFrames;
+    let frame = 0;
+    const timer = setInterval(() => {
+      frame++;
+      const value = Math.min(target, Math.round(increment * frame));
+      counter.innerText = value;
+      if (frame >= totalFrames) {
+        counter.innerText = target;
+        clearInterval(timer);
+      }
+    }, frameRate);
+  });
+}
+
+(function(){
+  const stats = document.getElementById('stats');
+  if(!stats) return;
+  const obs = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        animateCountersOnce();
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {threshold: 0.25});
+  obs.observe(stats);
+})();
+</script>
+<!-- Override warna judul & angka untuk Stats -->
+<style>
+  #stats .stat-title { color: #ffd966 !important; } /* judul kuning */
+  #stats .stat h2 { color: #1e90ff !important; }    /* angka biru */
+</style>
+<script>
+(function(){
+  const end = new Date();
+  end.setDate(end.getDate()+7); // contoh: 7 hari dari sekarang
+  function update(){
+    const el=document.getElementById('promo-countdown');
+    if(!el) return;
+    const now=new Date(), diff=end-now;
+    if(diff<=0){ el.textContent='Promo berakhir'; return; }
+    const d=Math.floor(diff/86400000),
+          h=Math.floor(diff%86400000/3600000),
+          m=Math.floor(diff%3600000/60000),
+          s=Math.floor(diff%60000/1000);
+    el.textContent=`Sisa: ${d}h ${h}j ${m}m ${s}d`;
+  }
+  update(); setInterval(update,1000);
+})();
+</script>
