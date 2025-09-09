@@ -1378,7 +1378,7 @@ const productDescriptions = {
 };
 </script>
 
-   <!-- Animasi produk -->
+   <!-- Animasi produk (versi cepat) -->
    <script>
    const observer = new IntersectionObserver((entries, obs) => {
      entries.forEach(entry => {
@@ -1395,7 +1395,8 @@ const productDescriptions = {
      } else {
        card.classList.add("hidden-right");
      }
-     card.style.transitionDelay = `${i * 0.15}s`;
+     // delay lebih cepat (0.1s per item)
+     card.style.transitionDelay = `${i * 0.1}s`;
      observer.observe(card);
    });
    </script>
@@ -1404,15 +1405,15 @@ const productDescriptions = {
    .product-card.hidden-left,
    .product-card.hidden-right {
      opacity: 0;
-     transition: opacity .9s ease, transform .9s ease;
-     transform: scale(0.92);
+     transition: opacity .6s ease, transform .6s ease;
+     transform: scale(0.94);
    }
 
    .product-card.hidden-left {
-     transform: translateX(-60px) scale(0.92);
+     transform: translateX(-50px) scale(0.94);
    }
    .product-card.hidden-right {
-     transform: translateX(60px) scale(0.92);
+     transform: translateX(50px) scale(0.94);
    }
 
    .product-card.show {
