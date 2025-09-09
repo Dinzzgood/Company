@@ -1378,7 +1378,7 @@ const productDescriptions = {
 };
 </script>
 
-   <!-- Animasi produk (versi cepat) -->
+   <!-- Animasi produk (versi lebih cepat + efek gambar singkat) -->
    <script>
    const observer = new IntersectionObserver((entries, obs) => {
      entries.forEach(entry => {
@@ -1395,30 +1395,46 @@ const productDescriptions = {
      } else {
        card.classList.add("hidden-right");
      }
-     // delay lebih cepat (0.1s per item)
-     card.style.transitionDelay = `${i * 0.1}s`;
+     // delay sedikit lebih cepat
+     card.style.transitionDelay = `${i * 0.06}s`;
      observer.observe(card);
    });
    </script>
 
    <style>
+   /* transisi utama: lebih cepat (0.45s) dan efek tidak terlalu besar */
    .product-card.hidden-left,
    .product-card.hidden-right {
      opacity: 0;
-     transition: opacity .6s ease, transform .6s ease;
-     transform: scale(0.94);
+     transition: opacity .45s ease, transform .45s ease;
+     transform: scale(0.96);
    }
 
    .product-card.hidden-left {
-     transform: translateX(-50px) scale(0.94);
+     transform: translateX(-40px) scale(0.96);
    }
    .product-card.hidden-right {
-     transform: translateX(50px) scale(0.94);
+     transform: translateX(40px) scale(0.96);
    }
 
    .product-card.show {
      opacity: 1;
      transform: translateX(0) scale(1);
+   }
+
+   /* efek singkat pada gambar saat card muncul.
+      Efek hanya berlangsung saat animasi masuk dan kembali ke tampilan semula,
+      sehingga tidak mengubah tampilan akhir sedikit pun. */
+   .product-card img {
+     will-change: transform, filter;
+   }
+   .product-card.show img {
+     animation: imgPop .45s ease;
+   }
+   @keyframes imgPop {
+     0%   { transform: scale(0.995); filter: brightness(1); }
+     50%  { transform: scale(1.02);  filter: brightness(1.04); }
+     100% { transform: scale(1);     filter: brightness(1); }
    }
    </style>
 
