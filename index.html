@@ -423,6 +423,38 @@ header{ animation: headerSlide 0.8s cubic-bezier(.2,.9,.2,1) both; will-change: 
 @keyframes zoomBg { from { background-size:110%;}
 to { background-size:120%;}
 }</style>    <link rel="icon" href="/favicon.ico">
+
+  <style>
+    /* HERO injected */
+    .hero { position: relative; min-height: 70vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('foto-hero.jpg'); /* GANTI: foto-hero.jpg -> nama file foto kamu */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      /* Parallax on desktop */
+      background-attachment: fixed;
+      transform: translateZ(0);
+      will-change: transform;
+      z-index: 0;
+    }
+    @media (max-width: 900px) {
+      .hero-bg { background-attachment: scroll; }
+    }
+    .hero-overlay { position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.28)); z-index:1; }
+    .hero-container { position:relative; z-index:2; text-align:center; color:#fff; padding:4rem 1rem; max-width:1100px; }
+    .hero h1 { font-size: clamp(2rem, 4vw, 3.5rem); line-height:1.02; margin-bottom:.6rem; }
+    .hero p.lead { font-size: clamp(1rem, 1.6vw, 1.15rem); margin-bottom:1.25rem; opacity:.95; }
+    .btn { display:inline-block; padding:.65rem 1rem; border-radius:8px; text-decoration:none; font-weight:600; transition: transform .12s ease, box-shadow .12s ease; }
+    .btn-primary { background: #e7b84b; color:#111; border:none; }
+    .btn-outline { background:transparent; color:#fff; border:1px solid rgba(255,255,255,.3); }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,.25); }
+    .hero-products { margin-top:1.2rem; display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+    .hero-prod img { width:90px; height:90px; object-fit:cover; border-radius:8px; box-shadow: 0 6px 18px rgba(0,0,0,.3); }
+    .hero-prod p { margin-top:.4rem; font-size:.75rem; color:rgba(255,255,255,.9); }
+  </style>
 </head>
 <!-- Open Graph & Twitter (added by assistant) -->
 <meta content="Dirac Parfum — Reseller Parfum Premium &amp; Resmi" property="og:title"/>
@@ -454,6 +486,40 @@ Example (images.weserv.nl proxy): <source type="image/webp" srcset="https://imag
 It's recommended to generate optimized WebP files and serve them with proper cache headers.-->
 
 <body>
+
+  <!-- HERO (inserted by assistant) -->
+  <section class="hero position-relative" aria-label="Hero section — Dirac Parfum">
+    <div class="hero-bg" role="img" aria-hidden="true"></div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <div class="hero-container">
+      <h1>Dirac Parfum</h1>
+      <p class="lead">Wewangian premium — curated collection yang meningkatkan kesan. Pilihan original &amp; inspired untuk setiap momen.</p>
+
+      <div style="display:flex; gap:.8rem; justify-content:center; flex-wrap:wrap; margin-top:12px;">
+        <a class="btn btn-primary" href="#produk">Lihat Produk Unggulan</a>
+        <a class="btn btn-outline" href="#galeri">Jelajahi Galeri</a>
+      </div>
+
+      <div class="hero-products" aria-hidden="true" style="margin-top:18px;">
+        <div class="hero-prod">
+          <img src="din1.PNG" alt="Produk 1" loading="lazy">
+          <p>NISHANE WULONG CHA</p>
+        </div>
+        <div class="hero-prod">
+          <img src="din2.PNG" alt="Produk 2" loading="lazy">
+          <p>JPG LEMALE ALL VARIAN</p>
+        </div>
+        <div class="hero-prod">
+          <img src="din3.PNG" alt="Produk 3" loading="lazy">
+          <p>YSL BABY CAT</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- END HERO -->
+
+
 <a class="skip-link" href="#main">Lewati ke konten</a>
 
 <!-- Topbar -->
