@@ -415,7 +415,86 @@ header{ animation: headerSlide 0.8s cubic-bezier(.2,.9,.2,1) both; will-change: 
 @keyframes zoomBg { from { background-size:110%;}
 to { background-size:120%;}
 }</style>
-<meta content="Promo Diskon 15% - Produk Kesehatan" property="og:title"/><meta content="Gunakan kode DIRAC15 untuk dapatkan diskon. Berlaku sampai akhir bulan!" property="og:description"/><meta content="https://example.com/share.jpg" property="og:image"/><meta content="Belanja parfum niche, designer, lokal, dan Timur Tengah. Jaminan ori, ready stock, dan konsultasi wangi gratis. Promo &amp; rekomendasi terbaru ada di sini." name="description"/><link href="https://dirac-parfum.example/" rel="canonical"/></head>
+<meta content="Promo Diskon 15% - Produk Kesehatan" property="og:title"/><meta content="Gunakan kode DIRAC15 untuk dapatkan diskon. Berlaku sampai akhir bulan!" property="og:description"/><meta content="https://example.com/share.jpg" property="og:image"/><meta content="Belanja parfum niche, designer, lokal, dan Timur Tengah. Jaminan ori, ready stock, dan konsultasi wangi gratis. Promo &amp; rekomendasi terbaru ada di sini." name="description"/><link href="https://dirac-parfum.example/" rel="canonical"/><style>
+/* =========================
+   BUTTON THEME OVERRIDE
+   (Hanya ubah warna tombol)
+   ========================= */
+:root{
+  --btn-grad-1: #ff6fa8; /* pink */
+  --btn-grad-2: #7b61ff; /* ungu */
+  --btn-text: #ffffff;
+  --btn-shadow: rgba(123,97,255,0.12);
+}
+
+/* Primary / gradient buttons */
+.btn-primary,
+.btn-primary-grad,
+.product-card .btn-primary-grad,
+#catalog .btn-primary-grad,
+#galleryGrid .btn-primary-grad,
+.mobile-sticky .ms-order,
+.btn.nav-link.btn-ghost {
+  background: linear-gradient(90deg, var(--btn-grad-1), var(--btn-grad-2)) !important;
+  color: var(--btn-text) !important;
+  border: none !important;
+  box-shadow: 0 10px 28px var(--btn-shadow) !important;
+  transition: transform .18s ease, filter .12s ease !important;
+}
+
+/* Hover / focus states */
+.btn-primary:hover,
+.btn-primary-grad:hover,
+.product-card .btn-primary-grad:hover,
+#catalog .btn-primary-grad:hover,
+#galleryGrid .btn-primary-grad:hover,
+.mobile-sticky .ms-order:hover,
+.btn.nav-link.btn-ghost:focus,
+.btn.nav-link.btn-ghost:hover {
+  transform: translateY(-2px) scale(1.01) !important;
+  filter: brightness(1.04) !important;
+}
+
+/* Small primary buttons (e.g. .btn-sm) keep same gradient */
+.btn-sm.btn-primary,
+.btn-sm.btn-primary-grad {
+  background: linear-gradient(90deg, var(--btn-grad-1), var(--btn-grad-2)) !important;
+  color: var(--btn-text) !important;
+}
+
+/* Outline / ghost variants: keep transparent but use pink-accent on hover */
+.btn-outline-light,
+.btn-outline-ghost,
+.product-card .btn-outline-secondary {
+  border: 1px solid rgba(255,255,255,0.12) !important;
+  color: var(--btn-text) !important;
+  background: transparent !important;
+}
+.btn-outline-light:hover,
+.btn-outline-ghost:hover,
+.product-card .btn-outline-secondary:hover {
+  background: linear-gradient(90deg, rgba(255,111,168,0.08), rgba(123,97,255,0.08)) !important;
+  border-color: rgba(255,255,255,0.22) !important;
+  transform: scale(1.01) !important;
+}
+
+/* Promo CTA (jika ada) */
+.promo-cta,
+.promo-minimal .promo-cta {
+  background: linear-gradient(90deg, var(--btn-grad-1), var(--btn-grad-2)) !important;
+  color: var(--btn-text) !important;
+  border: none !important;
+}
+
+/* Ensure accessibility: keep sufficient contrast for text on buttons */
+.btn-primary:focus,
+.btn-primary-grad:focus,
+.promo-cta:focus {
+  outline: 3px solid rgba(123,97,255,0.18) !important;
+  outline-offset: 3px !important;
+}
+</style>
+</head>
 <!-- Open Graph & Twitter (added by assistant) -->
 <meta content="Dirac Parfum — Reseller Parfum Premium &amp; Resmi" property="og:title"/>
 <meta content="Dirac Parfum — reseller parfum premium, original &amp; inspired. Pesan 6281937036039" property="og:description"/>
