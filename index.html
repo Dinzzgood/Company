@@ -494,6 +494,151 @@ to { background-size:120%;}
   outline-offset: 3px !important;
 }
 </style>
+<!-- Assistant Blue Override: remove gold gradients and use solid blue color -->
+<style>
+  /* Blue Override Styles - Full Blue without gradients */
+  :root {
+    --gold: #007bff !important;
+    --accent: #007bff !important;
+  }
+  /* General section titles */
+  section .section-title,
+  .section-title {
+    color: #007bff !important;
+  }
+  /* Feature cards */
+  .feature-card {
+    background: #007bff !important;
+    border-color: #007bff !important;
+    color: #ffffff !important;
+  }
+  .feature-card:hover {
+    background: #0056b3 !important;
+    border-color: #0056b3 !important;
+  }
+  .feature-card .icon-wrap {
+    background: rgba(0, 123, 255, 0.15) !important;
+    border-color: rgba(0, 123, 255, 0.4) !important;
+    color: #007bff !important;
+  }
+  .feature-card h3 {
+    color: #ffffff !important;
+  }
+  .feature-card p {
+    color: #ffffff !important;
+  }
+  /* Product cards */
+  .product-card {
+    background: #007bff !important;
+    border-color: #007bff !important;
+    color: #ffffff !important;
+  }
+  .product-card:hover {
+    box-shadow: 0 28px 60px rgba(0, 123, 255, 0.4) !important;
+    transform: translateY(-8px) !important;
+  }
+  .product-card .product-title,
+  .product-card .product-price,
+  .product-card .product-body {
+    color: #ffffff !important;
+  }
+  .product-card .btn-primary-grad,
+  .product-card .btn-primary {
+    background: #0056b3 !important;
+    border-color: #0056b3 !important;
+    color: #ffffff !important;
+  }
+  .product-card .btn-primary-grad:hover,
+  .product-card .btn-primary:hover {
+    background: #004494 !important;
+    border-color: #004494 !important;
+  }
+  .product-card .btn-outline-secondary {
+    color: #ffffff !important;
+    border-color: #ffffff !important;
+  }
+  .product-card .btn-outline-secondary:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-color: #ffffff !important;
+  }
+  .badge-top {
+    background: #007bff !important;
+    color: #ffffff !important;
+  }
+  /* Stats section */
+  #stats .stat-title {
+    color: #007bff !important;
+  }
+  #stats .stat h2 {
+    color: #007bff !important;
+  }
+  /* Testimonials */
+  .testimonial-title,
+  .testimonial-slider h4 {
+    color: #007bff !important;
+  }
+  .dot.active,
+  .dot:hover {
+    background: #007bff !important;
+    box-shadow: 0 0 6px #007bff !important;
+  }
+  /* FAQ arrow */
+  .pq-item[aria-expanded="true"] .pq-arrow {
+    color: #007bff !important;
+  }
+  /* Modal price and buttons */
+  #product-modal-close {
+    color: #007bff !important;
+  }
+  #product-modal-price {
+    color: #007bff !important;
+  }
+  #product-modal-ws {
+    background: #007bff !important;
+    color: #ffffff !important;
+    border-color: #007bff !important;
+  }
+  #product-modal-ws:hover {
+    background: #0056b3 !important;
+    border-color: #0056b3 !important;
+  }
+  /* Promo minimal elements */
+  .promo-minimal,
+  .promo-minimal .promo-title,
+  .promo-minimal .promo-sub {
+    background: #007bff !important;
+    color: #ffffff !important;
+  }
+  .promo-minimal-left .promo-badge {
+    background: #007bff !important;
+    color: #ffffff !important;
+  }
+  .promo-cta {
+    border-color: #007bff !important;
+    color: #007bff !important;
+  }
+  .promo-cta:hover {
+    background: #0056b3 !important;
+    color: #ffffff !important;
+  }
+  /* Override all primary gradient buttons to solid blue */
+  .btn-primary-grad {
+    background: #0056b3 !important;
+    border: none !important;
+    color: #ffffff !important;
+    box-shadow: none !important;
+  }
+  .btn-primary-grad:hover {
+    background: #004494 !important;
+    color: #ffffff !important;
+  }
+  /* Trust badges */
+  .trust-badge {
+    background: rgba(0, 123, 255, 0.15) !important;
+    border-color: rgba(0, 123, 255, 0.4) !important;
+    color: #ffffff !important;
+  }
+</style>
 </head>
 <!-- Open Graph & Twitter (added by assistant) -->
 <meta content="Dirac Parfum — Reseller Parfum Premium &amp; Resmi" property="og:title"/>
@@ -2236,8 +2381,8 @@ function animateCountersOnce() {
 </script>
 <!-- Override warna judul & angka untuk Stats -->
 <style>
-  #stats .stat-title { color: #ffd966 !important; } /* judul kuning */
-  #stats .stat h2 { color: #1e90ff !important; }    /* angka biru */
+  #stats .stat-title { color: #007bff !important; } /* judul biru */
+  #stats .stat h2 { color: #007bff !important; }    /* angka biru */
 </style>
 <script>
 (function(){
