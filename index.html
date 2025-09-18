@@ -1532,7 +1532,10 @@ const productDescriptions = {
       const cartBtn = document.createElement('div');
       cartBtn.className = 'cart-float';
       cartBtn.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" aria-hidden="true"><path fill="currentColor" d="M528.12 301.319l47.273-208C578.116 77.18 566.36 64 551.284 64H128.575L121.473 39.515C118.892 30.121 110.618 24 100.866 24H24c-13.255 0-24 10.745-24 24s10.745 24 24 24h59.016l70.526 248.015c-20.962 12.09-34.542 34.583-34.542 60.273 0 38.598 31.402 70 70 70s70-31.402 70-70c0-10.728-2.394-20.886-6.574-29.999h151.149c-4.18 9.113-6.574 19.271-6.574 29.999 0 38.598 31.402 70 70 70s70-31.402 70-70c0-31.559-20.523-58.345-48.295-67.542zM177.5 378.5c0 13.807-11.192 25-25 25s-25-11.193-25-25 11.192-25 25-25 25 11.193 25 25zm265 0c0 13.807-11.192 25-25 25s-25-11.193-25-25 11.192-25 25-25 25 11.193 25 25zM528.12 301.319H194.257l-48.91-172h364.415l18.358 80.681z"/></svg>
+        <!-- Heroicons outline shopping-cart icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+        </svg>
         <span class="cart-count"></span>`;
       document.body.appendChild(cartBtn);
 
@@ -1622,18 +1625,7 @@ const productDescriptions = {
         addBtn.className = 'btn btn-sm btn-outline-secondary add-to-cart-btn';
         addBtn.style.marginTop = '4px';
         addBtn.textContent = 'Tambah ke Keranjang';
-        addBtn.addEventListener('click', function(e) {
-          e.preventDefault();
-          const item = {
-            title: titleEl.innerText.trim(),
-            price: priceEl.innerText.trim(),
-            img: imgEl.getAttribute('src')
-          };
-          cart.push(item);
-          localStorage.setItem('cartItems', JSON.stringify(cart));
-          updateCartCount();
-          renderCartItems();
-        });
+        // Catatan: handler klik untuk tombol ini ditangani melalui delegasi klik global di bawah
         // Sisipkan tombol setelah elemen harga
         priceEl.insertAdjacentElement('afterend', addBtn);
       });
@@ -1778,14 +1770,16 @@ const productDescriptions = {
     }
     /* Tambah ke keranjang button override */
     .add-to-cart-btn {
-      border: 1px solid #fff !important;
+      border: none !important;
+      background: linear-gradient(90deg,#b88649,var(--accent)) !important;
       color: #fff !important;
-      background: transparent !important;
+      font-weight: 600;
       display: inline-block;
       width: 100%;
+      border-radius: 999px;
     }
     .add-to-cart-btn:hover {
-      background: rgba(255,255,255,0.15) !important;
+      opacity: 0.9 !important;
     }
   </style>
 </body>
