@@ -1257,31 +1257,79 @@ It's recommended to generate optimized WebP files and serve them with proper cac
     })();
   </script>
 </section>
-<section class="section bg-light" id="newsletter">
-<div class="container">
-<div class="row justify-content-center">
-<div class="col-lg-8">
-<div class="newsletter-card d-flex align-items-center gap-3">
-<div style="flex:1">
-<h3 class="section-title mb-1">Dapatkan Promo &amp; Info Terbaru</h3>
-<p class="muted small mb-0">Masukkan email untuk menerima update promo, sample, dan stock baru.</p>
-</div>
-<form class="d-flex gap-2" id="newsletterForm" style="align-items:center">
-<input class="form-control form-control-sm" id="newsEmail" placeholder="Email kamu" required="" style="max-width:320px" type="email"/>
-<button class="btn btn-primary-grad btn-sm" type="submit">Langganan</button>
-</form>
-</div>
-</div>
-</div>
-</div>
+
+<section id="newsletter" aria-label="Dapatkan Promo" style="background: radial-gradient(120% 120% at 0% 0%, #1b2432 0%, #0f1724 60%); padding:56px 0; color:#fff;">
+  <div class="container" style="max-width: 1040px; margin:0 auto; padding:0 18px;">
+    <div class="promo-wrap" style="display:flex; gap:28px; align-items:stretch; flex-wrap:wrap;">
+      <div class="promo-copy" style="flex:1 1 420px; padding:28px; border-radius:16px; background: rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); box-shadow:0 10px 30px rgba(0,0,0,.35)">
+        <h2 style="font-size:30px; font-weight:800; margin:0 0 8px">Dapatkan Promo <span style="background:linear-gradient(90deg,#f59e0b,#f97316); -webkit-background-clip:text; background-clip:text; color:transparent;">Eksklusif</span> Setiap Minggu</h2>
+        <p style="color:#cbd5e1; margin:0 0 14px">Diskon hingga 20%, flash deal, stok baru, dan <em>early access</em> ke aroma premium.</p>
+        <ul style="list-style:none; margin:0 0 10px; padding:0; color:#e2e8f0; line-height:1.7">
+          <li>✅ Kode promo khusus pelanggan WhatsApp</li>
+          <li>✅ Bocoran <em>best seller</em> & rekomendasi aroma</li>
+          <li>✅ Pengingat stok & rilis edisi terbatas</li>
+        </ul>
+        <p class="muted" style="font-size:12px; color:#94a3b8; margin:6px 0 0">Anti-spam. Bisa berhenti kapan saja.</p>
+      </div>
+      <div class="promo-form" style="flex:1 1 420px; padding:28px; border-radius:16px; background: rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12)">
+        <form id="newsletterForm" onsubmit="event.preventDefault(); alert('Terima kasih! Kode promo akan dikirim ke email/WA kamu.');" style="display:flex; flex-direction:column; gap:12px">
+          <label for="newsEmail" style="font-weight:600">Masukkan Email</label>
+          <input id="newsEmail" type="email" required placeholder="emailkamu@example.com" style="padding:12px 14px; border-radius:10px; border:1px solid rgba(255,255,255,0.18); background:#0b1220; color:#e5e7eb; outline:none">
+          <label for="newsWa" style="font-weight:600">Atau Nomor WhatsApp</label>
+          <input id="newsWa" type="tel" placeholder="08xxxxxxxxxx (opsional)" style="padding:12px 14px; border-radius:10px; border:1px solid rgba(255,255,255,0.18); background:#0b1220; color:#e5e7eb; outline:none">
+          <button type="submit" style="padding:12px 16px; border:none; border-radius:12px; font-weight:700; cursor:pointer; background:linear-gradient(90deg,#a855f7,#ec4899); color:#fff">Dapatkan Promo</button>
+          <small style="color:#94a3b8">Dengan daftar, kamu setuju menerima info promo dari Dirac. </small>
+        </form>
+      </div>
+    </div>
+  </div>
 </section>
-<footer class="footer py-4 bg-dark text-light">
-<div class="container text-center">
-<img alt="Dirac Scent Logo" loading="lazy" src="umroh.JPG" style="height:50px;margin-bottom:10px;"/>
-<h5 class="mb-1">Dirac Parfum</h5>
-<p class="small mb-2">Signature of Fragrance</p>
-<p class="small mb-0">© 2025 Dirac Parfum. Semua Hak Dilindungi.</p>
-</div>
+
+
+<footer class="site-footer" style="background:#0b1220; color:#e5e7eb; padding:48px 0 0; border-top:1px solid rgba(255,255,255,0.08)">
+  <div class="container" style="max-width:1100px; margin:0 auto; padding:0 18px">
+    <div class="footer-grid" style="display:grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap:24px; align-items:start">
+      <div>
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px">
+          <img src="umroh.JPG" alt="Logo Dirac" loading="lazy" onerror="this.style.display='none'" style="height:46px; border-radius:8px; background:rgba(255,255,255,0.06); padding:4px">
+          <div>
+            <h3 style="margin:0; font-weight:800; color:#fff">Dirac Parfum</h3>
+            <div style="font-size:13px; color:#94a3b8">Signature of Fragrance</div>
+          </div>
+        </div>
+        <p style="color:#cbd5e1; margin:8px 0 0">Parfum premium dengan wangi tahan lama & harga bersahabat.</p>
+      </div>
+      <div>
+        <h4 style="margin:0 0 8px; color:#fff">Navigasi</h4>
+        <ul style="list-style:none; padding:0; margin:0; line-height:1.9">
+          <li><a href="#catalog" style="color:#cbd5e1; text-decoration:none">Produk Unggulan</a></li>
+          <li><a href="#gallery" style="color:#cbd5e1; text-decoration:none">Galeri & Katalog</a></li>
+          <li><a href="#testimoni" style="color:#cbd5e1; text-decoration:none">Apa Kata Mereka</a></li>
+          <li><a href="#newsletter" style="color:#cbd5e1; text-decoration:none">Dapatkan Promo</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="margin:0 0 8px; color:#fff">Kontak</h4>
+        <ul style="list-style:none; padding:0; margin:0; line-height:1.9">
+          <li>WhatsApp: <a href="https://wa.me/6281937036039" target="_blank" style="color:#cbd5e1; text-decoration:none">+62 819-3703-6039</a></li>
+          <li>Email: <a href="mailto:companydirac@gmail.com" style="color:#cbd5e1; text-decoration:none">companydirac@gmail.com</a></li>
+          <li>Alamat: 123 Sidoarjo St., Any City</li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="margin:0 0 8px; color:#fff">Ikuti Kami</h4>
+        <div style="display:flex; gap:10px">
+          <a href="https://instagram.com/-" target="_blank" style="padding:10px 12px; border-radius:12px; background:rgba(255,255,255,0.06); color:#e5e7eb; text-decoration:none">Instagram</a>
+          <a href="#wa" style="padding:10px 12px; border-radius:12px; background:rgba(255,255,255,0.06); color:#e5e7eb; text-decoration:none">WhatsApp</a>
+        </div>
+      </div>
+    </div>
+    <div style="height:1px; background:rgba(255,255,255,0.08); margin:20px 0"></div>
+    <div style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; padding-bottom:20px">
+      <small style="color:#94a3b8">© 2025 Dirac Parfum. All rights reserved.</small>
+      <small style="color:#94a3b8">Kebijakan Privasi • Syarat & Ketentuan</small>
+    </div>
+  </div>
 </footer>
 <!-- Floating WhatsApp -->
 <a aria-label="Chat via WhatsApp" class="wa-float" href="https://wa.me/6281937036039" target="_blank">
@@ -2136,6 +2184,24 @@ function animateCountersOnce() {
   font-style: normal !important;
   line-height: 1.7;
 }
+
+/* === CRITICAL FIX: ensure product name & price are visible in Produk Unggulan (#catalog) === */
+#catalog .product-card .product-title,
+#catalog .product-card .product-body { 
+  color: #ffffff !important;
+  opacity: 1 !important;
+  mix-blend-mode: normal !important;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.45);
+}
+#catalog .product-card .product-price {
+  color: #ffd166 !important; /* gold for contrast */
+  opacity: 1 !important;
+  mix-blend-mode: normal !important;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.45);
+}
+/* Extra safety: when any inline color is present */
+#catalog .product-title, 
+#catalog .product-price { color: inherit !important; }
 </style>
 <script>
 (function(){
