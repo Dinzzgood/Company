@@ -522,6 +522,155 @@ to { background-size:120%;}
 
 /* Minor typography */
 .section-title { color:#ffd966; }
+</style><style>
+/* === Premium Blue Theme (no gradient, not bright) === */
+:root{
+  --accent-700:#25477d;
+  --accent-600:#2f5799;
+  --accent-500:#3b64a8;
+  --accent-400:#5177b6;
+  --accent-300:#7e9ad1;
+  --surface-900:#0b1020;
+  --surface-800:#0e1526;
+  --surface-700:#111a2e;
+  --surface-600:#16233a;
+  --border-accent: rgba(47,87,153,0.35);
+  --text-primary:#e6edf7;
+  --text-secondary:#b9c7e3;
+}
+
+/* Backgrounds & base text for catalog sections */
+body, .bg-light, section, .section, .container, .container-fluid, footer{
+  background: var(--surface-900) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Section titles */
+.section-title,
+#catalog .section-title,
+#produk .section-title,
+#galleryGrid .section-title,
+#newsletter .section-title,
+.testimonial-title{
+  color: var(--accent-300) !important;
+}
+
+/* Inputs (search, select, newsletter) */
+#searchInput, #categorySelect, #sortSelect, #newsletter input.form-control{
+  background: var(--surface-700) !important;
+  border: 1px solid #2a3550 !important;
+  color: var(--text-primary) !important;
+}
+#searchInput:focus, #categorySelect:focus, #sortSelect:focus, #newsletter input.form-control:focus{
+  outline: none !important;
+  box-shadow: 0 0 0 2px var(--accent-600) inset !important;
+  border-color: var(--accent-600) !important;
+}
+
+/* Buttons */
+.btn-primary-grad{
+  background: var(--accent-600) !important; /* solid, no gradient */
+  border: 1px solid var(--accent-700) !important;
+  color: #fff !important;
+  font-weight: 700;
+}
+.btn-primary-grad:hover{
+  background: var(--accent-700) !important;
+  transform: translateY(-1px);
+}
+.btn-primary-grad.btn-ghost{
+  background: transparent !important;
+  border: 1px solid var(--accent-600) !important;
+  color: var(--accent-300) !important;
+}
+.btn-outline-secondary{
+  background: transparent !important;
+  border: 1px solid #2a3550 !important;
+  color: var(--text-primary) !important;
+}
+.btn-outline-secondary:hover{
+  background: var(--surface-700) !important;
+  border-color: var(--accent-600) !important;
+}
+
+/* Product cards: Produk Unggulan + Masonry + Catalog grid */
+#produk .product-card,
+#galleryGrid .product-card,
+#catalog .product-card,
+.product-card{
+  background: var(--surface-800) !important;
+  border: 1px solid var(--border-accent) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35) !important;
+}
+#galleryGrid .product-card .product-body,
+#produk .product-card .product-body,
+#catalog .product-card .product-body{
+  padding: 12px 14px !important;
+}
+.product-card .product-title{
+  color: var(--text-primary) !important;
+  font-weight: 600 !important;
+}
+.product-card .product-price{
+  color: var(--accent-300) !important;
+  font-weight: 700 !important;
+}
+#galleryGrid .card-wrap{ break-inside: avoid; margin-bottom: 18px; }
+
+/* Testimonial: change accent to blue */
+#testimoni .slides .slide p{ color: var(--text-primary) !important; }
+#testimoni .slides .slide h4{ color: var(--accent-300) !important; }
+#testimoni .dot{ background: #2a3550 !important; }
+#testimoni .dot.active{ background: var(--accent-500) !important; }
+#testimoni .testimonial-slider{ background: var(--surface-800) !important; border: 1px solid var(--border-accent) !important; }
+
+/* FAQ & Newsletter cards */
+#faq-extended .accordion-item, #faq .pq-item, #newsletter .newsletter-card{
+  background: var(--surface-800) !important;
+  border: 1px solid var(--border-accent) !important;
+  color: var(--text-primary) !important;
+}
+#faq-extended .accordion-button{
+  background: var(--surface-800) !important;
+  color: var(--accent-300) !important;
+}
+#faq-extended .accordion-button:not(.collapsed){
+  color: var(--accent-400) !important;
+}
+
+/* Promo banner minimal */
+.promo-minimal{
+  background: var(--surface-800) !important;
+  border: 1px solid var(--border-accent) !important;
+}
+.promo-badge{
+  background: var(--accent-600) !important;
+  color: #fff !important;
+}
+
+/* Links */
+a, .muted a{
+  color: var(--accent-400) !important;
+}
+a:hover{
+  color: var(--accent-300) !important;
+  text-decoration: underline;
+}
+
+/* Cards hover */
+.product-card:hover{
+  transform: translateY(-6px) !important;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.45) !important;
+  border-color: rgba(47,87,153,0.45) !important;
+}
+
+/* Pills & small badges (if any) */
+.badge, .pill{
+  background: var(--surface-700) !important;
+  color: var(--accent-300) !important;
+  border: 1px solid var(--border-accent) !important;
+}
 </style></head>
 <!-- Open Graph & Twitter (added by assistant) -->
 <meta content="Dirac Parfum — Reseller Parfum Premium &amp; Resmi" property="og:title"/>
@@ -1049,7 +1198,6 @@ It's recommended to generate optimized WebP files and serve them with proper cac
 })();
 </script></section>
 <!-- Dots navigasi -->
-
 </main>
 <!-- Footer -->
 <!-- Bagian Tambahan Panjang: Edukasi, Tips, dan Info -->
