@@ -740,6 +740,70 @@ li{ color: var(--text-secondary) !important; }
 /* Ensure dots & labels readable on dark */
 #testimoni .dot{ background: #2a3550 !important; }
 #testimoni .dot.active{ background: var(--accent-400) !important; }
+</style><style>
+/* === Remove remaining gold accents & enforce blue === */
+/* Headings */
+section h2.section-title, .section h2.section-title, section .section-title, .section .section-title, h2.section-title {
+  color: var(--accent-300) !important;
+}
+
+/* Order form */
+#order .section-title { color: var(--accent-300) !important; }
+#order .order-card { background: var(--surface-800) !important; border: 1px solid var(--border-accent) !important; }
+#order .btn-primary { background: var(--accent-600) !important; border: 1px solid var(--accent-700) !important; }
+#order .btn-primary:hover { background: var(--accent-700) !important; }
+#order .btn-outline-secondary { border-color: var(--border-accent) !important; color: var(--text-primary) !important; }
+#order .btn-outline-secondary:hover { border-color: var(--accent-600) !important; background: var(--surface-700) !important; }
+#order input, #order select, #order textarea { background: var(--surface-700) !important; border: 1px solid #2a3550 !important; color: var(--text-primary) !important; }
+#order input::placeholder, #order textarea::placeholder { color: var(--text-secondary) !important; }
+
+/* Features/benefits cards gradients -> solid */
+.features .card, .benefit-card, .info-card {
+  background: var(--surface-800) !important;
+  border: 1px solid var(--border-accent) !important;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.35) !important;
+}
+
+/* Any remaining gold/yellow text */
+* { --gold-fallback: var(--accent-300); }
+[class*="text-warning"], .text-gold, .gold, .yellow, .text-yellow { color: var(--accent-300) !important; }
+/* Remove gradients that include gold by forcing background on buttons/cards */
+button, .btn, .product-card, .features .card { background-image: none !important; }
+
+/* Section dividers if used */
+hr, .divider { border-color: var(--border-accent) !important; opacity: 1 !important; }
+</style><style>
+/* === Kill remaining gold panels === */
+.features .feature-card{
+  background: var(--sea-850, #0a1e2c) !important;
+  border: 1px solid rgba(46,111,159,0.35) !important;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.35) !important;
+}
+.features .feature-card h3{ color: var(--text-primary) !important; }
+.features .feature-card p{ color: var(--text-secondary) !important; }
+.features .icon-wrap{ background: var(--sea-900, #071823) !important; border: 1px solid rgba(46,111,159,0.35) !important; }
+
+/* Newsletter card */
+#newsletter .newsletter-card{
+  background: #0a1e2c !important;
+  border: 1px solid rgba(46,111,159,0.45) !important;
+  color: var(--text-primary) !important;
+}
+#newsletter .section-title, #newsletter p{ color: var(--text-primary) !important; }
+
+/* FAQ "gold band" header strips */
+.section.bg-light, #faq-extended.section, #faq.section{
+  background: #000 !important;
+}
+#faq-extended .accordion-item, #faq .pq-item{
+  background: #0a1e2c !important;
+  border: 1px solid rgba(46,111,159,0.35) !important;
+}
+/* Any element with yellow/gold gradient in inline/author CSS */
+[class*="gold"], [class*="yellow"], .gold-bg, .yellow-bg{
+  background: #0a1e2c !important;
+  border-color: rgba(46,111,159,0.35) !important;
+}
 </style></head>
 <!-- Open Graph & Twitter (added by assistant) -->
 <meta content="Dirac Parfum — Reseller Parfum Premium &amp; Resmi" property="og:title"/>
