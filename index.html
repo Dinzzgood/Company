@@ -494,7 +494,35 @@ to { background-size:120%;}
   outline-offset: 3px !important;
 }
 </style>
-</head>
+<style>
+/* === Polish overrides (assistant) === */
+#catalog .product-card, #galleryGrid .product-card { background: #111827; border: 1px solid rgba(212,175,55,.25); border-radius: 12px; overflow: hidden; }
+#galleryGrid .product-card .product-body { padding: 12px 14px; }
+#galleryGrid .product-card .product-title { font-weight: 600; color: #fff; font-size: 0.98rem; margin-bottom: 4px; }
+#galleryGrid .product-card .product-price { color: #ffd966; font-weight: 700; margin-bottom: 6px; }
+#galleryGrid .product-card p.muted { color: #cbd5e1 !important; }
+#galleryGrid .card-wrap { break-inside: avoid; margin-bottom: 18px; }
+#galleryGrid img { width: 100%; height: auto; display: block; }
+
+/* FAQ */
+#faq-extended .accordion-item { border: 1px solid rgba(212,175,55,.35); border-radius: 10px; overflow: hidden; background: #0b1220; color:#fff; }
+#faq-extended .accordion-button { background: #0b1220; color: #ffd966; }
+#faq-extended .accordion-button:focus { box-shadow: none; }
+#faq .pq-item { background: #0b1220; border: 1px solid rgba(212,175,55,.35); border-radius: 10px; padding: 14px; }
+#faq .pq-item .pq-arrow { transform: rotate(0deg); }
+#faq .pq-item[aria-expanded="true"] .pq-arrow { transform: rotate(90deg); }
+
+/* Newsletter card */
+#newsletter .newsletter-card { background: #0b1220; border: 1px solid rgba(212,175,55,.35); border-radius: 12px; padding: 16px; }
+#newsletter input.form-control { background: #111827; border: 1px solid #374151; color: #fff; }
+
+/* Buttons */
+.btn-primary-grad { background: linear-gradient(135deg,#d4af37,#b38b2e); border: none; color: #000; font-weight: 700; }
+.btn-primary-grad.btn-ghost { background: transparent; border: 1px solid #d4af37; color: #ffd966; }
+
+/* Minor typography */
+.section-title { color:#ffd966; }
+</style></head>
 <!-- Open Graph & Twitter (added by assistant) -->
 <meta content="Dirac Parfum — Reseller Parfum Premium &amp; Resmi" property="og:title"/>
 <meta content="Dirac Parfum — reseller parfum premium, original &amp; inspired. Pesan 6281937036039" property="og:description"/>
@@ -583,12 +611,9 @@ It's recommended to generate optimized WebP files and serve them with proper cac
 </div>
 </section>
 <!-- Statistik Section -->
-
 <!-- Company Profile Button (inserted by assistant) -->
 <div class="company-profile-cta" style="text-align:center; margin: 16px 0;">
-  <a href="https://diraccc.github.io/companyprofile/" target="_blank" rel="noopener"
-     class="btn btn-primary"
-     style="display:inline-block; padding:10px 16px; border-radius:6px; text-decoration:none; font-weight:600;">
+<a class="btn btn-primary" href="https://diraccc.github.io/companyprofile/" rel="noopener" style="display:inline-block; padding:10px 16px; border-radius:6px; text-decoration:none; font-weight:600;" target="_blank">
     Web Company Profile
   </a>
 </div>
@@ -862,14 +887,7 @@ It's recommended to generate optimized WebP files and serve them with proper cac
 <p class="muted text-center mb-4">Gunakan pencarian atau filter untuk menemukan aroma favoritmu.</p>
 <div class="d-flex justify-content-center gap-2 mb-4 flex-wrap">
 <input class="form-control form-control-sm" id="searchInput" placeholder="Cari (misal: citrus, woody, floral)" style="max-width:420px"/>
-<select class="form-select form-select-sm" id="categorySelect" style="max-width:180px">
-<option value="all">Semua Kategori</option>
-<option value="daily">Daily</option>
-<option value="daily">Sold</option>
-<option value="daily">Avaible</option>
-<option value="evening">Evening</option>
-<option value="premium">Premium</option>
-</select>
+<select class="form-select form-select-sm" id="categorySelect" style="max-width:180px"><option value="all">Semua Kategori</option><option value="daily">Daily</option><option value="premium">Premium</option><option value="special">Special</option><option value="avaible">Available</option><option value="sold">Sold Out</option></select>
 <select class="form-select form-select-sm" id="sortSelect" style="max-width:180px">
 <option value="default">Urutkan: Rekomendasi</option>
 <option value="price-asc">Harga: Terendah</option>
@@ -999,144 +1017,39 @@ It's recommended to generate optimized WebP files and serve them with proper cac
 </div>
 </div>
 </section>
-<section class="testimonial-section" id="testimoni">
-<h2 class="testimonial-title">Apa Kata Mereka?</h2>
-<div class="testimonial-slider">
-<div class="slides">
-<div class="slide active">
-<p>"Parfumnya beneran original, wangi tahan lama banget. Packing aman, pengiriman juga cepat. Recommended seller!"</p>
-<h4>- Rizky Saputra, Jakarta</h4>
-</div>
-<div class="slide">
-  <p>"Saya sering beli parfum Dirac untuk koleksi pribadi sekaligus saya jual lagi, laris banget di pasaran."</p>
-  <h4>- Rahmat Hidayat, Jakarta</h4>
-</div>
-
-<div class="slide">
-  <p>"Awalnya saya cuma beli untuk dipakai sendiri, ternyata banyak teman yang ikut nitip. Sekarang jadi usaha kecil-kecilan."</p>
-  <h4>- Siti Nurjanah, Bandung</h4>
-</div>
-
-<div class="slide">
-  <p>"Parfum Dirac punya kualitas bagus, jadi gampang banget saya jual lagi ke customer."</p>
-  <h4>- Fajar Ramadhan, Surabaya</h4>
-</div>
-
-<div class="slide">
-  <p>"Selain dipakai pribadi, parfum dari Dirac selalu saya stok untuk dijual kembali. Untungnya lumayan."</p>
-  <h4>- Dewi Ayu, Medan</h4>
-</div>
-
-<div class="slide">
-  <p>"Saya suka jual-beli parfum, dan Dirac salah satu yang paling dicari karena wanginya eksklusif."</p>
-  <h4>- Aditya Saputra, Yogyakarta</h4>
-</div>
-
-<div class="slide">
-  <p>"Banyak teman dan saudara minta saya carikan parfum Dirac, jadi saya sekalian ambil untuk dijual."</p>
-  <h4>- Laila Amalia, Malang</h4>
-</div>
-
-<div class="slide">
-  <p>"Saya jualan parfum online, produk Dirac selalu cepat habis karena banyak yang suka."</p>
-  <h4>- Ridwan Kurniawan, Makassar</h4>
-</div>
-
-<div class="slide">
-  <p>"Sebagai penjual, saya puas karena kualitas Dirac memudahkan saya dapat pelanggan setia."</p>
-  <h4>- Nisa Putri, Palembang</h4>
-</div>
-
-<div class="slide">
-  <p>"Saya dulu pembeli setia, sekarang malah ikut jualan parfum Dirac. Produknya memang berkualitas."</p>
-  <h4>- Ilham Maulana, Semarang</h4>
-</div>
-
-<div class="slide">
-  <p>"Dirac bikin saya bisa punya usaha kecil-kecilan dari hobi koleksi parfum."</p>
-  <h4>- Putri Maharani, Bogor</h4>
-</div>
-
-<div class="slide">
-  <p>"Saya jual di marketplace, parfum Dirac jadi produk favorit karena aromanya unik."</p>
-  <h4>- Akbar Santoso, Depok</h4>
-</div>
-
-<div class="slide">
-  <p>"Walau saya baru coba jual parfum Dirac, ternyata peminatnya langsung banyak."</p>
-  <h4>- Rani Fitriyani, Bali</h4>
-</div>
-
-<div class="slide">
-  <p>"Kualitas parfum Dirac membuat saya percaya diri menjualnya ke customer premium."</p>
-  <h4>- Heru Prasetyo, Pekanbaru</h4>
-</div>
-
-<div class="slide">
-  <p>"Setiap saya pakai parfum Dirac, banyak yang tertarik beli. Jadi sekalian saya stok untuk dijual."</p>
-  <h4>- Melati Anggraini, Banjarmasin</h4>
-</div>
-
-<div class="slide">
-  <p>"Saya sudah beberapa kali beli parfum Dirac untuk dijual lagi, repeat order customer selalu tinggi."</p>
-  <h4>- Yusuf Adnan, Pontianak</h4>
-</div>
-<div class="slide">
-<p>"Wanginya elegan dan bikin banyak yang muji. Senang bisa nemu toko parfum terpercaya."</p>
-<h4>- Dian Anggraini, Banjarmasin</h4>
-</div>
-<div class="slide">
-<p>"Setiap order selalu dikasih pelayanan ramah. Rekomendasi banget buat pecinta parfum ori."</p>
-<h4>- Heru Nugroho, Medan</h4>
-</div>
-<div class="slide">
-<p>"Parfum designer dan niche lengkap banget di sini. Gampang cari koleksi favorit."</p>
-<h4>- Nabila Ayu, Jakarta</h4>
-<div class="slide">
-<p>"Barang sampai cepat, pelayanan ramah, dan parfum dijamin original."</p>
-<h4>- Andri Kurnia, Bali</h4>
-</div>
-</div>
-<!-- end .slides -->
-</div>
-<!-- end .testimonial-slider -->
-<style>
-    #testimoni .slides .slide p,
-    #testimoni .slides .slide h4 { color: #fff; margin: 0 0 8px 0; }
-    #testimoni .slides .slide { display: none; text-align:center; }
-    #testimoni .slides .slide.active { display: block; }
-  </style>
-<!-- Script auto-rotate -->
-<script>
-    (function(){
-      const root = document.getElementById('testimoni');
-      if(!root) return;
-      const slides = Array.from(root.querySelectorAll('.slides .slide'));
-      if(slides.length <= 1) return;
-      let i = slides.findIndex(s => s.classList.contains('active'));
-      if(i < 0) i = 0;
-      slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
-      setInterval(() => {
-        slides[i].classList.remove('active');
-        i = (i + 1) % slides.length;
-        slides[i].classList.add('active');
-      }, 7500);
-    })();
-  </script>
-</div></section>
+<section class="testimonial-section" id="testimoni"><h2 class="testimonial-title">Apa Kata Mereka?</h2><div class="testimonial-slider"><div class="slides"><div class="slide active"><p>“Parfumnya beneran original, wangi tahan lama banget. Packing aman, pengiriman juga cepat. Recommended seller!”</p><h4>- Rizky Saputra, Jakarta</h4></div><div class="slide"><p>“Saya sering beli parfum Dirac untuk koleksi pribadi sekaligus saya jual lagi, laris banget di pasaran.”</p><h4>- Rahmat Hidayat, Jakarta</h4></div><div class="slide"><p>“Awalnya saya cuma beli untuk dipakai sendiri, ternyata banyak teman yang ikut nitip. Sekarang jadi usaha kecil-kecilan.”</p><h4>- Siti Nurjanah, Bandung</h4></div><div class="slide"><p>“Parfum Dirac punya kualitas bagus, jadi gampang banget saya jual lagi ke customer.”</p><h4>- Fajar Ramadhan, Surabaya</h4></div><div class="slide"><p>“Selain dipakai pribadi, parfum dari Dirac selalu saya stok untuk dijual kembali. Untungnya lumayan.”</p><h4>- Dewi Ayu, Medan</h4></div><div class="slide"><p>“Saya suka jual-beli parfum, dan Dirac salah satu yang paling dicari karena wanginya eksklusif.”</p><h4>- Aditya Saputra, Yogyakarta</h4></div><div class="slide"><p>“Banyak teman dan saudara minta saya carikan parfum Dirac, jadi saya sekalian ambil untuk dijual.”</p><h4>- Laila Amalia, Malang</h4></div><div class="slide"><p>“Saya jualan parfum online, produk Dirac selalu cepat habis karena banyak yang suka.”</p><h4>- Ridwan Kurniawan, Makassar</h4></div><div class="slide"><p>“Sebagai penjual, saya puas karena kualitas Dirac memudahkan saya dapat pelanggan setia.”</p><h4>- Nisa Putri, Palembang</h4></div><div class="slide"><p>“Saya dulu pembeli setia, sekarang malah ikut jualan parfum Dirac. Produknya memang berkualitas.”</p><h4>- Ilham Maulana, Semarang</h4></div><div class="slide"><p>“Dirac bikin saya bisa punya usaha kecil-kecilan dari hobi koleksi parfum.”</p><h4>- Putri Maharani, Bogor</h4></div><div class="slide"><p>“Saya jual di marketplace, parfum Dirac jadi produk favorit karena aromanya unik.”</p><h4>- Akbar Santoso, Depok</h4></div><div class="slide"><p>“Walau saya baru coba jual parfum Dirac, ternyata peminatnya langsung banyak.”</p><h4>- Rani Fitriyani, Bali</h4></div><div class="slide"><p>“Kualitas parfum Dirac membuat saya percaya diri menjualnya ke customer premium.”</p><h4>- Heru Prasetyo, Pekanbaru</h4></div><div class="slide"><p>“Setiap saya pakai parfum Dirac, banyak yang tertarik beli. Jadi sekalian saya stok untuk dijual.”</p><h4>- Melati Anggraini, Banjarmasin</h4></div><div class="slide"><p>“Saya sudah beberapa kali beli parfum Dirac untuk dijual lagi, repeat order customer selalu tinggi.”</p><h4>- Yusuf Adnan, Pontianak</h4></div><div class="slide"><p>“Wanginya elegan dan bikin banyak yang muji. Senang bisa nemu toko parfum terpercaya.”</p><h4>- Dian Anggraini, Banjarmasin</h4></div><div class="slide"><p>“Setiap order selalu dikasih pelayanan ramah. Rekomendasi banget buat pecinta parfum ori.”</p><h4>- Heru Nugroho, Medan</h4></div><div class="slide"><p>“Parfum designer dan niche lengkap banget di sini. Gampang cari koleksi favorit.”</p><h4>- Nabila Ayu, Jakarta</h4></div><div class="slide"><p>“Barang sampai cepat, pelayanan ramah, dan parfum dijamin original.”</p><h4>- Andri Kurnia, Bali</h4></div></div><div aria-hidden="true" class="dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div></div><style>
+#testimoni { padding: 50px 0; }
+#testimoni .testimonial-slider { max-width: 700px; margin: 0 auto; background: rgba(0,0,0,0.35); padding: 24px; border-radius: 14px; }
+#testimoni .slides .slide { display: none; text-align: center; }
+#testimoni .slides .slide.active { display: block; }
+#testimoni .slides .slide p { color: #fff; font-style: italic; margin: 0 0 8px; }
+#testimoni .slides .slide h4 { color: #ffd966; margin: 0; font-weight: 600; }
+#testimoni .dots { display: flex; gap: 6px; justify-content: center; margin-top: 14px; }
+#testimoni .dot { width: 8px; height: 8px; border-radius: 50%; background: #6b7280; opacity: 0.7; }
+#testimoni .dot.active { background: #ffd966; opacity: 1; }
+</style><script>
+(function(){
+  const root = document.getElementById('testimoni');
+  if(!root) return;
+  const slides = Array.from(root.querySelectorAll('.slides .slide'));
+  const dots = Array.from(root.querySelectorAll('.dots .dot'));
+  if(slides.length <= 1) { slides[0]?.classList.add('active'); dots[0]?.classList.add('active'); return; }
+  let i = 0;
+  const setActive = (idx)=>{
+    slides.forEach((s, k)=> s.classList.toggle('active', k===idx));
+    dots.forEach((d, k)=> d.classList.toggle('active', k===idx));
+    i = idx;
+  };
+  const next = ()=> setActive((i+1) % slides.length);
+  let timer = setInterval(next, 5000);
+  root.addEventListener('mouseenter', ()=> { clearInterval(timer); });
+  root.addEventListener('mouseleave', ()=> { timer = setInterval(next, 5000); });
+  dots.forEach((d, idx)=> d.addEventListener('click', ()=> setActive(idx)));
+  setActive(0);
+})();
+</script></section>
 <!-- Dots navigasi -->
-<div class="dots">
-<span class="dot active"></span>
-<span class="dot"></span>
-<span class="dot"></span>
-<span class="dot"></span>
-<span class="dot"></span>
-<span class="dot"></span>
-<span class="dot"></span>
-<span class="dot"></span>
-<span class="dot"></span>
-<span class="dot"></span>
-</div>
+
 </main>
 <!-- Footer -->
 <!-- Bagian Tambahan Panjang: Edukasi, Tips, dan Info -->
@@ -1466,9 +1379,8 @@ const productDescriptions = {
   }
 };
 </script>
-
-   <!-- Animasi produk (versi lebih cepat + efek gambar singkat) -->
-   <script>
+<!-- Animasi produk (versi lebih cepat + efek gambar singkat) -->
+<script>
    const observer = new IntersectionObserver((entries, obs) => {
      entries.forEach(entry => {
        if (entry.isIntersecting) {
@@ -1489,8 +1401,7 @@ const productDescriptions = {
      observer.observe(card);
    });
    </script>
-
-   <style>
+<style>
    /* transisi utama: lebih cepat (0.45s) dan efek tidak terlalu besar */
    .product-card.hidden-left,
    .product-card.hidden-right {
@@ -1526,9 +1437,8 @@ const productDescriptions = {
      100% { transform: scale(1);     filter: brightness(1); }
    }
    </style>
-
-  <!-- Sistem keranjang sederhana -->
-  <script>
+<!-- Sistem keranjang sederhana -->
+<script>
     document.addEventListener('DOMContentLoaded', function() {
       // Inisialisasi array keranjang dari localStorage
       let cart = [];
@@ -1674,7 +1584,7 @@ const productDescriptions = {
       });
     });
   </script>
-  <style>
+<style>
     /* Tombol floating keranjang */
     .cart-float {
       position: fixed;
